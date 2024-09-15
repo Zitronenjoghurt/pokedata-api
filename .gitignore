@@ -1,3 +1,5 @@
 .idea
 /target
+build/target
+types/target
 Cargo.lock
