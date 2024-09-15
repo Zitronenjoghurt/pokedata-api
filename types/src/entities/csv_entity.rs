@@ -1,32 +1,59 @@
-use crate::entities::csv::abilities::Abilities;
+use crate::entities::csv::abilities::AbilitiesCSV;
+use csv::Reader;
 use std::collections::HashMap;
+use std::path::PathBuf;
 
-pub fn get_all_entities() -> Vec<Box<dyn CSVEntity>> {
-    vec![
-        Box::new(Abilities::default())
-    ]
+pub struct CSVEntityMetaData {
+    file_name: String,
+    download_url: String,
+    is_downloadable: bool,
 }
 
 pub trait CSVEntity {
-    fn get_file_name(&self) -> &'static str;
+    fn file_name() -> &'static str;
 
-    fn get_base_download_url(&self) -> &'static str {
-        "https://github.com/PokeAPI/pokeapi/blob/master/data/v2/csv/"
+    fn base_download_url() -> &'static str {
+        "https://raw.githubusercontent.com/PokeAPI/pokeapi/master/data/v2/csv/"
     }
 
-    fn is_downloadable(&self) -> bool {
+    fn is_downloadable() -> bool {
         true
     }
 
-    fn get_download_url(&self) -> String {
-        format!("{}{}.csv", self.get_base_download_url(), self.get_file_name())
+    fn download_url() -> String {
+        format!("{}{}.csv", Self::base_download_url(), Self::file_name())
+    }
+
+    fn load(base_path: &PathBuf) -> csv::Result<Vec<Self>>
+    where
+        Self: for<'de> serde::Deserialize<'de>,
+    {
+        let mut file_path = base_path.join(Self::file_name());
+        file_path.set_extension("csv");
+        let mut reader = Reader::from_path(file_path)?;
+        reader.deserialize().collect()
+    }
+
+    fn get_metadata() -> CSVEntityMetaData {
+        CSVEntityMetaData {
+            file_name: Self::file_name().to_string(),
+            download_url: Self::download_url(),
+            is_downloadable: Self::is_downloadable(),
+        }
     }
 }
 
-pub fn get_download_map() -> HashMap<&'static str, String> {
-    get_all_entities()
+pub fn get_all_metadata() -> Vec<CSVEntityMetaData> {
+    vec![
+        AbilitiesCSV::get_metadata()
+    ]
+}
+
+/// Generates a map where the keys are CSV file names and the values are the download URLs
+pub fn get_download_map() -> HashMap<String, String> {
+    get_all_metadata()
         .into_iter()
-        .filter(|entity| entity.is_downloadable())
-        .map(|entity| (entity.get_file_name(), entity.get_download_url()))
+        .filter(|metadata| metadata.is_downloadable)
+        .map(|metadata| (metadata.file_name, metadata.download_url))
         .collect()
 }
