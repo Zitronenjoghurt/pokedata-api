@@ -8,6 +8,7 @@ pub mod entities {
         pub mod language;
         pub mod localized_values;
         pub mod pokemon_color;
+        pub mod pokemon_habitat;
         pub mod pokemon_shape;
         pub mod species;
     }
@@ -18,6 +19,8 @@ pub mod entities {
         pub mod language_names;
         pub mod pokemon_color_names;
         pub mod pokemon_colors;
+        pub mod pokemon_habitat_names;
+        pub mod pokemon_habitats;
         pub mod pokemon_shape_prose;
         pub mod pokemon_shapes;
         pub mod pokemon_species;

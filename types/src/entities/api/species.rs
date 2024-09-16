@@ -1,4 +1,5 @@
 use crate::entities::api::pokemon_color::PokemonColor;
+use crate::entities::api::pokemon_habitat::PokemonHabitat;
 use crate::entities::api::pokemon_shape::PokemonShape;
 use crate::entities::csv::pokemon_species::PokemonSpeciesCSV;
 use crate::entities::traits::has_id::HasId;
@@ -21,6 +22,7 @@ pub struct Species {
     pub dex_order: u32,
     pub conquest_order: Option<u32>,
     pub color: Option<PokemonColor>,
+    pub habitat: Option<PokemonHabitat>,
     pub shape: Option<PokemonShape>,
     // ToDo: evolution
 }
@@ -34,6 +36,7 @@ impl HasId for Species {
 pub fn build_species(
     pokemon_species: Vec<PokemonSpeciesCSV>,
     colors: HashMap<u32, PokemonColor>,
+    habitats: HashMap<u32, PokemonHabitat>,
     shapes: HashMap<u32, PokemonShape>,
 ) -> Vec<Species> {
     let mut species_vec = Vec::with_capacity(pokemon_species.len());
@@ -46,6 +49,11 @@ pub fn build_species(
 
         let color = match entry.color_id {
             Some(color_id) => colors.get(&color_id).cloned(),
+            None => None,
+        };
+
+        let habitat = match entry.habitat_id {
+            Some(habitat_id) => habitats.get(&habitat_id).cloned(),
             None => None,
         };
 
@@ -68,6 +76,7 @@ pub fn build_species(
             dex_order: entry.order.unwrap_or(0),
             conquest_order: entry.conquest_order,
             color,
+            habitat,
             shape,
         };
 

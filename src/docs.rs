@@ -22,6 +22,7 @@ use utoipa::OpenApi;
             language::Language,
             localized_values::LocalizedValues,
             pokemon_color::PokemonColor,
+            pokemon_habitat::PokemonHabitat,
             pokemon_shape::PokemonShape,
             species::Species,
             LanguageBulkResponse,
