@@ -25,6 +25,7 @@ async fn main() -> io::Result<()> {
         .nest("/growth-rate", resources::growth_rate::router())
         .nest("/habitat", resources::habitat::router())
         .nest("/language", resources::language::router())
+        .nest("/pokemon", resources::pokemon::router())
         .nest("/shape", resources::shape::router())
         .nest("/species", resources::species::router())
         .merge(SwaggerUi::new("/swagger").url("/api-docs/openapi.json", docs::ApiDoc::openapi()))

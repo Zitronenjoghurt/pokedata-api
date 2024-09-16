@@ -16,6 +16,7 @@ use utoipa::OpenApi;
         resources::habitat::get_habitat,
         resources::language::get_language,
         resources::ping::get_ping,
+        resources::pokemon::get_pokemon,
         resources::shape::get_shape,
         resources::species::get_species,
     ),
@@ -29,6 +30,7 @@ use utoipa::OpenApi;
             language::Language,
             localized_values::LocalizedValues,
             localized_values::VersionedLocalizedValues,
+            pokemon::Pokemon,
             pokemon_color::PokemonColor,
             pokemon_habitat::PokemonHabitat,
             pokemon_shape::PokemonShape,
@@ -39,6 +41,7 @@ use utoipa::OpenApi;
             HabitatBulkResponse,
             LanguageBulkResponse,
             MessageResponse,
+            PokemonBulkResponse,
             ShapeBulkResponse,
             SpeciesBulkResponse
         )

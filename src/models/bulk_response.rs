@@ -1,6 +1,7 @@
 use pokedata_api_types::entities::api::generation::Generation;
 use pokedata_api_types::entities::api::growth_rate::GrowthRate;
 use pokedata_api_types::entities::api::language::Language;
+use pokedata_api_types::entities::api::pokemon::Pokemon;
 use pokedata_api_types::entities::api::pokemon_color::PokemonColor;
 use pokedata_api_types::entities::api::pokemon_habitat::PokemonHabitat;
 use pokedata_api_types::entities::api::pokemon_shape::PokemonShape;
@@ -36,6 +37,12 @@ pub struct HabitatBulkResponse {
 pub struct LanguageBulkResponse {
     pub count: usize,
     pub results: Vec<Language>,
+}
+
+#[derive(Serialize, Deserialize, ToSchema)]
+pub struct PokemonBulkResponse {
+    pub count: usize,
+    pub results: Vec<Pokemon>,
 }
 
 #[derive(Serialize, Deserialize, ToSchema)]

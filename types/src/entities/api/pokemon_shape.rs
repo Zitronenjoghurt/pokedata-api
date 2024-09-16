@@ -13,6 +13,7 @@ pub struct PokemonShape {
     pub id: u32,
     pub identifier: String,
     pub names: Option<LocalizedValues>,
+    /// The "scientific" name of this Pokémon shape listed in different languages.
     pub awesome_names: Option<LocalizedValues>,
     pub descriptions: Option<LocalizedValues>,
 }

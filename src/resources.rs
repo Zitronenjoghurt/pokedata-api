@@ -4,5 +4,6 @@ pub mod growth_rate;
 pub mod habitat;
 pub mod language;
 pub mod ping;
+pub mod pokemon;
 pub mod shape;
 pub mod species;

@@ -9,6 +9,7 @@ pub mod entities {
         pub mod growth_rate;
         pub mod language;
         pub mod localized_values;
+        pub mod pokemon;
         pub mod pokemon_color;
         pub mod pokemon_habitat;
         pub mod pokemon_shape;
@@ -23,6 +24,7 @@ pub mod entities {
         pub mod growth_rate_prose;
         pub mod languages;
         pub mod language_names;
+        pub mod pokemon;
         pub mod pokemon_color_names;
         pub mod pokemon_colors;
         pub mod pokemon_habitat_names;

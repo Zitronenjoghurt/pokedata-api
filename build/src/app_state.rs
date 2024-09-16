@@ -1,5 +1,7 @@
 use pokedata_api_types::app_state::AppState;
+use pokedata_api_types::entities::api::pokemon::build_pokemon;
 use pokedata_api_types::entities::api::*;
+use pokedata_api_types::entities::csv::pokemon::PokemonCSV;
 use pokedata_api_types::entities::csv::*;
 use pokedata_api_types::entities::csv_entity::CSVEntity;
 use pokedata_api_types::entities::traits::into_id_map::IntoIdMap;
@@ -11,6 +13,7 @@ pub fn create_app_state(data_path: &PathBuf) -> AppState {
     let generations_csv = generations::GenerationsCSV::load(data_path).unwrap();
     let growth_rates_csv = growth_rates::GrowthRatesCSV::load(data_path).unwrap();
     let languages_csv = languages::LanguagesCSV::load(data_path).unwrap();
+    let pokemon_csv = PokemonCSV::load(data_path).unwrap();
     let pokemon_colors_csv = pokemon_colors::PokemonColorsCSV::load(data_path).unwrap();
     let pokemon_habitats_csv = pokemon_habitats::PokemonHabitatsCSV::load(data_path).unwrap();
     let pokemon_shapes_csv = pokemon_shapes::PokemonShapesCSV::load(data_path).unwrap();
@@ -28,8 +31,14 @@ pub fn create_app_state(data_path: &PathBuf) -> AppState {
     let growth_rates = growth_rate::build_growth_rates(growth_rates_csv, growth_rate_names_map).into_id_map();
     let habitats = pokemon_habitat::build_pokemon_habitats(pokemon_habitats_csv, habitat_names_map).into_id_map();
     let languages = language::build_languages(languages_csv, language_names_map).into_id_map();
+    let pokemon = build_pokemon(pokemon_csv).into_id_map();
     let shapes = pokemon_shape::build_pokemon_shapes(pokemon_shapes_csv, data_path).into_id_map();
-    let species = species::build_species(pokemon_species_csv, data_path).into_id_map();
+
+    let species = species::build_species(
+        pokemon_species_csv,
+        pokemon.clone(),
+        data_path,
+    ).into_id_map();
 
     AppState {
         abilities,
@@ -38,6 +47,7 @@ pub fn create_app_state(data_path: &PathBuf) -> AppState {
         growth_rates,
         habitats,
         languages,
+        pokemon,
         shapes,
         species,
     }
