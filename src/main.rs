@@ -1,6 +1,6 @@
 use axum::Router;
 use bincode;
-use pokedata_api_types::entities::app_state::AppState;
+use pokedata_api_types::app_state::AppState;
 use std::io;
 use std::sync::Arc;
 
