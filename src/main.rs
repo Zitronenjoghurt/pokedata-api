@@ -20,7 +20,10 @@ async fn main() -> io::Result<()> {
 
     let app = Router::new()
         .nest("/", resources::ping::router())
+        .nest("/color", resources::color::router())
+        .nest("/habitat", resources::habitat::router())
         .nest("/language", resources::language::router())
+        .nest("/shape", resources::shape::router())
         .nest("/species", resources::species::router())
         .merge(SwaggerUi::new("/swagger").url("/api-docs/openapi.json", docs::ApiDoc::openapi()))
         .merge(Redoc::with_url("/redoc", docs::ApiDoc::openapi()))

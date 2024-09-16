@@ -7,7 +7,7 @@ use axum::{Json, Router};
 use pokedata_api_types::app_state::AppState;
 use pokedata_api_types::entities::api::language::Language;
 
-/// Fetch languages.
+/// Fetch languages
 ///
 /// If no ID is provided, all languages will be returned.
 #[utoipa::path(

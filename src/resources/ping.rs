@@ -4,7 +4,7 @@ use axum::routing::get;
 use axum::{Json, Router};
 use pokedata_api_types::app_state::AppState;
 
-/// Ping the API for a response.
+/// PING
 ///
 /// This endpoint returns a simple pong message to indicate that the API is responsive.
 #[utoipa::path(
