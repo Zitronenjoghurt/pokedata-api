@@ -1,6 +1,10 @@
 use crate::entities::csv::abilities::AbilitiesCSV;
 use crate::entities::csv::language_names::LanguageNamesCSV;
 use crate::entities::csv::languages::LanguagesCSV;
+use crate::entities::csv::pokemon_color_names::PokemonColorNamesCSV;
+use crate::entities::csv::pokemon_colors::PokemonColorsCSV;
+use crate::entities::csv::pokemon_shape_prose::{PokemonShapeAwesomeNamesCSV, PokemonShapeDescriptionsCSV, PokemonShapeNamesCSV};
+use crate::entities::csv::pokemon_shapes::PokemonShapesCSV;
 use crate::entities::csv::pokemon_species::PokemonSpeciesCSV;
 use csv::Reader;
 use std::collections::HashMap;
@@ -51,6 +55,12 @@ pub fn get_all_metadata() -> Vec<CSVEntityMetaData> {
         AbilitiesCSV::get_metadata(),
         LanguagesCSV::get_metadata(),
         LanguageNamesCSV::get_metadata(),
+        PokemonColorNamesCSV::get_metadata(),
+        PokemonColorsCSV::get_metadata(),
+        PokemonShapeAwesomeNamesCSV::get_metadata(),
+        PokemonShapeDescriptionsCSV::get_metadata(),
+        PokemonShapeNamesCSV::get_metadata(),
+        PokemonShapesCSV::get_metadata(),
         PokemonSpeciesCSV::get_metadata(),
     ]
 }

@@ -7,13 +7,13 @@ use utoipa::ToSchema;
 #[schema(
     example = json!({"6": "german name", "9": "english name"}),
 )]
-pub struct LocalizedNames(pub HashMap<u32, String>);
+pub struct LocalizedValues(pub HashMap<u32, String>);
 
 #[derive(Clone, Debug)]
-pub struct LocalizedNamesMap(pub HashMap<u32, LocalizedNames>);
+pub struct LocalizedValuesMap(pub HashMap<u32, LocalizedValues>);
 
-impl LocalizedNamesMap {
-    pub fn get(&self, entity_id: u32) -> Option<LocalizedNames> {
+impl LocalizedValuesMap {
+    pub fn get(&self, entity_id: u32) -> Option<LocalizedValues> {
         self.0.get(&entity_id).cloned()
     }
 }

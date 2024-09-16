@@ -1,6 +1,9 @@
+use crate::entities::api::pokemon_color::PokemonColor;
+use crate::entities::api::pokemon_shape::PokemonShape;
 use crate::entities::csv::pokemon_species::PokemonSpeciesCSV;
 use crate::entities::traits::has_id::HasId;
 use serde::{Deserialize, Serialize};
+use std::collections::HashMap;
 use utoipa::ToSchema;
 
 #[derive(Clone, Debug, Serialize, Deserialize, ToSchema)]
@@ -17,6 +20,9 @@ pub struct Species {
     pub is_mythical: bool,
     pub dex_order: u32,
     pub conquest_order: Option<u32>,
+    pub color: Option<PokemonColor>,
+    pub shape: Option<PokemonShape>,
+    // ToDo: evolution
 }
 
 impl HasId for Species {
@@ -25,13 +31,27 @@ impl HasId for Species {
     }
 }
 
-pub fn build_species(pokemon_species: Vec<PokemonSpeciesCSV>) -> Vec<Species> {
+pub fn build_species(
+    pokemon_species: Vec<PokemonSpeciesCSV>,
+    colors: HashMap<u32, PokemonColor>,
+    shapes: HashMap<u32, PokemonShape>,
+) -> Vec<Species> {
     let mut species_vec = Vec::with_capacity(pokemon_species.len());
 
     for entry in pokemon_species {
         let id = match entry.id {
             Some(id) => id,
             None => continue,
+        };
+
+        let color = match entry.color_id {
+            Some(color_id) => colors.get(&color_id).cloned(),
+            None => None,
+        };
+
+        let shape = match entry.shape_id {
+            Some(shape_id) => shapes.get(&shape_id).cloned(),
+            None => None,
         };
 
         let species = Species {
@@ -47,6 +67,8 @@ pub fn build_species(pokemon_species: Vec<PokemonSpeciesCSV>) -> Vec<Species> {
             is_mythical: entry.is_mythical.unwrap_or(0) == 1,
             dex_order: entry.order.unwrap_or(0),
             conquest_order: entry.conquest_order,
+            color,
+            shape,
         };
 
         species_vec.push(species);

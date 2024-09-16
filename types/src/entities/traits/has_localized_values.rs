@@ -1,4 +1,4 @@
-pub trait HasLocalizedNames {
+pub trait HasLocalizedValues {
     fn id(&self) -> u32;
     fn language_id(&self) -> u32;
     fn name(&self) -> String;

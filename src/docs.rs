@@ -1,4 +1,4 @@
-use crate::models::{bulk_response::LanguageBulkResponse, message_response::MessageResponse};
+use crate::models::{bulk_response::{LanguageBulkResponse, SpeciesBulkResponse}, message_response::MessageResponse};
 use crate::resources;
 use pokedata_api_types::entities::api::*;
 use utoipa::OpenApi;
@@ -11,7 +11,8 @@ use utoipa::OpenApi;
     ),
     paths(
         resources::ping::get_ping,
-        resources::language::get_language
+        resources::language::get_language,
+        resources::species::get_species,
     ),
     tags(
         (name = "Misc", description = "Miscellaneous endpoints")
@@ -19,9 +20,13 @@ use utoipa::OpenApi;
     components(
         schemas(
             language::Language,
-            localized_names::LocalizedNames,
+            localized_values::LocalizedValues,
+            pokemon_color::PokemonColor,
+            pokemon_shape::PokemonShape,
+            species::Species,
             LanguageBulkResponse,
-            MessageResponse
+            MessageResponse,
+            SpeciesBulkResponse
         )
     )
 )]

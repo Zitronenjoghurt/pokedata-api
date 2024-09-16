@@ -13,8 +13,9 @@ use pokedata_api_types::entities::api::language::Language;
 #[utoipa::path(
     get,
     path = "/language",
+    params(IdsQuery),
     responses(
-        (status = 200, description = "Pong", body = LanguageBulkResponse),
+        (status = 200, description = "Species data", body = LanguageBulkResponse),
         (status = 500, description = "Server error"),
     ),
     tag = "Misc"

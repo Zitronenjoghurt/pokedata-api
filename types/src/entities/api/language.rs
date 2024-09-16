@@ -1,4 +1,4 @@
-use crate::entities::api::localized_names::{LocalizedNames, LocalizedNamesMap};
+use crate::entities::api::localized_values::{LocalizedValues, LocalizedValuesMap};
 use crate::entities::csv::languages::LanguagesCSV;
 use crate::entities::traits::has_id::HasId;
 use serde::{Deserialize, Serialize};
@@ -11,7 +11,7 @@ pub struct Language {
     pub iso3166: String,
     pub official: bool,
     pub order: u32,
-    pub localized_names: Option<LocalizedNames>,
+    pub names: Option<LocalizedValues>,
 }
 
 impl HasId for Language {
@@ -22,7 +22,7 @@ impl HasId for Language {
 
 pub fn build_languages(
     languages_csv: Vec<LanguagesCSV>,
-    names_map: LocalizedNamesMap,
+    names_map: LocalizedValuesMap,
 ) -> Vec<Language> {
     let mut languages_vec = Vec::with_capacity(languages_csv.len());
 
@@ -58,7 +58,7 @@ pub fn build_languages(
             iso3166,
             official,
             order,
-            localized_names: names_map.get(id),
+            names: names_map.get(id),
         };
 
         languages_vec.push(language);

@@ -3,21 +3,21 @@ use crate::entities::traits::has_localized_values::HasLocalizedValues;
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Default, Clone, Serialize, Deserialize)]
-pub struct LanguageNamesCSV {
-    pub language_id: u32,
+pub struct PokemonColorNamesCSV {
+    pub pokemon_color_id: u32,
     pub local_language_id: u32,
     pub name: String,
 }
 
-impl CSVEntity for LanguageNamesCSV {
+impl CSVEntity for PokemonColorNamesCSV {
     fn file_name() -> &'static str {
-        "language_names"
+        "pokemon_color_names"
     }
 }
 
-impl HasLocalizedValues for LanguageNamesCSV {
+impl HasLocalizedValues for PokemonColorNamesCSV {
     fn id(&self) -> u32 {
-        self.language_id
+        self.pokemon_color_id
     }
 
     fn language_id(&self) -> u32 {
