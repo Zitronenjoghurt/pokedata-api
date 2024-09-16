@@ -17,3 +17,15 @@ impl LocalizedValuesMap {
         self.0.get(&entity_id).cloned()
     }
 }
+
+#[derive(Clone, Debug, Serialize, Deserialize, ToSchema)]
+pub struct VersionedLocalizedValues(pub HashMap<u32, LocalizedValues>);
+
+#[derive(Clone, Debug)]
+pub struct VersionedLocalizedValuesMap(pub HashMap<u32, VersionedLocalizedValues>);
+
+impl VersionedLocalizedValuesMap {
+    pub fn get(&self, entity_id: u32) -> Option<VersionedLocalizedValues> {
+        self.0.get(&entity_id).cloned()
+    }
+}

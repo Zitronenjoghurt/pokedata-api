@@ -30,12 +30,16 @@ pub mod entities {
         pub mod pokemon_shape_prose;
         pub mod pokemon_shapes;
         pub mod pokemon_species;
+        pub mod pokemon_species_flavor_text;
+        pub mod pokemon_species_names;
     }
 
     pub mod traits {
         pub mod has_id;
         pub mod has_localized_values;
+        pub mod has_version_id;
         pub mod into_id_map;
         pub mod into_localized_values_map;
+        pub mod into_versioned_localized_values_map;
     }
 }

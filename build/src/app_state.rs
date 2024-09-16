@@ -29,7 +29,7 @@ pub fn create_app_state(data_path: &PathBuf) -> AppState {
     let habitats = pokemon_habitat::build_pokemon_habitats(pokemon_habitats_csv, habitat_names_map).into_id_map();
     let languages = language::build_languages(languages_csv, language_names_map).into_id_map();
     let shapes = pokemon_shape::build_pokemon_shapes(pokemon_shapes_csv, data_path).into_id_map();
-    let species = species::build_species(pokemon_species_csv).into_id_map();
+    let species = species::build_species(pokemon_species_csv, data_path).into_id_map();
 
     AppState {
         abilities,

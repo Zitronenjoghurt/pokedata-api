@@ -1,6 +1,13 @@
+use crate::entities::api::localized_values::{LocalizedValues, VersionedLocalizedValues};
 use crate::entities::csv::pokemon_species::PokemonSpeciesCSV;
+use crate::entities::csv::pokemon_species_flavor_text::PokemonSpeciesFlavorTextCSV;
+use crate::entities::csv::pokemon_species_names::{PokemonSpeciesGeneraCSV, PokemonSpeciesNamesCSV};
+use crate::entities::csv_entity::CSVEntity;
 use crate::entities::traits::has_id::HasId;
+use crate::entities::traits::into_localized_values_map::IntoLocalizedValuesMap;
+use crate::entities::traits::into_versioned_localized_values_map::IntoVersionedLocalizedValuesMap;
 use serde::{Deserialize, Serialize};
+use std::path::PathBuf;
 use utoipa::ToSchema;
 
 #[derive(Clone, Debug, Serialize, Deserialize, ToSchema)]
@@ -17,6 +24,9 @@ pub struct Species {
     pub is_mythical: bool,
     pub dex_order: u32,
     pub conquest_order: Option<u32>,
+    pub names: Option<LocalizedValues>,
+    pub genus: Option<LocalizedValues>,
+    pub flavor_texts: Option<VersionedLocalizedValues>,
     pub color_id: Option<u32>,
     pub habitat_id: Option<u32>,
     pub growth_rate_id: Option<u32>,
@@ -30,7 +40,14 @@ impl HasId for Species {
     }
 }
 
-pub fn build_species(pokemon_species: Vec<PokemonSpeciesCSV>) -> Vec<Species> {
+pub fn build_species(
+    pokemon_species: Vec<PokemonSpeciesCSV>,
+    data_path: &PathBuf,
+) -> Vec<Species> {
+    let names_map = PokemonSpeciesNamesCSV::load(data_path).unwrap().into_localized_values_map();
+    let genera_map = PokemonSpeciesGeneraCSV::load(data_path).unwrap().into_localized_values_map();
+    let flavor_text_map = PokemonSpeciesFlavorTextCSV::load(data_path).unwrap().into_versioned_localized_values_map();
+
     let mut species_vec = Vec::with_capacity(pokemon_species.len());
 
     for entry in pokemon_species {
@@ -52,6 +69,9 @@ pub fn build_species(pokemon_species: Vec<PokemonSpeciesCSV>) -> Vec<Species> {
             is_mythical: entry.is_mythical.unwrap_or(0) == 1,
             dex_order: entry.order.unwrap_or(0),
             conquest_order: entry.conquest_order,
+            names: names_map.get(id),
+            genus: genera_map.get(id),
+            flavor_texts: flavor_text_map.get(id),
             color_id: entry.color_id,
             growth_rate_id: entry.growth_rate_id,
             habitat_id: entry.habitat_id,

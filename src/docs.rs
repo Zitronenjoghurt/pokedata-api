@@ -28,6 +28,7 @@ use utoipa::OpenApi;
             growth_rate::GrowthRate,
             language::Language,
             localized_values::LocalizedValues,
+            localized_values::VersionedLocalizedValues,
             pokemon_color::PokemonColor,
             pokemon_habitat::PokemonHabitat,
             pokemon_shape::PokemonShape,

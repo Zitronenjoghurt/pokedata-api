@@ -12,6 +12,8 @@ use crate::entities::csv::pokemon_habitats::PokemonHabitatsCSV;
 use crate::entities::csv::pokemon_shape_prose::{PokemonShapeAwesomeNamesCSV, PokemonShapeDescriptionsCSV, PokemonShapeNamesCSV};
 use crate::entities::csv::pokemon_shapes::PokemonShapesCSV;
 use crate::entities::csv::pokemon_species::PokemonSpeciesCSV;
+use crate::entities::csv::pokemon_species_flavor_text::PokemonSpeciesFlavorTextCSV;
+use crate::entities::csv::pokemon_species_names::PokemonSpeciesNamesCSV;
 use csv::Reader;
 use std::collections::HashMap;
 use std::path::PathBuf;
@@ -74,6 +76,8 @@ pub fn get_all_metadata() -> Vec<CSVEntityMetaData> {
         PokemonShapeNamesCSV::get_metadata(),
         PokemonShapesCSV::get_metadata(),
         PokemonSpeciesCSV::get_metadata(),
+        PokemonSpeciesFlavorTextCSV::get_metadata(),
+        PokemonSpeciesNamesCSV::get_metadata(),
     ]
 }
 
