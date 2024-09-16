@@ -1,29 +1,15 @@
+use crate::app_state::create_app_state;
 use pokedata_api_types::app_state::AppState;
-use pokedata_api_types::entities::api::ability::build_abilities;
-use pokedata_api_types::entities::api::species::build_species;
-use pokedata_api_types::entities::csv::abilities::AbilitiesCSV;
-use pokedata_api_types::entities::csv::pokemon_species::PokemonSpeciesCSV;
-use pokedata_api_types::entities::csv_entity::{get_download_map, CSVEntity};
-use pokedata_api_types::entities::traits::into_id_map::IntoIdMap;
+use pokedata_api_types::entities::csv_entity::get_download_map;
 use reqwest::blocking::Client;
 use std::fs::File;
 use std::io::copy;
 use std::path::PathBuf;
 
-pub fn initialize_data(data_path: &PathBuf) -> AppState {
+pub fn build_app_state(data_path: &PathBuf) -> AppState {
     create_data_directory(data_path);
     download_csv_files(data_path);
-
-    let abilities_csv = AbilitiesCSV::load(data_path).unwrap();
-    let pokemon_species_csv = PokemonSpeciesCSV::load(data_path).unwrap();
-
-    let abilities = build_abilities(abilities_csv).into_id_map();
-    let species = build_species(pokemon_species_csv).into_id_map();
-
-    AppState {
-        abilities,
-        species,
-    }
+    create_app_state(data_path)
 }
 
 fn create_data_directory(data_path: &PathBuf) {

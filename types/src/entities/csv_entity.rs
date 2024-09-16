@@ -1,4 +1,6 @@
 use crate::entities::csv::abilities::AbilitiesCSV;
+use crate::entities::csv::language_names::LanguageNamesCSV;
+use crate::entities::csv::languages::LanguagesCSV;
 use crate::entities::csv::pokemon_species::PokemonSpeciesCSV;
 use csv::Reader;
 use std::collections::HashMap;
@@ -47,6 +49,8 @@ pub trait CSVEntity {
 pub fn get_all_metadata() -> Vec<CSVEntityMetaData> {
     vec![
         AbilitiesCSV::get_metadata(),
+        LanguagesCSV::get_metadata(),
+        LanguageNamesCSV::get_metadata(),
         PokemonSpeciesCSV::get_metadata(),
     ]
 }

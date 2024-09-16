@@ -2,7 +2,7 @@ use crate::entities::csv::pokemon_species::PokemonSpeciesCSV;
 use crate::entities::traits::has_id::HasId;
 use serde::{Deserialize, Serialize};
 
-#[derive(Debug, Serialize, Deserialize, Clone, Copy, PartialEq)]
+#[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct Species {
     pub id: u32,
     pub gender_rate: i32,
