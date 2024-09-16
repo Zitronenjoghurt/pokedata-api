@@ -4,7 +4,7 @@ use std::collections::HashMap;
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct LocalizedNames(pub HashMap<u32, String>);
 
-#[derive(Clone, Debug, Serialize, Deserialize)]
+#[derive(Clone, Debug)]
 pub struct LocalizedNamesMap(pub HashMap<u32, LocalizedNames>);
 
 impl LocalizedNamesMap {
