@@ -1,3 +1,5 @@
+use pokedata_api_types::entities::api::generation::Generation;
+use pokedata_api_types::entities::api::growth_rate::GrowthRate;
 use pokedata_api_types::entities::api::language::Language;
 use pokedata_api_types::entities::api::pokemon_color::PokemonColor;
 use pokedata_api_types::entities::api::pokemon_habitat::PokemonHabitat;
@@ -10,6 +12,18 @@ use utoipa::ToSchema;
 pub struct ColorBulkResponse {
     pub count: usize,
     pub results: Vec<PokemonColor>,
+}
+
+#[derive(Serialize, Deserialize, ToSchema)]
+pub struct GenerationBulkResponse {
+    pub count: usize,
+    pub results: Vec<Generation>,
+}
+
+#[derive(Serialize, Deserialize, ToSchema)]
+pub struct GrowthRateBulkResponse {
+    pub count: usize,
+    pub results: Vec<GrowthRate>,
 }
 
 #[derive(Serialize, Deserialize, ToSchema)]

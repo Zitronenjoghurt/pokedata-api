@@ -21,6 +21,8 @@ async fn main() -> io::Result<()> {
     let app = Router::new()
         .nest("/", resources::ping::router())
         .nest("/color", resources::color::router())
+        .nest("/generation", resources::generation::router())
+        .nest("/growth-rate", resources::growth_rate::router())
         .nest("/habitat", resources::habitat::router())
         .nest("/language", resources::language::router())
         .nest("/shape", resources::shape::router())

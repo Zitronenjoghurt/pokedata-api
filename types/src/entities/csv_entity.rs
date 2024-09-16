@@ -1,4 +1,8 @@
 use crate::entities::csv::abilities::AbilitiesCSV;
+use crate::entities::csv::generation_names::GenerationNamesCSV;
+use crate::entities::csv::generations::GenerationsCSV;
+use crate::entities::csv::growth_rate_prose::GrowthRateProseCSV;
+use crate::entities::csv::growth_rates::GrowthRatesCSV;
 use crate::entities::csv::language_names::LanguageNamesCSV;
 use crate::entities::csv::languages::LanguagesCSV;
 use crate::entities::csv::pokemon_color_names::PokemonColorNamesCSV;
@@ -55,6 +59,10 @@ pub trait CSVEntity {
 pub fn get_all_metadata() -> Vec<CSVEntityMetaData> {
     vec![
         AbilitiesCSV::get_metadata(),
+        GenerationNamesCSV::get_metadata(),
+        GenerationsCSV::get_metadata(),
+        GrowthRateProseCSV::get_metadata(),
+        GrowthRatesCSV::get_metadata(),
         LanguagesCSV::get_metadata(),
         LanguageNamesCSV::get_metadata(),
         PokemonColorNamesCSV::get_metadata(),

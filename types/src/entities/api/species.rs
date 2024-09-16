@@ -19,6 +19,7 @@ pub struct Species {
     pub conquest_order: Option<u32>,
     pub color_id: Option<u32>,
     pub habitat_id: Option<u32>,
+    pub growth_rate_id: Option<u32>,
     pub shape_id: Option<u32>,
     // ToDo: evolution
 }
@@ -52,6 +53,7 @@ pub fn build_species(pokemon_species: Vec<PokemonSpeciesCSV>) -> Vec<Species> {
             dex_order: entry.order.unwrap_or(0),
             conquest_order: entry.conquest_order,
             color_id: entry.color_id,
+            growth_rate_id: entry.growth_rate_id,
             habitat_id: entry.habitat_id,
             shape_id: entry.shape_id,
         };

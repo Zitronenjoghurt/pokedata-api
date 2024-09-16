@@ -5,6 +5,8 @@ pub mod entities {
 
     pub mod api {
         pub mod ability;
+        pub mod generation;
+        pub mod growth_rate;
         pub mod language;
         pub mod localized_values;
         pub mod pokemon_color;
@@ -15,6 +17,10 @@ pub mod entities {
 
     pub mod csv {
         pub mod abilities;
+        pub mod generation_names;
+        pub mod generations;
+        pub mod growth_rates;
+        pub mod growth_rate_prose;
         pub mod languages;
         pub mod language_names;
         pub mod pokemon_color_names;

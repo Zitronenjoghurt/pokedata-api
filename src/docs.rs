@@ -11,6 +11,8 @@ use utoipa::OpenApi;
     ),
     paths(
         resources::color::get_color,
+        resources::generation::get_generation,
+        resources::growth_rate::get_growth_rate,
         resources::habitat::get_habitat,
         resources::language::get_language,
         resources::ping::get_ping,
@@ -22,6 +24,8 @@ use utoipa::OpenApi;
     ),
     components(
         schemas(
+            generation::Generation,
+            growth_rate::GrowthRate,
             language::Language,
             localized_values::LocalizedValues,
             pokemon_color::PokemonColor,
@@ -29,6 +33,8 @@ use utoipa::OpenApi;
             pokemon_shape::PokemonShape,
             species::Species,
             ColorBulkResponse,
+            GenerationBulkResponse,
+            GrowthRateBulkResponse,
             HabitatBulkResponse,
             LanguageBulkResponse,
             MessageResponse,
