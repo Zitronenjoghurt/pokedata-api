@@ -14,9 +14,6 @@ use pokedata_api_types::app_state::AppState;
         (status = 200, description = "Pong", body = MessageResponse),
         (status = 500, description = "Server error"),
     ),
-    security(
-        ("api_key" = [])
-    ),
     tag = "Misc"
 )]
 async fn get_ping() -> Response {

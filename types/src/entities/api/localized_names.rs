@@ -1,7 +1,12 @@
 use serde::{Deserialize, Serialize};
+use serde_json::json;
 use std::collections::HashMap;
+use utoipa::ToSchema;
 
-#[derive(Clone, Debug, Serialize, Deserialize)]
+#[derive(Clone, Debug, Serialize, Deserialize, ToSchema)]
+#[schema(
+    example = json!({"6": "german name", "9": "english name"}),
+)]
 pub struct LocalizedNames(pub HashMap<u32, String>);
 
 #[derive(Clone, Debug)]

@@ -2,8 +2,9 @@ use crate::entities::api::localized_names::{LocalizedNames, LocalizedNamesMap};
 use crate::entities::csv::languages::LanguagesCSV;
 use crate::entities::traits::has_id::HasId;
 use serde::{Deserialize, Serialize};
+use utoipa::ToSchema;
 
-#[derive(Clone, Debug, Serialize, Deserialize)]
+#[derive(Clone, Debug, Serialize, Deserialize, ToSchema)]
 pub struct Language {
     pub id: u32,
     pub iso639: String,
