@@ -6,6 +6,8 @@ use pokedata_api_types::entities::api::pokemon_color::PokemonColor;
 use pokedata_api_types::entities::api::pokemon_habitat::PokemonHabitat;
 use pokedata_api_types::entities::api::pokemon_shape::PokemonShape;
 use pokedata_api_types::entities::api::species::Species;
+use pokedata_api_types::entities::api::version::Version;
+use pokedata_api_types::entities::api::version_group::VersionGroup;
 use serde::{Deserialize, Serialize};
 use utoipa::ToSchema;
 
@@ -55,4 +57,16 @@ pub struct ShapeBulkResponse {
 pub struct SpeciesBulkResponse {
     pub count: usize,
     pub results: Vec<Species>,
+}
+
+#[derive(Serialize, Deserialize, ToSchema)]
+pub struct VersionBulkResponse {
+    pub count: usize,
+    pub results: Vec<Version>,
+}
+
+#[derive(Serialize, Deserialize, ToSchema)]
+pub struct VersionGroupBulkResponse {
+    pub count: usize,
+    pub results: Vec<VersionGroup>,
 }

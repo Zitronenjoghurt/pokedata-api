@@ -19,6 +19,8 @@ use utoipa::OpenApi;
         resources::pokemon::get_pokemon,
         resources::shape::get_shape,
         resources::species::get_species,
+        resources::version::get_version,
+        resources::version_group::get_version_group,
     ),
     tags(
         (name = "Misc", description = "Miscellaneous endpoints")
@@ -35,6 +37,8 @@ use utoipa::OpenApi;
             pokemon_habitat::PokemonHabitat,
             pokemon_shape::PokemonShape,
             species::Species,
+            version::Version,
+            version_group::VersionGroup,
             ColorBulkResponse,
             GenerationBulkResponse,
             GrowthRateBulkResponse,
@@ -43,7 +47,9 @@ use utoipa::OpenApi;
             MessageResponse,
             PokemonBulkResponse,
             ShapeBulkResponse,
-            SpeciesBulkResponse
+            SpeciesBulkResponse,
+            VersionBulkResponse,
+            VersionGroupBulkResponse,
         )
     )
 )]

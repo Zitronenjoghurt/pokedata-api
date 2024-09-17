@@ -28,6 +28,8 @@ async fn main() -> io::Result<()> {
         .nest("/pokemon", resources::pokemon::router())
         .nest("/shape", resources::shape::router())
         .nest("/species", resources::species::router())
+        .nest("/version", resources::version::router())
+        .nest("/version-group", resources::version_group::router())
         .merge(SwaggerUi::new("/swagger").url("/api-docs/openapi.json", docs::ApiDoc::openapi()))
         .merge(Redoc::with_url("/redoc", docs::ApiDoc::openapi()))
         .merge(RapiDoc::new("/api-docs/openapi.json").path("/docs"))

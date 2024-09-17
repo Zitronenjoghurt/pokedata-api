@@ -7,3 +7,5 @@ pub mod ping;
 pub mod pokemon;
 pub mod shape;
 pub mod species;
+pub mod version;
+pub mod version_group;
