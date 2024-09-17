@@ -12,6 +12,10 @@ pub mod models;
 pub mod queries;
 pub mod resources;
 
+pub mod serde {
+    pub mod comma_seperated;
+}
+
 const STATIC_DATA: &[u8] = include_bytes!(concat!(env!("OUT_DIR"), "/data.bin"));
 
 #[tokio::main]
@@ -26,8 +30,10 @@ async fn main() -> io::Result<()> {
         .nest("/habitat", resources::habitat::router())
         .nest("/language", resources::language::router())
         .nest("/pokemon", resources::pokemon::router())
+        .nest("/pokemon-type", resources::pokemon_type::router())
         .nest("/shape", resources::shape::router())
         .nest("/species", resources::species::router())
+        .nest("/type-efficacy", resources::pokemon_type_efficacy::router())
         .nest("/version", resources::version::router())
         .nest("/version-group", resources::version_group::router())
         .merge(SwaggerUi::new("/swagger").url("/api-docs/openapi.json", docs::ApiDoc::openapi()))

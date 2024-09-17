@@ -7,7 +7,7 @@ use axum::{Json, Router};
 use pokedata_api_types::app_state::AppState;
 use pokedata_api_types::entities::api::version::Version;
 
-/// Fetch Versions
+/// Fetch versions
 ///
 /// If no ID is provided, all versions will be returned.
 #[utoipa::path(

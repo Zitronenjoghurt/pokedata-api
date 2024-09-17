@@ -1,4 +1,4 @@
-use crate::models::{bulk_response::*, message_response::MessageResponse};
+use crate::models::{bulk_response::*, message_response::MessageResponse, type_effectiveness::*};
 use crate::resources;
 use pokedata_api_types::entities::api::*;
 use utoipa::OpenApi;
@@ -17,7 +17,10 @@ use utoipa::OpenApi;
         resources::language::get_language,
         resources::ping::get_ping,
         resources::pokemon::get_pokemon,
+        resources::pokemon_type::get_pokemon_type,
         resources::shape::get_shape,
+        resources::pokemon_type_efficacy::get_type_efficacy,
+        resources::pokemon_type_efficacy::get_type_efficacy_all,
         resources::species::get_species,
         resources::version::get_version,
         resources::version_group::get_version_group,
@@ -36,9 +39,13 @@ use utoipa::OpenApi;
             pokemon_color::PokemonColor,
             pokemon_habitat::PokemonHabitat,
             pokemon_shape::PokemonShape,
+            pokemon_type::PokemonType,
+            pokemon_type_efficacy::PokemonTypeEfficacies,
+            pokemon_type_efficacy::PokemonTypeEfficacyEntry,
             species::Species,
             version::Version,
             version_group::VersionGroup,
+            AllTypeEffectivenessResponse,
             ColorBulkResponse,
             GenerationBulkResponse,
             GrowthRateBulkResponse,
@@ -46,8 +53,10 @@ use utoipa::OpenApi;
             LanguageBulkResponse,
             MessageResponse,
             PokemonBulkResponse,
+            PokemonTypeBulkResponse,
             ShapeBulkResponse,
             SpeciesBulkResponse,
+            TypeEffectivenessResponse,
             VersionBulkResponse,
             VersionGroupBulkResponse,
         )

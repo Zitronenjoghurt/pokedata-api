@@ -5,6 +5,8 @@ pub mod habitat;
 pub mod language;
 pub mod ping;
 pub mod pokemon;
+pub mod pokemon_type;
+pub mod pokemon_type_efficacy;
 pub mod shape;
 pub mod species;
 pub mod version;

@@ -13,6 +13,8 @@ pub mod entities {
         pub mod pokemon_color;
         pub mod pokemon_habitat;
         pub mod pokemon_shape;
+        pub mod pokemon_type;
+        pub mod pokemon_type_efficacy;
         pub mod species;
         pub mod version;
         pub mod version_group;
@@ -36,6 +38,10 @@ pub mod entities {
         pub mod pokemon_species;
         pub mod pokemon_species_flavor_text;
         pub mod pokemon_species_names;
+        pub mod type_efficacy;
+        pub mod type_efficacy_past;
+        pub mod type_names;
+        pub mod types;
         pub mod version_group_pokemon_move_methods;
         pub mod version_group_regions;
         pub mod version_groups;

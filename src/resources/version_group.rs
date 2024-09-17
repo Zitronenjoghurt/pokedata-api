@@ -7,7 +7,7 @@ use axum::{Json, Router};
 use pokedata_api_types::app_state::AppState;
 use pokedata_api_types::entities::api::version_group::VersionGroup;
 
-/// Fetch Version Groups
+/// Fetch version groups
 ///
 /// If no ID is provided, all version groups will be returned.
 #[utoipa::path(

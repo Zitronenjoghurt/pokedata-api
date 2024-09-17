@@ -15,6 +15,10 @@ use crate::entities::csv::pokemon_shapes::PokemonShapesCSV;
 use crate::entities::csv::pokemon_species::PokemonSpeciesCSV;
 use crate::entities::csv::pokemon_species_flavor_text::PokemonSpeciesFlavorTextCSV;
 use crate::entities::csv::pokemon_species_names::PokemonSpeciesNamesCSV;
+use crate::entities::csv::type_efficacy::TypeEfficacyCSV;
+use crate::entities::csv::type_efficacy_past::TypeEfficacyPastCSV;
+use crate::entities::csv::type_names::TypeNamesCSV;
+use crate::entities::csv::types::TypesCSV;
 use crate::entities::csv::version_group_pokemon_move_methods::VersionGroupPokemonMoveMethodsCSV;
 use crate::entities::csv::version_group_regions::VersionGroupRegionsCSV;
 use crate::entities::csv::version_groups::VersionGroupsCSV;
@@ -85,6 +89,10 @@ pub fn get_all_metadata() -> Vec<CSVEntityMetaData> {
         PokemonSpeciesCSV::get_metadata(),
         PokemonSpeciesFlavorTextCSV::get_metadata(),
         PokemonSpeciesNamesCSV::get_metadata(),
+        TypeEfficacyCSV::get_metadata(),
+        TypeEfficacyPastCSV::get_metadata(),
+        TypeNamesCSV::get_metadata(),
+        TypesCSV::get_metadata(),
         VersionGroupPokemonMoveMethodsCSV::get_metadata(),
         VersionGroupRegionsCSV::get_metadata(),
         VersionGroupsCSV::get_metadata(),

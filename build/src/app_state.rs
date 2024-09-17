@@ -1,5 +1,6 @@
 use pokedata_api_types::app_state::AppState;
 use pokedata_api_types::entities::api::pokemon::build_pokemon;
+use pokedata_api_types::entities::api::pokemon_type::get_major_type_ids;
 use pokedata_api_types::entities::api::*;
 use pokedata_api_types::entities::csv::pokemon::PokemonCSV;
 use pokedata_api_types::entities::csv::*;
@@ -18,6 +19,9 @@ pub fn create_app_state(data_path: &PathBuf) -> AppState {
     let pokemon_habitats_csv = pokemon_habitats::PokemonHabitatsCSV::load(data_path).unwrap();
     let pokemon_shapes_csv = pokemon_shapes::PokemonShapesCSV::load(data_path).unwrap();
     let pokemon_species_csv = pokemon_species::PokemonSpeciesCSV::load(data_path).unwrap();
+    let types_csv = types::TypesCSV::load(data_path).unwrap();
+    let type_efficacy_csv = type_efficacy::TypeEfficacyCSV::load(data_path).unwrap();
+    let type_efficacy_past_csv = type_efficacy_past::TypeEfficacyPastCSV::load(data_path).unwrap();
     let versions_csv = versions::VersionsCSV::load(data_path).unwrap();
     let version_groups_csv = version_groups::VersionGroupsCSV::load(data_path).unwrap();
 
@@ -36,7 +40,17 @@ pub fn create_app_state(data_path: &PathBuf) -> AppState {
     let languages = language::build_languages(languages_csv, language_names_map).into_id_map();
     let pokemon = build_pokemon(pokemon_csv).into_id_map();
     let shapes = pokemon_shape::build_pokemon_shapes(pokemon_shapes_csv, data_path).into_id_map();
+    let types = pokemon_type::build_types(types_csv, data_path).into_id_map();
     let versions = version::build_versions(versions_csv, version_names_map).into_id_map();
+
+    let latest_generation = generations.keys().max().copied().unwrap_or(1);
+    let major_type_ids = get_major_type_ids(types.values().cloned().collect());
+
+    let type_efficacies = pokemon_type_efficacy::build_efficacies_by_generation(
+        type_efficacy_csv,
+        type_efficacy_past_csv,
+        latest_generation,
+    );
 
     let version_groups = version_group::build_version_groups(
         version_groups_csv,
@@ -60,7 +74,11 @@ pub fn create_app_state(data_path: &PathBuf) -> AppState {
         pokemon,
         shapes,
         species,
+        types,
+        type_efficacies,
         versions,
         version_groups,
+        latest_generation,
+        major_type_ids,
     }
 }
