@@ -13,9 +13,6 @@ impl CSVEntity for VersionNamesCSV {
     fn file_name() -> &'static str {
         "version_names"
     }
-    fn base_download_url() -> &'static str {
-        "https://raw.githubusercontent.com/Zitronenjoghurt/pokeapi-data-fix/master/data/v2/csv/"
-    }
 }
 
 impl HasLocalizedValues for VersionNamesCSV {
