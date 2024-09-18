@@ -1,6 +1,6 @@
 [![Rust](https://github.com/Zitronenjoghurt/pokedata-api/actions/workflows/rust.yml/badge.svg)](https://github.com/Zitronenjoghurt/pokedata-api/actions/workflows/rust.yml)
 
-# Pokedata API
+# Pokedata API (work in progress)
 
 An API which compiles pokemon data from different sources into a combined and richer format for local use.
 
@@ -9,6 +9,8 @@ An API which compiles pokemon data from different sources into a combined and ri
 When built, the API will automatically download and prepare data from different data sources during the build process.
 After being built, the pokemon data is bundled into the binary and is independent from all outside data sources.
 If there was an update to the remote data, just delete the data directory in the project root and rebuild the app.
+
+Automatic data updates are planned for the future.
 
 ## Pre-requisites
 
