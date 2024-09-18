@@ -16,6 +16,7 @@ use pokedata_api_types::entities::api::species::Species;
     params(IdsQuery),
     responses(
         (status = 200, description = "Species data", body = SpeciesBulkResponse),
+        (status = 400, description = "Invalid parameters"),
         (status = 500, description = "Server error"),
     ),
     tag = "Misc"

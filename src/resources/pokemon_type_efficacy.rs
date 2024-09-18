@@ -15,6 +15,7 @@ use pokedata_api_types::app_state::AppState;
     params(TypeEffectivenessQuery),
     responses(
         (status = 200, description = "Type effectiveness", body = TypeEffectivenessResponse),
+        (status = 400, description = "Invalid parameters"),
         (status = 500, description = "Server error"),
     ),
     tag = "Misc"
@@ -42,6 +43,7 @@ async fn get_type_efficacy(
     params(AllTypeEffectivenessQuery),
     responses(
         (status = 200, description = "Type effectiveness", body = AllTypeEffectivenessResponse),
+        (status = 400, description = "Invalid parameters"),
         (status = 500, description = "Server error"),
     ),
     tag = "Misc"

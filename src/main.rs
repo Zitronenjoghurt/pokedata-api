@@ -12,6 +12,9 @@ pub mod models;
 pub mod queries;
 pub mod resources;
 
+#[cfg(test)]
+pub mod tests;
+
 pub mod serde {
     pub mod comma_seperated;
 }
@@ -20,9 +23,15 @@ const STATIC_DATA: &[u8] = include_bytes!(concat!(env!("OUT_DIR"), "/data.bin"))
 
 #[tokio::main]
 async fn main() -> io::Result<()> {
+    let listener = tokio::net::TcpListener::bind("0.0.0.0:3000").await?;
+    println!("Listening on {}", listener.local_addr()?);
+    axum::serve(listener, build_app()).await
+}
+
+pub fn build_app() -> Router {
     let app_state: AppState = bincode::deserialize(STATIC_DATA).unwrap();
 
-    let app = Router::new()
+    Router::new()
         .nest("/", resources::ping::router())
         .nest("/color", resources::color::router())
         .nest("/generation", resources::generation::router())
@@ -39,9 +48,5 @@ async fn main() -> io::Result<()> {
         .merge(SwaggerUi::new("/swagger").url("/api-docs/openapi.json", docs::ApiDoc::openapi()))
         .merge(Redoc::with_url("/redoc", docs::ApiDoc::openapi()))
         .merge(RapiDoc::new("/api-docs/openapi.json").path("/docs"))
-        .with_state(app_state);
-
-    let listener = tokio::net::TcpListener::bind("0.0.0.0:3000").await?;
-    println!("Listening on {}", listener.local_addr()?);
-    axum::serve(listener, app).await
+        .with_state(app_state)
 }

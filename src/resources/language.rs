@@ -16,6 +16,7 @@ use pokedata_api_types::entities::api::language::Language;
     params(IdsQuery),
     responses(
         (status = 200, description = "Species data", body = LanguageBulkResponse),
+        (status = 400, description = "Invalid parameters"),
         (status = 500, description = "Server error"),
     ),
     tag = "Misc"

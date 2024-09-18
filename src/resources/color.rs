@@ -16,6 +16,7 @@ use pokedata_api_types::entities::api::pokemon_color::PokemonColor;
     params(IdsQuery),
     responses(
         (status = 200, description = "Color data", body = ColorBulkResponse),
+        (status = 400, description = "Invalid parameters"),
         (status = 500, description = "Server error"),
     ),
     tag = "Misc"

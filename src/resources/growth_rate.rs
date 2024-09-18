@@ -16,6 +16,7 @@ use pokedata_api_types::entities::api::growth_rate::GrowthRate;
     params(IdsQuery),
     responses(
         (status = 200, description = "Growth rate data", body = GrowthRateBulkResponse),
+        (status = 400, description = "Invalid parameters"),
         (status = 500, description = "Server error"),
     ),
     tag = "Misc"

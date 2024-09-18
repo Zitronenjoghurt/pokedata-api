@@ -16,6 +16,7 @@ use pokedata_api_types::entities::api::pokemon::Pokemon;
     params(IdsQuery),
     responses(
         (status = 200, description = "Pokemon data", body = PokemonBulkResponse),
+        (status = 400, description = "Invalid parameters"),
         (status = 500, description = "Server error"),
     ),
     tag = "Misc"

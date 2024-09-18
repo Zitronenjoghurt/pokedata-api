@@ -16,6 +16,7 @@ use pokedata_api_types::entities::api::generation::Generation;
     params(IdsQuery),
     responses(
         (status = 200, description = "Generation data", body = ColorBulkResponse),
+        (status = 400, description = "Invalid parameters"),
         (status = 500, description = "Server error"),
     ),
     tag = "Misc"

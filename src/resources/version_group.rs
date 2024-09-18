@@ -16,6 +16,7 @@ use pokedata_api_types::entities::api::version_group::VersionGroup;
     params(IdsQuery),
     responses(
         (status = 200, description = "Version group data", body = VersionGroupBulkResponse),
+        (status = 400, description = "Invalid parameters"),
         (status = 500, description = "Server error"),
     ),
     tag = "Misc"
