@@ -1,5 +1,6 @@
 use axum::Router;
 use bincode;
+use once_cell::sync::Lazy;
 use pokedata_api_types::app_state::AppState;
 use std::io;
 use utoipa::OpenApi;
@@ -20,6 +21,7 @@ pub mod serde {
 }
 
 const STATIC_DATA: &[u8] = include_bytes!(concat!(env!("OUT_DIR"), "/data.bin"));
+static APP_STATE: Lazy<AppState> = Lazy::new(|| bincode::deserialize(STATIC_DATA).unwrap());
 
 #[tokio::main]
 async fn main() -> io::Result<()> {
@@ -28,9 +30,11 @@ async fn main() -> io::Result<()> {
     axum::serve(listener, build_app()).await
 }
 
-pub fn build_app() -> Router {
-    let app_state: AppState = bincode::deserialize(STATIC_DATA).unwrap();
+pub fn get_app_state() -> &'static AppState {
+    &APP_STATE
+}
 
+pub fn build_app() -> Router {
     Router::new()
         .nest("/", resources::ping::router())
         .nest("/color", resources::color::router())
@@ -48,5 +52,5 @@ pub fn build_app() -> Router {
         .merge(SwaggerUi::new("/swagger").url("/api-docs/openapi.json", docs::ApiDoc::openapi()))
         .merge(Redoc::with_url("/redoc", docs::ApiDoc::openapi()))
         .merge(RapiDoc::new("/api-docs/openapi.json").path("/docs"))
-        .with_state(app_state)
+        .with_state(get_app_state().clone())
 }

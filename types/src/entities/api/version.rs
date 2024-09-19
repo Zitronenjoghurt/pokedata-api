@@ -4,7 +4,7 @@ use crate::entities::traits::has_id::HasId;
 use serde::{Deserialize, Serialize};
 use utoipa::ToSchema;
 
-#[derive(Clone, Debug, Serialize, Deserialize, ToSchema)]
+#[derive(Clone, Debug, Default, Serialize, Deserialize, ToSchema)]
 pub struct Version {
     pub id: u32,
     /// The version group this version belongs to.

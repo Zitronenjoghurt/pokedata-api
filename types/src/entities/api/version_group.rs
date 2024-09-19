@@ -10,7 +10,7 @@ use std::collections::HashMap;
 use std::path::PathBuf;
 use utoipa::ToSchema;
 
-#[derive(Clone, Debug, Serialize, Deserialize, ToSchema)]
+#[derive(Clone, Debug, Default, Serialize, Deserialize, ToSchema)]
 pub struct VersionGroup {
     pub id: u32,
     pub identifier: String,

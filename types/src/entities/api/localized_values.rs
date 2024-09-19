@@ -4,13 +4,19 @@ use serde_json::json;
 use std::collections::HashMap;
 use utoipa::ToSchema;
 
-#[derive(Clone, Debug, Serialize, Deserialize, ToSchema)]
+#[derive(Clone, Debug, Default, Serialize, Deserialize, ToSchema)]
 #[schema(
     example = json!({"6": "german name", "9": "english name"}),
 )]
 pub struct LocalizedValues(pub HashMap<u32, String>);
 
-#[derive(Clone, Debug)]
+impl LocalizedValues {
+    pub fn get(&self, language_id: u32) -> Option<String> {
+        self.0.get(&language_id).cloned()
+    }
+}
+
+#[derive(Clone, Debug, Default)]
 pub struct LocalizedValuesMap(pub HashMap<u32, LocalizedValues>);
 
 impl LocalizedValuesMap {
@@ -19,10 +25,10 @@ impl LocalizedValuesMap {
     }
 }
 
-#[derive(Clone, Debug, Serialize, Deserialize, ToSchema)]
+#[derive(Clone, Debug, Default, Serialize, Deserialize, ToSchema)]
 pub struct VersionedLocalizedValues(pub HashMap<u32, LocalizedValues>);
 
-#[derive(Clone, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct VersionedLocalizedValuesMap(pub HashMap<u32, VersionedLocalizedValues>);
 
 impl VersionedLocalizedValuesMap {
