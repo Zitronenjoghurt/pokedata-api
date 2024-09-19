@@ -16,14 +16,24 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+
       - name: Build
         run: cargo build --verbose
-      - name: Run tests
-        run: cargo test --verbose
+
+      - name: Cache tarpaulin
+        uses: actions/cache@v4.0.2
+        id: cache-tarpaulin
+        with:
+          path: ~/.cargo/bin/cargo-tarpaulin
+          key: ${{ runner.os }}-cargo-tarpaulin
+
       - name: Install tarpaulin
+        if: steps.cache-tarpaulin.outputs.cache-hit != 'true'
         run: cargo install cargo-tarpaulin
+
       - name: Generate code coverage
-        run: cargo tarpaulin --verbose --all-features --workspace --timeout 120 --out Xml
+        run: cargo tarpaulin --verbose --all-features --workspace --timeout 120 --out Xml --exclude-files 'types/*'
+
       - name: Upload to codecov.io
         uses: codecov/codecov-action@v4
         env:
