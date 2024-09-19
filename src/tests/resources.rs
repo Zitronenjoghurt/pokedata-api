@@ -1,9 +1,20 @@
 use crate::build_app;
+use axum::http::StatusCode;
 use axum_test::TestServer;
 use once_cell::sync::Lazy;
 use serde::de::DeserializeOwned;
 
 mod color;
+mod generation;
+mod growth_rate;
+mod habitat;
+mod language;
+mod ping;
+mod pokemon_type;
+mod pokemon_type_efficacy;
+mod shape;
+mod version;
+mod version_group;
 
 static TEST_SERVER: Lazy<TestServer> = Lazy::new(|| {
     let app = build_app();
@@ -14,7 +25,7 @@ pub fn get_test_server() -> &'static TestServer {
     &TEST_SERVER
 }
 
-pub async fn get_test<T>(url: &str) -> Result<T, Box<dyn std::error::Error>>
+pub async fn test_get<T>(url: &str) -> Result<T, Box<dyn std::error::Error>>
 where
     T: DeserializeOwned,
 {
@@ -26,4 +37,9 @@ where
 
     let data: T = response.json::<T>();
     Ok(data)
+}
+
+pub async fn test_get_code(url: &str, code: StatusCode) {
+    let response = get_test_server().get(url).await;
+    assert_eq!(response.status_code(), code);
 }

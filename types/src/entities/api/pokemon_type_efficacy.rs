@@ -55,36 +55,22 @@ pub fn build_efficacies_by_generation(
     type_efficacy_past_csv: Vec<TypeEfficacyPastCSV>,
     latest_gen: u32,
 ) -> PokemonTypeEfficacies {
-    let default_efficacies = build_default_efficacies(type_efficacies_csv);
     let mut efficacies_by_gen: HashMap<u32, Vec<PokemonTypeEfficacyEntry>> = HashMap::new();
+    let mut current_efficacies = build_default_efficacies(type_efficacies_csv);
 
-    // Group past efficacies by generation
-    let past_efficacies_by_gen: HashMap<u32, Vec<&TypeEfficacyPastCSV>> = type_efficacy_past_csv
-        .iter()
-        .fold(HashMap::new(), |mut acc, entry| {
-            acc.entry(entry.generation_id).or_insert_with(Vec::new).push(entry);
-            acc
-        });
-
-    // Populate the HashMap for each generation
-    for gen in 1..=latest_gen {
-        let mut gen_efficacies = default_efficacies.clone();
-
-        // Apply all past changes up to and including this generation
-        for past_gen in (1..=gen).rev() {
-            if let Some(past_entries) = past_efficacies_by_gen.get(&past_gen) {
-                for &past_entry in past_entries {
-                    if let Some(entry) = gen_efficacies.iter_mut().find(|e|
-                        e.damage_type_id == past_entry.damage_type_id &&
-                            e.target_type_id == past_entry.target_type_id
-                    ) {
-                        entry.damage_factor = past_entry.damage_factor;
-                    }
+    // Apply all past changes, starting from the latest generation
+    for gen in (1..=latest_gen).rev() {
+        for past_entry in &type_efficacy_past_csv {
+            if past_entry.generation_id == gen {
+                if let Some(entry) = current_efficacies.iter_mut().find(|e|
+                    e.damage_type_id == past_entry.damage_type_id &&
+                        e.target_type_id == past_entry.target_type_id
+                ) {
+                    entry.damage_factor = past_entry.damage_factor;
                 }
             }
         }
-
-        efficacies_by_gen.insert(gen, gen_efficacies);
+        efficacies_by_gen.insert(gen, current_efficacies.clone());
     }
 
     PokemonTypeEfficacies(efficacies_by_gen)
