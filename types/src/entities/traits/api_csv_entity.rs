@@ -2,6 +2,7 @@ use crate::entities::csv_entity::CSVEntity;
 use std::error::Error;
 use std::path::PathBuf;
 
+/// Implemented by CSV Entities that can be converted to API entities
 pub trait ApiCSVEntity: CSVEntity {
     type ApiType;
     type ConversionData: Default;

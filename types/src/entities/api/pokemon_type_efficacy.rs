@@ -1,5 +1,3 @@
-use crate::entities::csv::type_efficacy::TypeEfficacyCSV;
-use crate::entities::csv::type_efficacy_past::TypeEfficacyPastCSV;
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 use utoipa::ToSchema;
@@ -12,7 +10,7 @@ pub struct PokemonTypeEfficacyEntry {
 }
 
 #[derive(Clone, Debug, Serialize, Deserialize, ToSchema)]
-pub struct PokemonTypeEfficacies(HashMap<u32, Vec<PokemonTypeEfficacyEntry>>);
+pub struct PokemonTypeEfficacies(pub HashMap<u32, Vec<PokemonTypeEfficacyEntry>>);
 
 impl PokemonTypeEfficacies {
     pub fn get_damage_factors_multi_attackers(&self, generation_id: u32, attacking_types: Vec<u32>, defending_types: Vec<u32>) -> HashMap<u32, u32> {
@@ -48,41 +46,4 @@ impl PokemonTypeEfficacies {
                     .map(|entry| entry.damage_factor)
             })
     }
-}
-
-pub fn build_efficacies_by_generation(
-    type_efficacies_csv: Vec<TypeEfficacyCSV>,
-    type_efficacy_past_csv: Vec<TypeEfficacyPastCSV>,
-    latest_gen: u32,
-) -> PokemonTypeEfficacies {
-    let mut efficacies_by_gen: HashMap<u32, Vec<PokemonTypeEfficacyEntry>> = HashMap::new();
-    let mut current_efficacies = build_default_efficacies(type_efficacies_csv);
-
-    // Apply all past changes, starting from the latest generation
-    for gen in (1..=latest_gen).rev() {
-        for past_entry in &type_efficacy_past_csv {
-            if past_entry.generation_id == gen {
-                if let Some(entry) = current_efficacies.iter_mut().find(|e|
-                    e.damage_type_id == past_entry.damage_type_id &&
-                        e.target_type_id == past_entry.target_type_id
-                ) {
-                    entry.damage_factor = past_entry.damage_factor;
-                }
-            }
-        }
-        efficacies_by_gen.insert(gen, current_efficacies.clone());
-    }
-
-    PokemonTypeEfficacies(efficacies_by_gen)
-}
-
-fn build_default_efficacies(type_efficacies_csv: Vec<TypeEfficacyCSV>) -> Vec<PokemonTypeEfficacyEntry> {
-    type_efficacies_csv
-        .into_iter()
-        .map(|efficacy| PokemonTypeEfficacyEntry {
-            damage_type_id: efficacy.damage_type_id,
-            target_type_id: efficacy.target_type_id,
-            damage_factor: efficacy.damage_factor,
-        })
-        .collect()
 }
