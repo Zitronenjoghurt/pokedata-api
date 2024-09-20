@@ -1,6 +1,7 @@
 use crate::models::{bulk_response::*, message_response::MessageResponse, type_effectiveness::*};
 use crate::resources;
 use pokedata_api_types::entities::api::*;
+use pokemon_color::*;
 use utoipa::OpenApi;
 
 #[derive(OpenApi)]
@@ -36,7 +37,7 @@ use utoipa::OpenApi;
             localized_values::LocalizedValues,
             localized_values::VersionedLocalizedValues,
             pokemon::Pokemon,
-            pokemon_color::PokemonColor,
+            PokemonColor,
             pokemon_habitat::PokemonHabitat,
             pokemon_shape::PokemonShape,
             pokemon_type::PokemonType,
@@ -51,14 +52,14 @@ use utoipa::OpenApi;
             GrowthRateBulkResponse,
             HabitatBulkResponse,
             LanguageBulkResponse,
-            MessageResponse,
             PokemonBulkResponse,
             PokemonTypeBulkResponse,
             ShapeBulkResponse,
             SpeciesBulkResponse,
-            TypeEffectivenessResponse,
             VersionBulkResponse,
             VersionGroupBulkResponse,
+            MessageResponse,
+            TypeEffectivenessResponse,
         )
     )
 )]

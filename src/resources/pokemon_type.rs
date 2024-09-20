@@ -1,9 +1,9 @@
-use crate::models::bulk_response::PokemonTypeBulkResponse;
 use crate::queries::ids::IdsQuery;
+use crate::resources::get_entities;
 use axum::extract::{Query, State};
-use axum::response::{IntoResponse, Response};
+use axum::response::Response;
 use axum::routing::get;
-use axum::{Json, Router};
+use axum::Router;
 use pokedata_api_types::app_state::AppState;
 use pokedata_api_types::entities::api::pokemon_type::PokemonType;
 
@@ -15,7 +15,7 @@ use pokedata_api_types::entities::api::pokemon_type::PokemonType;
     path = "/pokemon-type",
     params(IdsQuery),
     responses(
-        (status = 200, description = "Type data", body = VersionBulkResponse),
+        (status = 200, description = "Type data", body = PokemonTypeBulkResponse),
         (status = 400, description = "Invalid parameters"),
         (status = 500, description = "Server error"),
     ),
@@ -25,30 +25,7 @@ async fn get_pokemon_type(
     State(state): State<AppState>,
     Query(query): Query<IdsQuery>,
 ) -> Response {
-    let ids = query.ids.unwrap_or_default();
-
-    let types = if ids.is_empty() {
-        get_all(&state).await
-    } else {
-        get_specific(&state, ids).await
-    };
-
-    let response = PokemonTypeBulkResponse {
-        count: types.len(),
-        results: types,
-    };
-
-    Json(response).into_response()
-}
-
-async fn get_all(state: &AppState) -> Vec<PokemonType> {
-    state.types.values().cloned().collect()
-}
-
-async fn get_specific(state: &AppState, ids: Vec<u32>) -> Vec<PokemonType> {
-    ids.iter()
-        .filter_map(|id| state.types.get(id).cloned())
-        .collect()
+    get_entities::<PokemonType>(query.ids, &state.types).await
 }
 
 pub fn router() -> Router<AppState> {

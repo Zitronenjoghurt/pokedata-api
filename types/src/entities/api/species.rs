@@ -1,7 +1,5 @@
 use crate::entities::api::localized_values::{LocalizedValues, VersionedLocalizedValues};
 use crate::entities::traits::has_id::HasId;
-use crate::entities::traits::into_localized_values_map::IntoLocalizedValuesMap;
-use crate::entities::traits::into_versioned_localized_values_map::IntoVersionedLocalizedValuesMap;
 use serde::{Deserialize, Serialize};
 use utoipa::ToSchema;
 

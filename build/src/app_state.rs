@@ -1,9 +1,7 @@
 use pokedata_api_types::app_state::AppState;
 use pokedata_api_types::entities::api::pokemon_type::get_major_type_ids;
 use pokedata_api_types::entities::csv::pokemon_shapes::PokemonShapesConversionData;
-use pokedata_api_types::entities::csv::pokemon_species::PokemonSpeciesCSV;
 use pokedata_api_types::entities::csv::type_efficacy::build_efficacies_by_generation;
-use pokedata_api_types::entities::csv::version_groups::VersionGroupsCSV;
 use pokedata_api_types::entities::csv::*;
 use pokedata_api_types::entities::csv_entity::CSVEntity;
 use pokedata_api_types::entities::traits::api_csv_entity::ApiCSVEntity;
@@ -37,9 +35,9 @@ pub fn create_app_state(data_path: &PathBuf) -> AppState {
     let version_group_data = version_groups::VersionGroupConversionData::load(data_path, &versions);
     let species_data = pokemon_species::PokemonSpeciesConversionData::load(data_path, &pokemon);
 
-    let species = PokemonSpeciesCSV::load_and_convert(data_path, &species_data).unwrap().into_id_map();
+    let species = pokemon_species::PokemonSpeciesCSV::load_and_convert(data_path, &species_data).unwrap().into_id_map();
     let type_efficacies = build_efficacies_by_generation(data_path, latest_generation).unwrap();
-    let version_groups = VersionGroupsCSV::load_and_convert(data_path, &version_group_data).unwrap().into_id_map();
+    let version_groups = version_groups::VersionGroupsCSV::load_and_convert(data_path, &version_group_data).unwrap().into_id_map();
 
     let major_type_ids = get_major_type_ids(types.values().cloned().collect());
 

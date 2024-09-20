@@ -1,9 +1,9 @@
-use crate::models::bulk_response::GrowthRateBulkResponse;
 use crate::queries::ids::IdsQuery;
+use crate::resources::get_entities;
 use axum::extract::{Query, State};
-use axum::response::{IntoResponse, Response};
+use axum::response::Response;
 use axum::routing::get;
-use axum::{Json, Router};
+use axum::Router;
 use pokedata_api_types::app_state::AppState;
 use pokedata_api_types::entities::api::growth_rate::GrowthRate;
 
@@ -25,30 +25,7 @@ async fn get_growth_rate(
     State(state): State<AppState>,
     Query(query): Query<IdsQuery>,
 ) -> Response {
-    let ids = query.ids.unwrap_or_default();
-
-    let growth_rates = if ids.is_empty() {
-        get_all(&state).await
-    } else {
-        get_specific(&state, ids).await
-    };
-
-    let response = GrowthRateBulkResponse {
-        count: growth_rates.len(),
-        results: growth_rates,
-    };
-
-    Json(response).into_response()
-}
-
-async fn get_all(state: &AppState) -> Vec<GrowthRate> {
-    state.growth_rates.values().cloned().collect()
-}
-
-async fn get_specific(state: &AppState, ids: Vec<u32>) -> Vec<GrowthRate> {
-    ids.iter()
-        .filter_map(|id| state.growth_rates.get(id).cloned())
-        .collect()
+    get_entities::<GrowthRate>(query.ids, &state.growth_rates).await
 }
 
 pub fn router() -> Router<AppState> {

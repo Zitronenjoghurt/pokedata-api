@@ -1,9 +1,9 @@
-use crate::models::bulk_response::VersionGroupBulkResponse;
 use crate::queries::ids::IdsQuery;
+use crate::resources::get_entities;
 use axum::extract::{Query, State};
-use axum::response::{IntoResponse, Response};
+use axum::response::Response;
 use axum::routing::get;
-use axum::{Json, Router};
+use axum::Router;
 use pokedata_api_types::app_state::AppState;
 use pokedata_api_types::entities::api::version_group::VersionGroup;
 
@@ -25,30 +25,7 @@ async fn get_version_group(
     State(state): State<AppState>,
     Query(query): Query<IdsQuery>,
 ) -> Response {
-    let ids = query.ids.unwrap_or_default();
-
-    let groups = if ids.is_empty() {
-        get_all(&state).await
-    } else {
-        get_specific(&state, ids).await
-    };
-
-    let response = VersionGroupBulkResponse {
-        count: groups.len(),
-        results: groups,
-    };
-
-    Json(response).into_response()
-}
-
-async fn get_all(state: &AppState) -> Vec<VersionGroup> {
-    state.version_groups.values().cloned().collect()
-}
-
-async fn get_specific(state: &AppState, ids: Vec<u32>) -> Vec<VersionGroup> {
-    ids.iter()
-        .filter_map(|id| state.version_groups.get(id).cloned())
-        .collect()
+    get_entities::<VersionGroup>(query.ids, &state.version_groups).await
 }
 
 pub fn router() -> Router<AppState> {
