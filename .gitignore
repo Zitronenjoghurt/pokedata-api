@@ -2,6 +2,8 @@
 /data
 /target
 build/target
+commands/target
 types/target
 Cargo.lock
 cobertura.xml
+cli
