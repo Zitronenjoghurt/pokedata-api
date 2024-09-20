@@ -1,4 +1,6 @@
 [![Rust](https://github.com/Zitronenjoghurt/pokedata-api/actions/workflows/rust.yml/badge.svg)](https://github.com/Zitronenjoghurt/pokedata-api/actions/workflows/rust.yml)
+[![codecov](https://codecov.io/gh/Zitronenjoghurt/pokedata-api/graph/badge.svg?token=UM6T22YO17)](https://codecov.io/gh/Zitronenjoghurt/pokedata-api)
+![](https://tokei.rs/b1/github/Zitronenjoghurt/pokedata-api?category=code&logo=https://simpleicons.org/icons/rust.svg)
 
 # Pokedata API (work in progress)
 
