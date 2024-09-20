@@ -36,6 +36,7 @@ use utoipa::OpenApi;
             language::Language,
             localized_values::LocalizedValues,
             localized_values::VersionedLocalizedValues,
+            localized_values::VersionGroupedLocalizedValues,
             pokemon::Pokemon,
             PokemonColor,
             pokemon_habitat::PokemonHabitat,
