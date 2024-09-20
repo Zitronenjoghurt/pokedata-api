@@ -50,6 +50,7 @@ pub mod entities {
     }
 
     pub mod traits {
+        pub mod api_csv_entity;
         pub mod has_id;
         pub mod has_localized_values;
         pub mod has_version_id;

@@ -25,6 +25,7 @@ use crate::entities::csv::version_groups::VersionGroupsCSV;
 use crate::entities::csv::version_names::VersionNamesCSV;
 use crate::entities::csv::versions::VersionsCSV;
 use csv::Reader;
+use serde::de::DeserializeOwned;
 use std::collections::HashMap;
 use std::path::PathBuf;
 
@@ -34,7 +35,7 @@ pub struct CSVEntityMetaData {
     is_downloadable: bool,
 }
 
-pub trait CSVEntity {
+pub trait CSVEntity: DeserializeOwned {
     fn file_name() -> &'static str;
 
     fn base_download_url() -> &'static str {
