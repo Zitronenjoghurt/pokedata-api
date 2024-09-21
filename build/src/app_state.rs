@@ -15,6 +15,8 @@ pub fn create_app_state(data_path: &PathBuf) -> AppState {
     let growth_rate_names = growth_rate_prose::GrowthRateProseCSV::load(data_path).unwrap().into_localized_values_map();
     let habitat_names = pokemon_habitat_names::PokemonHabitatNamesCSV::load(data_path).unwrap().into_localized_values_map();
     let language_names = language_names::LanguageNamesCSV::load(data_path).unwrap().into_localized_values_map();
+    let region_names = region_names::RegionNamesCSV::load(data_path).unwrap().into_localized_values_map();
+    let stat_names = stat_names::StatNamesCSV::load(data_path).unwrap().into_localized_values_map();
     let type_names = type_names::TypeNamesCSV::load(data_path).unwrap().into_localized_values_map();
     let version_names = version_names::VersionNamesCSV::load(data_path).unwrap().into_localized_values_map();
 
@@ -27,7 +29,9 @@ pub fn create_app_state(data_path: &PathBuf) -> AppState {
     let habitats = pokemon_habitats::PokemonHabitatsCSV::load_and_convert(data_path, &habitat_names).unwrap().into_id_map();
     let languages = languages::LanguagesCSV::load_and_convert(data_path, &language_names).unwrap().into_id_map();
     let pokemon = pokemon::PokemonCSV::load_and_convert(data_path, &()).unwrap().into_id_map();
+    let regions = regions::RegionsCSV::load_and_convert(data_path, &region_names).unwrap().into_id_map();
     let shapes = pokemon_shapes::PokemonShapesCSV::load_and_convert(data_path, &pokemon_shapes_data).unwrap().into_id_map();
+    let stats = stats::StatsCSV::load_and_convert(data_path, &stat_names).unwrap().into_id_map();
     let types = types::TypesCSV::load_and_convert(data_path, &type_names).unwrap().into_id_map();
     let versions = versions::VersionsCSV::load_and_convert(data_path, &version_names).unwrap().into_id_map();
 
@@ -49,8 +53,10 @@ pub fn create_app_state(data_path: &PathBuf) -> AppState {
         habitats,
         languages,
         pokemon,
+        regions,
         shapes,
         species,
+        stats,
         types,
         type_efficacies,
         versions,

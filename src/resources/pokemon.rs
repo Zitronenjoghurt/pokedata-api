@@ -19,7 +19,7 @@ use pokedata_api_types::entities::api::pokemon::Pokemon;
         (status = 400, description = "Invalid parameters"),
         (status = 500, description = "Server error"),
     ),
-    tag = "Misc"
+    tag = "Pokemon"
 )]
 async fn get_pokemon(
     State(state): State<AppState>,

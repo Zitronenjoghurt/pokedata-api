@@ -19,7 +19,7 @@ use pokedata_api_types::entities::api::species::Species;
         (status = 400, description = "Invalid parameters"),
         (status = 500, description = "Server error"),
     ),
-    tag = "Misc"
+    tag = "Species"
 )]
 async fn get_species(
     State(state): State<AppState>,

@@ -19,7 +19,7 @@ use pokedata_api_types::entities::api::language::Language;
         (status = 400, description = "Invalid parameters"),
         (status = 500, description = "Server error"),
     ),
-    tag = "Misc"
+    tag = "Languages"
 )]
 async fn get_language(
     State(state): State<AppState>,

@@ -1,0 +1,16 @@
+pub mod ability;
+pub mod generation;
+pub mod growth_rate;
+pub mod language;
+pub mod localized_values;
+pub mod pokemon;
+pub mod pokemon_color;
+pub mod pokemon_habitat;
+pub mod pokemon_shape;
+pub mod pokemon_type;
+pub mod pokemon_type_efficacy;
+pub mod region;
+pub mod species;
+pub mod stat;
+pub mod version;
+pub mod version_group;

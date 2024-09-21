@@ -19,7 +19,7 @@ use pokedata_api_types::entities::api::pokemon_habitat::PokemonHabitat;
         (status = 400, description = "Invalid parameters"),
         (status = 500, description = "Server error"),
     ),
-    tag = "Misc"
+    tag = "Habitats"
 )]
 async fn get_habitat(
     State(state): State<AppState>,

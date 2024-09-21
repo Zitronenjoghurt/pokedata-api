@@ -13,8 +13,10 @@ mod ping;
 mod pokemon_type;
 mod pokemon_type_efficacy;
 mod shape;
+mod stat;
 mod version;
 mod version_group;
+mod region;
 
 static TEST_SERVER: Lazy<TestServer> = Lazy::new(|| {
     let app = build_app();

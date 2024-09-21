@@ -19,7 +19,7 @@ use pokedata_api_types::entities::api::pokemon_shape::PokemonShape;
         (status = 400, description = "Invalid parameters"),
         (status = 500, description = "Server error"),
     ),
-    tag = "Misc"
+    tag = "Shapes"
 )]
 async fn get_shape(
     State(state): State<AppState>,

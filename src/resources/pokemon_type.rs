@@ -19,7 +19,7 @@ use pokedata_api_types::entities::api::pokemon_type::PokemonType;
         (status = 400, description = "Invalid parameters"),
         (status = 500, description = "Server error"),
     ),
-    tag = "Misc"
+    tag = "Types"
 )]
 async fn get_pokemon_type(
     State(state): State<AppState>,

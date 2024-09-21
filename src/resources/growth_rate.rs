@@ -19,7 +19,7 @@ use pokedata_api_types::entities::api::growth_rate::GrowthRate;
         (status = 400, description = "Invalid parameters"),
         (status = 500, description = "Server error"),
     ),
-    tag = "Misc"
+    tag = "Growth Rates"
 )]
 async fn get_growth_rate(
     State(state): State<AppState>,

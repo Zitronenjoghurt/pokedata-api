@@ -1,6 +1,7 @@
 use crate::models::bulk_response::BulkResponse;
 use axum::response::{IntoResponse, Response};
 use axum::Json;
+use pokedata_api_types::entities::traits::has_id::HasId;
 use serde::Serialize;
 use std::collections::HashMap;
 use utoipa::ToSchema;
@@ -14,13 +15,15 @@ pub mod ping;
 pub mod pokemon;
 pub mod pokemon_type;
 pub mod pokemon_type_efficacy;
+pub mod region;
 pub mod shape;
 pub mod species;
+pub mod stat;
 pub mod version;
 pub mod version_group;
 
 /// A generalized handler to get entities by ids
-pub async fn get_entities<T: Clone + Serialize + for<'s> ToSchema<'s>>(
+pub async fn get_entities<T: Clone + HasId + Serialize + for<'s> ToSchema<'s>>(
     ids: Option<Vec<u32>>,
     entities: &HashMap<u32, T>,
 ) -> Response {

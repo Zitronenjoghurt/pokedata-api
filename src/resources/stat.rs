@@ -5,29 +5,29 @@ use axum::response::Response;
 use axum::routing::get;
 use axum::Router;
 use pokedata_api_types::app_state::AppState;
-use pokedata_api_types::entities::api::version_group::VersionGroup;
+use pokedata_api_types::entities::api::stat::Stat;
 
-/// Fetch version groups
+/// Fetch pokemon stats
 ///
-/// If no ID is provided, all version groups will be returned.
+/// If no ID is provided, all stats will be returned.
 #[utoipa::path(
     get,
-    path = "/version-group",
+    path = "/stat",
     params(IdsQuery),
     responses(
-        (status = 200, description = "Version group data", body = VersionGroupBulkResponse),
+        (status = 200, description = "Stat data", body = StatBulkResponse),
         (status = 400, description = "Invalid parameters"),
         (status = 500, description = "Server error"),
     ),
-    tag = "Version Groups"
+    tag = "Pokemon Stats"
 )]
-async fn get_version_group(
+async fn get_stat(
     State(state): State<AppState>,
     Query(query): Query<IdsQuery>,
 ) -> Response {
-    get_entities::<VersionGroup>(query.ids, &state.version_groups).await
+    get_entities::<Stat>(query.ids, &state.stats).await
 }
 
 pub fn router() -> Router<AppState> {
-    Router::<AppState>::new().route("/", get(get_version_group))
+    Router::<AppState>::new().route("/", get(get_stat))
 }

@@ -19,7 +19,7 @@ use pokedata_api_types::entities::api::pokemon_color::PokemonColor;
         (status = 400, description = "Invalid parameters"),
         (status = 500, description = "Server error"),
     ),
-    tag = "Misc"
+    tag = "Colors"
 )]
 async fn get_color(
     State(state): State<AppState>,

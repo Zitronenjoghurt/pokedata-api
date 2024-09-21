@@ -19,7 +19,7 @@ use pokedata_api_types::entities::api::generation::Generation;
         (status = 400, description = "Invalid parameters"),
         (status = 500, description = "Server error"),
     ),
-    tag = "Misc"
+    tag = "Generations"
 )]
 async fn get_generation(
     State(state): State<AppState>,

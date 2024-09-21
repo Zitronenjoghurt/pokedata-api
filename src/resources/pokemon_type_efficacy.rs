@@ -18,7 +18,7 @@ use pokedata_api_types::app_state::AppState;
         (status = 400, description = "Invalid parameters"),
         (status = 500, description = "Server error"),
     ),
-    tag = "Misc"
+    tag = "Types"
 )]
 async fn get_type_efficacy(
     State(state): State<AppState>,
@@ -34,7 +34,7 @@ async fn get_type_efficacy(
     Json(response).into_response()
 }
 
-/// Get all damage factors against a given type combinations
+/// Get all damage factors against a given type combination
 ///
 /// All factors are multiplied by *100 to fit into integers
 #[utoipa::path(
@@ -46,7 +46,7 @@ async fn get_type_efficacy(
         (status = 400, description = "Invalid parameters"),
         (status = 500, description = "Server error"),
     ),
-    tag = "Misc"
+    tag = "Types"
 )]
 async fn get_type_efficacy_all(
     State(state): State<AppState>,

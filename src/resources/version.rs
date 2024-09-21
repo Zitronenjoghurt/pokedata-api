@@ -19,7 +19,7 @@ use pokedata_api_types::entities::api::version::Version;
         (status = 400, description = "Invalid parameters"),
         (status = 500, description = "Server error"),
     ),
-    tag = "Misc"
+    tag = "Versions"
 )]
 async fn get_version(
     State(state): State<AppState>,
