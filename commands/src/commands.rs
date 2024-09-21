@@ -1,9 +1,11 @@
 use crate::cli::CliCommand;
 
-pub mod hello;
+mod hello;
+mod pokeapi;
 
 pub fn get_commands() -> Vec<Box<dyn CliCommand>> {
     vec![
-        Box::new(hello::HelloCommand)
+        Box::new(hello::HelloCommand),
+        Box::new(pokeapi::PokeApiCommand)
     ]
 }

@@ -5,3 +5,7 @@ edition = "2021"
 
 [dependencies]
 clap = "4.5.17"
+dotenv = "0.15.0"
+pokedata_api_types = { path = "../types" }
+reqwest = { version = "0.12.7", features = ["blocking", "json"] }
+serde = { version = "1.0.210", features = ["derive"] }

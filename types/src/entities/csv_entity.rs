@@ -30,9 +30,9 @@ use std::collections::HashMap;
 use std::path::PathBuf;
 
 pub struct CSVEntityMetaData {
-    file_name: String,
-    download_url: String,
-    is_downloadable: bool,
+    pub file_name: String,
+    pub download_url: String,
+    pub is_downloadable: bool,
 }
 
 pub trait CSVEntity: DeserializeOwned {
