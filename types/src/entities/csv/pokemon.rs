@@ -1,5 +1,7 @@
 use crate::entities::api::pokemon::Pokemon;
+use crate::entities::api::pokemon_stats::PokemonStats;
 use crate::entities::api::type_slots::{TypeSlots, TypeSlotsPast};
+use crate::entities::csv::pokemon_stats::PokemonStatsCSV;
 use crate::entities::csv::pokemon_types::PokemonTypesCSV;
 use crate::entities::csv::pokemon_types_past::PokemonTypesPastCSV;
 use crate::entities::csv_entity::CSVEntity;
@@ -42,6 +44,7 @@ impl ApiCSVEntity for PokemonCSV {
                 base_experience: entry.base_experience.unwrap_or_default(),
                 dex_order: entry.order.unwrap_or_default(),
                 is_default: entry.is_default.unwrap_or_default() == 1,
+                stats: data.stats_map.get(&entry.id).cloned().unwrap_or_default(),
                 types: data.type_slots_map.get(&entry.id).cloned().unwrap_or_default(),
                 types_past: data.type_slots_past_map.get(&entry.id).cloned(),
             }
@@ -51,17 +54,20 @@ impl ApiCSVEntity for PokemonCSV {
 
 #[derive(Debug, Default)]
 pub struct PokemonConversionData {
+    pub stats_map: HashMap<u32, PokemonStats>,
     pub type_slots_map: HashMap<u32, TypeSlots>,
     pub type_slots_past_map: HashMap<u32, TypeSlotsPast>,
 }
 
 impl PokemonConversionData {
     pub fn load(data_path: &PathBuf) -> Self {
+        let stats = PokemonStatsCSV::load(data_path).unwrap();
         let types = PokemonTypesCSV::load(data_path).unwrap();
         let types_past = PokemonTypesPastCSV::load(data_path).unwrap();
         Self {
-            type_slots_map: PokemonTypesCSV::to_mapped(types),
-            type_slots_past_map: PokemonTypesPastCSV::to_mapped(types_past),
+            stats_map: PokemonStatsCSV::map(stats),
+            type_slots_map: PokemonTypesCSV::map(types),
+            type_slots_past_map: PokemonTypesPastCSV::map(types_past),
         }
     }
 }

@@ -8,7 +8,7 @@ use serde::Deserialize;
 const POKEAPI_OWNER: &'static str = "PokeAPI";
 const POKEAPI_REPO: &'static str = "pokeapi";
 const CSV_DATA_PATH: &'static str = "data/v2/csv";
-const IGNORE_FILE_PREFIXES: &[&str] = &["conquest", "super_contest", "type_game_indices"];
+const IGNORE_FILE_PREFIXES: &[&str] = &["conquest", "pokemon_species_prose", "super_contest", "type_game_indices"];
 
 pub struct PokeApiCommand;
 

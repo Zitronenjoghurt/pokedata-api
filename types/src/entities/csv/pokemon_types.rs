@@ -28,7 +28,7 @@ impl IdValuePairingMapped for PokemonTypesCSV {
 }
 
 impl PokemonTypesCSV {
-    pub fn to_mapped(entries: Vec<PokemonTypesCSV>) -> HashMap<u32, TypeSlots> {
+    pub fn map(entries: Vec<PokemonTypesCSV>) -> HashMap<u32, TypeSlots> {
         let result = entries.group_by_id_mapped();
         result.into_iter()
             .map(|(pokemon_id, slots)| (pokemon_id, TypeSlots(slots)))

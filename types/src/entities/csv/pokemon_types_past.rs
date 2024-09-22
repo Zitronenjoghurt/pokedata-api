@@ -20,7 +20,7 @@ impl CSVEntity for PokemonTypesPastCSV {
 impl PokemonTypesPastCSV {
     /// Creates a mapped representation of the past types of a pokemon by generation:
     /// HashMap<pokemon_id, HashMap<generation_id, HashMap<slot, type_id>>>
-    pub fn to_mapped(entries: Vec<PokemonTypesPastCSV>) -> HashMap<u32, TypeSlotsPast> {
+    pub fn map(entries: Vec<PokemonTypesPastCSV>) -> HashMap<u32, TypeSlotsPast> {
         let mut result: HashMap<u32, TypeSlotsPast> = HashMap::new();
 
         for entry in entries {
