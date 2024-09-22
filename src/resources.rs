@@ -7,6 +7,8 @@ use std::collections::HashMap;
 use utoipa::ToSchema;
 
 pub mod color;
+pub mod evolution;
+pub mod evolution_chain;
 pub mod generation;
 pub mod growth_rate;
 pub mod habitat;

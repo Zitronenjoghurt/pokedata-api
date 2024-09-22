@@ -69,6 +69,8 @@ impl ApiCSVEntity for PokemonSpeciesCSV {
             growth_rate_id: entry.growth_rate_id,
             shape_id: entry.shape_id,
             pokemon_ids: get_pokemon_ids_by_species(&data.pokemon_map, entry.id),
+            evolution_chain_id: entry.evolution_chain_id,
+            evolves_from_species_id: entry.evolves_from_species_id,
         })
     }
 }

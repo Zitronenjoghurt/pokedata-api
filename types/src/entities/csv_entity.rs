@@ -1,4 +1,5 @@
 use crate::entities::csv::abilities::AbilitiesCSV;
+use crate::entities::csv::evolution_chains::EvolutionChainsCSV;
 use crate::entities::csv::generation_names::GenerationNamesCSV;
 use crate::entities::csv::generations::GenerationsCSV;
 use crate::entities::csv::growth_rate_prose::GrowthRateProseCSV;
@@ -8,6 +9,8 @@ use crate::entities::csv::languages::LanguagesCSV;
 use crate::entities::csv::pokemon::PokemonCSV;
 use crate::entities::csv::pokemon_color_names::PokemonColorNamesCSV;
 use crate::entities::csv::pokemon_colors::PokemonColorsCSV;
+use crate::entities::csv::pokemon_evolution::PokemonEvolutionCSV;
+use crate::entities::csv::pokemon_game_indices::PokemonVersionIdsCSV;
 use crate::entities::csv::pokemon_habitat_names::PokemonHabitatNamesCSV;
 use crate::entities::csv::pokemon_habitats::PokemonHabitatsCSV;
 use crate::entities::csv::pokemon_shape_prose::{PokemonShapeAwesomeNamesCSV, PokemonShapeDescriptionsCSV, PokemonShapeNamesCSV};
@@ -79,6 +82,7 @@ pub trait CSVEntity: DeserializeOwned {
 pub fn get_all_metadata() -> Vec<CSVEntityMetaData> {
     vec![
         AbilitiesCSV::get_metadata(),
+        EvolutionChainsCSV::get_metadata(),
         GenerationNamesCSV::get_metadata(),
         GenerationsCSV::get_metadata(),
         GrowthRateProseCSV::get_metadata(),
@@ -88,6 +92,7 @@ pub fn get_all_metadata() -> Vec<CSVEntityMetaData> {
         PokemonCSV::get_metadata(),
         PokemonColorNamesCSV::get_metadata(),
         PokemonColorsCSV::get_metadata(),
+        PokemonEvolutionCSV::get_metadata(),
         PokemonHabitatNamesCSV::get_metadata(),
         PokemonHabitatsCSV::get_metadata(),
         PokemonShapeAwesomeNamesCSV::get_metadata(),
@@ -100,6 +105,7 @@ pub fn get_all_metadata() -> Vec<CSVEntityMetaData> {
         PokemonStatsCSV::get_metadata(),
         PokemonTypesCSV::get_metadata(),
         PokemonTypesPastCSV::get_metadata(),
+        PokemonVersionIdsCSV::get_metadata(),
         RegionNamesCSV::get_metadata(),
         RegionsCSV::get_metadata(),
         StatNamesCSV::get_metadata(),

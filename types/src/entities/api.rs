@@ -1,4 +1,6 @@
 pub mod ability;
+pub mod evolution;
+pub mod evolution_chain;
 pub mod generation;
 pub mod growth_rate;
 pub mod language;

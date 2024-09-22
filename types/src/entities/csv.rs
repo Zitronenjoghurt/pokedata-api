@@ -1,4 +1,5 @@
 pub mod abilities;
+pub mod evolution_chains;
 pub mod generation_names;
 pub mod generations;
 pub mod growth_rates;
@@ -8,6 +9,8 @@ pub mod language_names;
 pub mod pokemon;
 pub mod pokemon_color_names;
 pub mod pokemon_colors;
+pub mod pokemon_evolution;
+pub mod pokemon_game_indices;
 pub mod pokemon_habitat_names;
 pub mod pokemon_habitats;
 pub mod pokemon_shape_prose;

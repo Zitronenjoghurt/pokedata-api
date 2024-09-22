@@ -21,6 +21,8 @@ pub struct Pokemon {
     pub stats: PokemonStats,
     pub types: TypeSlots,
     pub types_past: Option<TypeSlotsPast>,
+    /// The version ids of the games this pokemon exists in
+    pub version_ids: Vec<u32>,
 }
 
 impl HasId for Pokemon {

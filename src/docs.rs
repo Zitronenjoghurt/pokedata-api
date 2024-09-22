@@ -12,6 +12,8 @@ use utoipa::OpenApi;
     ),
     paths(
         resources::color::get_color,
+        resources::evolution::get_evolution,
+        resources::evolution_chain::get_evolution_chain,
         resources::generation::get_generation,
         resources::growth_rate::get_growth_rate,
         resources::habitat::get_habitat,
@@ -31,6 +33,7 @@ use utoipa::OpenApi;
     tags(
         (name = "Misc", description = "Miscellaneous endpoints"),
         (name = "Colors"),
+        (name = "Evolutions"),
         (name = "Generations"),
         (name = "Growth Rates"),
         (name = "Habitats"),
@@ -46,6 +49,9 @@ use utoipa::OpenApi;
     ),
     components(
         schemas(
+            evolution::Evolution,
+            evolution_chain::EvolutionChain,
+            evolution_chain::EvolutionChainNode,
             generation::Generation,
             growth_rate::GrowthRate,
             language::Language,
@@ -70,6 +76,8 @@ use utoipa::OpenApi;
             version_group::VersionGroup,
             AllTypeEffectivenessResponse,
             ColorBulkResponse,
+            EvolutionBulkResponse,
+            EvolutionChainBulkResponse,
             GenerationBulkResponse,
             GrowthRateBulkResponse,
             HabitatBulkResponse,

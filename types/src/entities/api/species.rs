@@ -39,7 +39,8 @@ pub struct Species {
     pub shape_id: Option<u32>,
     /// All pokemon which belong to this species.
     pub pokemon_ids: Vec<u32>,
-    // ToDo: evolution
+    pub evolution_chain_id: Option<u32>,
+    pub evolves_from_species_id: Option<u32>,
 }
 
 impl HasId for Species {

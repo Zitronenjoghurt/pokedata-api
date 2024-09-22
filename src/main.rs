@@ -38,6 +38,8 @@ pub fn build_app() -> Router {
     Router::new()
         .nest("/", resources::ping::router())
         .nest("/color", resources::color::router())
+        .nest("/evolution", resources::evolution::router())
+        .nest("/evolution-chain", resources::evolution_chain::router())
         .nest("/generation", resources::generation::router())
         .nest("/growth-rate", resources::growth_rate::router())
         .nest("/habitat", resources::habitat::router())

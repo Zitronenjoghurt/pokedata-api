@@ -1,5 +1,6 @@
 use pokedata_api_types::app_state::AppState;
 use pokedata_api_types::entities::api::pokemon_type::get_major_type_ids;
+use pokedata_api_types::entities::csv::evolution_chains::EvolutionChainConversionData;
 use pokedata_api_types::entities::csv::pokemon::PokemonConversionData;
 use pokedata_api_types::entities::csv::pokemon_shapes::PokemonShapesConversionData;
 use pokedata_api_types::entities::csv::type_efficacy::build_efficacies_by_generation;
@@ -26,6 +27,7 @@ pub fn create_app_state(data_path: &PathBuf) -> AppState {
 
     let abilities = abilities::AbilitiesCSV::load_and_convert(data_path, &()).unwrap().into_id_map();
     let colors = pokemon_colors::PokemonColorsCSV::load_and_convert(data_path, &color_names).unwrap().into_id_map();
+    let evolutions = pokemon_evolution::PokemonEvolutionCSV::load_and_convert(data_path, &()).unwrap().into_id_map();
     let generations = generations::GenerationsCSV::load_and_convert(data_path, &generation_names).unwrap().into_id_map();
     let growth_rates = growth_rates::GrowthRatesCSV::load_and_convert(data_path, &growth_rate_names).unwrap().into_id_map();
     let habitats = pokemon_habitats::PokemonHabitatsCSV::load_and_convert(data_path, &habitat_names).unwrap().into_id_map();
@@ -45,11 +47,16 @@ pub fn create_app_state(data_path: &PathBuf) -> AppState {
     let type_efficacies = build_efficacies_by_generation(data_path, latest_generation).unwrap();
     let version_groups = version_groups::VersionGroupsCSV::load_and_convert(data_path, &version_group_data).unwrap().into_id_map();
 
+    let evolution_chain_data = EvolutionChainConversionData::load(&evolutions, &species);
+    let evolution_chains = evolution_chains::EvolutionChainsCSV::load_and_convert(data_path, &evolution_chain_data).unwrap().into_id_map();
+
     let major_type_ids = get_major_type_ids(types.values().cloned().collect());
 
     AppState {
         abilities,
         colors,
+        evolutions,
+        evolution_chains,
         generations,
         growth_rates,
         habitats,

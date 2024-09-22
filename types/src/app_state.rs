@@ -1,4 +1,6 @@
 use crate::entities::api::ability::Ability;
+use crate::entities::api::evolution::Evolution;
+use crate::entities::api::evolution_chain::EvolutionChain;
 use crate::entities::api::generation::Generation;
 use crate::entities::api::growth_rate::GrowthRate;
 use crate::entities::api::language::Language;
@@ -20,6 +22,8 @@ use std::collections::HashMap;
 pub struct AppState {
     pub abilities: HashMap<u32, Ability>,
     pub colors: HashMap<u32, PokemonColor>,
+    pub evolutions: HashMap<u32, Evolution>,
+    pub evolution_chains: HashMap<u32, EvolutionChain>,
     pub generations: HashMap<u32, Generation>,
     pub growth_rates: HashMap<u32, GrowthRate>,
     pub habitats: HashMap<u32, PokemonHabitat>,
