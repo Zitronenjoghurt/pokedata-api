@@ -15,6 +15,8 @@ pub mod pokemon_shapes;
 pub mod pokemon_species;
 pub mod pokemon_species_flavor_text;
 pub mod pokemon_species_names;
+pub mod pokemon_types;
+pub mod pokemon_types_past;
 pub mod regions;
 pub mod region_names;
 pub mod stats;

@@ -15,6 +15,8 @@ use crate::entities::csv::pokemon_shapes::PokemonShapesCSV;
 use crate::entities::csv::pokemon_species::PokemonSpeciesCSV;
 use crate::entities::csv::pokemon_species_flavor_text::PokemonSpeciesFlavorTextCSV;
 use crate::entities::csv::pokemon_species_names::PokemonSpeciesNamesCSV;
+use crate::entities::csv::pokemon_types::PokemonTypesCSV;
+use crate::entities::csv::pokemon_types_past::PokemonTypesPastCSV;
 use crate::entities::csv::region_names::RegionNamesCSV;
 use crate::entities::csv::regions::RegionsCSV;
 use crate::entities::csv::stat_names::StatNamesCSV;
@@ -94,6 +96,8 @@ pub fn get_all_metadata() -> Vec<CSVEntityMetaData> {
         PokemonSpeciesCSV::get_metadata(),
         PokemonSpeciesFlavorTextCSV::get_metadata(),
         PokemonSpeciesNamesCSV::get_metadata(),
+        PokemonTypesCSV::get_metadata(),
+        PokemonTypesPastCSV::get_metadata(),
         RegionNamesCSV::get_metadata(),
         RegionsCSV::get_metadata(),
         StatNamesCSV::get_metadata(),

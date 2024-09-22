@@ -8,6 +8,7 @@ use serde::Deserialize;
 const POKEAPI_OWNER: &'static str = "PokeAPI";
 const POKEAPI_REPO: &'static str = "pokeapi";
 const CSV_DATA_PATH: &'static str = "data/v2/csv";
+const IGNORE_FILE_PREFIXES: &[&str] = &["conquest", "super_contest", "type_game_indices"];
 
 pub struct PokeApiCommand;
 
@@ -55,11 +56,20 @@ fn coverage() -> Result<(), String> {
         .send()
         .unwrap();
 
-    let csv_files: Vec<GitHubFile> = if response.status().is_success() {
+    let all_files: Vec<GitHubFile> = if response.status().is_success() {
         response.json().unwrap()
     } else {
         return Err(format!("An error occurred while requesting the GitHub API: {}", response.status()));
     };
+
+    let csv_files: Vec<String> = all_files
+        .into_iter()
+        .map(|file| file.name)
+        .filter(|name| {
+            name.ends_with(".csv") &&
+                !IGNORE_FILE_PREFIXES.iter().any(|&prefix| name.starts_with(prefix))
+        })
+        .collect();
 
     let covered_files: Vec<String> = get_all_metadata().iter().map(|data| format!("{}.csv", data.file_name)).collect();
 
@@ -67,7 +77,6 @@ fn coverage() -> Result<(), String> {
     let covered_count = covered_files.len();
     let uncovered_files: Vec<String> = csv_files
         .into_iter()
-        .map(|file| file.name)
         .filter(|name| !covered_files.contains(name))
         .collect();
 

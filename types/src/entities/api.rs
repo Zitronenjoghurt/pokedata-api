@@ -12,5 +12,6 @@ pub mod pokemon_type_efficacy;
 pub mod region;
 pub mod species;
 pub mod stat;
+pub mod type_slots;
 pub mod version;
 pub mod version_group;

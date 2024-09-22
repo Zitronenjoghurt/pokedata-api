@@ -1,3 +1,4 @@
+use crate::entities::api::type_slots::{TypeSlots, TypeSlotsPast};
 use crate::entities::traits::has_id::HasId;
 use serde::{Deserialize, Serialize};
 use utoipa::ToSchema;
@@ -16,6 +17,8 @@ pub struct Pokemon {
     pub dex_order: u32,
     /// Set for exactly one Pokémon used as the default for each species.
     pub is_default: bool,
+    pub types: TypeSlots,
+    pub types_past: Option<TypeSlotsPast>,
 }
 
 impl HasId for Pokemon {
