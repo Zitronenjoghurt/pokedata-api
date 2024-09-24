@@ -5,6 +5,7 @@
 build/target
 commands/target
 types/target
+utils/target
 Cargo.lock
 cobertura.xml
 cli

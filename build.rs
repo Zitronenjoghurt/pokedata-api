@@ -1,4 +1,5 @@
 use pokedata_api_build::initialize::build_app_state;
+use pokedata_api_utils::filesystem::{create_directory, get_data_path};
 use std::env;
 use std::fs::File;
 use std::io::Write;
@@ -6,8 +7,8 @@ use std::path::PathBuf;
 use std::process::Command;
 
 fn main() {
-    let manifest_dir = env::var("CARGO_MANIFEST_DIR").unwrap();
-    let data_path = PathBuf::from(&manifest_dir).join("data");
+    create_data_path();
+    let data_path = get_data_path().unwrap();
     let out_dir = env::var("OUT_DIR").unwrap();
     let dest_path = PathBuf::from(out_dir).join("data.bin");
 
@@ -17,14 +18,20 @@ fn main() {
     let mut file = File::create(dest_path).unwrap();
     file.write_all(&encoded_state).unwrap();
 
-    build_cli(&manifest_dir);
+    build_cli();
 
     println!("cargo:rerun-if-changed=commands/src");
     println!("cargo:rerun-if-changed=data");
 }
 
-fn build_cli(manifest_dir: &String) {
-    let commands_dir = PathBuf::from(manifest_dir).join("commands");
+fn create_data_path() {
+    let data_path = get_data_path().expect("Unable to find system data directory");
+    create_directory(&data_path);
+}
+
+fn build_cli() {
+    let manifest_dir = env::var("CARGO_MANIFEST_DIR").unwrap();
+    let commands_dir = PathBuf::from(&manifest_dir).join("commands");
     let status = Command::new("cargo")
         .current_dir(&commands_dir)
         .args(&["build", "--release"])

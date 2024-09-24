@@ -5,4 +5,5 @@ edition = "2021"
 
 [dependencies]
 pokedata_api_types = { path = "../types" }
+pokedata_api_utils = { path = "../utils" }
 reqwest = { version = "0.12.7", features = ["blocking"] }

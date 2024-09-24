@@ -40,3 +40,17 @@ http://localhost:3000/docs
 http://localhost:3000/rapidoc
 http://localhost:3000/swagger
 ```
+
+# Data storage
+
+During the build process, Pokedata API will need to store data for local processing.
+
+The following directories will be used ([learn more](https://docs.rs/dirs/latest/dirs/fn.data_dir.html)):
+
+| Platform | Directory                                                |
+|----------|----------------------------------------------------------|
+| Linux    | `/home/{user}/.local/share/pokedata-api`                 |
+| macOS    | `/Users/{user}/Library/Application Support/pokedata-api` |
+| Windows  | `C:\Users\{user}\AppData\Roaming\pokedata-api`           |
+
+! `{user}` has to be replaced by the User the API is being run on.

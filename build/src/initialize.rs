@@ -1,24 +1,17 @@
 use crate::app_state::create_app_state;
 use pokedata_api_types::app_state::AppState;
 use pokedata_api_types::entities::csv_entity::get_download_map;
+use pokedata_api_utils::filesystem::create_directory;
 use reqwest::blocking::Client;
 use std::fs::File;
 use std::io::copy;
 use std::path::PathBuf;
 
 pub fn build_app_state(data_path: &PathBuf) -> AppState {
-    create_data_directory(data_path);
-    download_csv_files(data_path);
-    create_app_state(data_path)
-}
-
-fn create_data_directory(data_path: &PathBuf) {
-    if !data_path.exists() {
-        std::fs::create_dir_all(data_path).expect("Unable to create data directory");
-        println!("cargo:info=Created data directory: {}", data_path.display());
-    } else {
-        println!("cargo:info=Found data directory: {}", data_path.display());
-    }
+    let csv_path = data_path.join("csv");
+    create_directory(&csv_path);
+    download_csv_files(&csv_path);
+    create_app_state(&csv_path)
 }
 
 fn download_csv_files(base_path: &PathBuf) {
@@ -35,13 +28,13 @@ fn handle_csv_file(file_path: PathBuf, download_url: String) {
     if !file_path.exists() {
         download_csv_file(file_path, download_url);
     } else {
-        println!("cargo:info=Found existing csv file: {}", file_path.display());
+        println!("Found existing csv file: {}", file_path.display());
     }
 }
 
 fn download_csv_file(file_path: PathBuf, download_url: String) {
-    println!("cargo:info=Downloading csv file: {}", file_path.display());
-    println!("cargo:info=Requesting... {}", download_url);
+    println!("Downloading csv file: {}", file_path.display());
+    println!("Requesting... {}", download_url);
 
     let client = Client::new();
     let mut response = client.get(&download_url)
@@ -54,5 +47,5 @@ fn download_csv_file(file_path: PathBuf, download_url: String) {
     copy(&mut response, &mut file)
         .expect("Failed to copy content");
 
-    println!("cargo:info=Finished downloading csv file: {}", file_path.display());
+    println!("Finished downloading csv file: {}", file_path.display());
 }
