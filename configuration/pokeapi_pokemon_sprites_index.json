@@ -1,156 +1,156 @@
 {
   "default": {
     "front": "/",
-    "front_shiny": "/shiny",
-    "back": "/back",
-    "back_shiny": "/back/shiny",
-    "front_female": "/female",
-    "front_shiny_female": "/shiny/female",
-    "back_female": "/back/female",
-    "back_shiny_female": "/back/shiny/female"
+    "front_shiny": "shiny/",
+    "back": "back/",
+    "back_shiny": "back/shiny/",
+    "front_female": "female/",
+    "front_shiny_female": "shiny/female/",
+    "back_female": "back/female/",
+    "back_shiny_female": "back/shiny/female/"
   },
   "showdown": {
-    "front": "/other/showdown",
-    "front_shiny": "/other/showdown/shiny",
-    "back": "/other/showdown/back",
-    "back_shiny": "/other/showdown/back/shiny",
-    "front_female": "/other/showdown/female",
-    "front_shiny_female": "/other/showdown/shiny/female",
-    "back_female": "/other/showdown/back/female",
-    "back_shiny_female": "/other/showdown/back/shiny/female"
+    "front": "other/showdown/",
+    "front_shiny": "other/showdown/shiny/",
+    "back": "other/showdown/back/",
+    "back_shiny": "other/showdown/back/shiny/",
+    "front_female": "other/showdown/female/",
+    "front_shiny_female": "other/showdown/shiny/female/",
+    "back_female": "other/showdown/back/female/",
+    "back_shiny_female": "other/showdown/back/shiny/female/"
   },
   "official": {
-    "front": "/other/official-artwork/",
-    "front_shiny": "/other/official-artwork/shiny"
+    "front": "other/official-artwork/",
+    "front_shiny": "other/official-artwork/shiny/"
   },
   "home": {
-    "front": "/other/home/",
-    "front_shiny": "/other/home/shiny",
-    "front_female": "/other/home/female",
-    "front_shiny_female": "/other/home/shiny/female"
+    "front": "other/home/",
+    "front_shiny": "other/home/shiny/",
+    "front_female": "other/home/female/",
+    "front_shiny_female": "other/home/shiny/female/"
   },
   "red-blue": {
-    "front_colored": "/versions/generation-i/red-blue",
-    "back_colored": "/versions/generation-i/red-blue/back",
-    "front_gray": "/versions/generation-i/red-blue/gray",
-    "back_gray": "/versions/generation-i/red-blue/back/gray",
-    "front_transparent": "/versions/generation-i/red-blue/transparent",
-    "back_transparent": "/versions/generation-i/red-blue/transparent/back"
+    "front_colored": "versions/generation-i/red-blue/",
+    "back_colored": "versions/generation-i/red-blue/back/",
+    "front_gray": "versions/generation-i/red-blue/gray/",
+    "back_gray": "versions/generation-i/red-blue/back/gray/",
+    "front_transparent": "versions/generation-i/red-blue/transparent/",
+    "back_transparent": "versions/generation-i/red-blue/transparent/back/"
   },
   "yellow": {
-    "front_colored": "/versions/generation-i/yellow",
-    "back_colored": "/versions/generation-i/yellow/back",
-    "front_gray": "/versions/generation-i/yellow/gray",
-    "back_gray": "/versions/generation-i/yellow/back/gray",
-    "front_transparent": "/versions/generation-i/yellow/transparent",
-    "back_transparent": "/versions/generation-i/yellow/transparent/back",
-    "front_gbc": "/versions/generation-i/yellow/gbc",
-    "back_gbc": "/versions/generation-i/yellow/back/gbc"
+    "front_colored": "versions/generation-i/yellow/",
+    "back_colored": "versions/generation-i/yellow/back/",
+    "front_gray": "versions/generation-i/yellow/gray/",
+    "back_gray": "versions/generation-i/yellow/back/gray/",
+    "front_transparent": "versions/generation-i/yellow/transparent/",
+    "back_transparent": "versions/generation-i/yellow/transparent/back/",
+    "front_gbc": "versions/generation-i/yellow/gbc/",
+    "back_gbc": "versions/generation-i/yellow/back/gbc/"
   },
   "silver": {
-    "front": "/versions/generation-ii/silver",
-    "back": "/versions/generation-ii/silver/back",
-    "front_shiny": "/versions/generation-ii/silver/shiny",
-    "back_shiny": "/versions/generation-ii/silver/back/shiny",
-    "front_transparent": "/versions/generation-ii/silver/transparent"
+    "front": "versions/generation-ii/silver/",
+    "back": "versions/generation-ii/silver/back/",
+    "front_shiny": "versions/generation-ii/silver/shiny/",
+    "back_shiny": "versions/generation-ii/silver/back/shiny/",
+    "front_transparent": "versions/generation-ii/silver/transparent/"
   },
   "gold": {
-    "front": "/versions/generation-ii/gold",
-    "back": "/versions/generation-ii/gold/back",
-    "front_shiny": "/versions/generation-ii/gold/shiny",
-    "back_shiny": "/versions/generation-ii/gold/back/shiny",
-    "front_transparent": "/versions/generation-ii/gold/transparent"
+    "front": "versions/generation-ii/gold/",
+    "back": "versions/generation-ii/gold/back/",
+    "front_shiny": "versions/generation-ii/gold/shiny/",
+    "back_shiny": "versions/generation-ii/gold/back/shiny/",
+    "front_transparent": "versions/generation-ii/gold/transparent/"
   },
   "crystal": {
-    "front": "/versions/generation-ii/crystal",
-    "back": "/versions/generation-ii/crystal/back",
-    "front_shiny": "/versions/generation-ii/crystal/shiny",
-    "back_shiny": "/versions/generation-ii/crystal/back/shiny",
-    "front_transparent": "/versions/generation-ii/crystal/transparent",
-    "back_transparent": "/versions/generation-ii/crystal/transparent/back",
-    "front_transparent_shiny": "/versions/generation-ii/crystal/transparent/shiny",
-    "back_transparent_shiny": "/versions/generation-ii/crystal/transparent/back/shiny"
+    "front": "versions/generation-ii/crystal/",
+    "back": "versions/generation-ii/crystal/back/",
+    "front_shiny": "versions/generation-ii/crystal/shiny/",
+    "back_shiny": "versions/generation-ii/crystal/back/shiny/",
+    "front_transparent": "versions/generation-ii/crystal/transparent/",
+    "back_transparent": "versions/generation-ii/crystal/transparent/back/",
+    "front_transparent_shiny": "versions/generation-ii/crystal/transparent/shiny/",
+    "back_transparent_shiny": "versions/generation-ii/crystal/transparent/back/shiny/"
   },
   "ruby-sapphire": {
-    "front": "/versions/generation-iii/ruby-sapphire",
-    "back": "/versions/generation-iii/ruby-sapphire/back",
-    "front_shiny": "/versions/generation-iii/ruby-sapphire/shiny",
-    "back_shiny": "/versions/generation-iii/ruby-sapphire/back/shiny"
+    "front": "versions/generation-iii/ruby-sapphire/",
+    "back": "versions/generation-iii/ruby-sapphire/back/",
+    "front_shiny": "versions/generation-iii/ruby-sapphire/shiny/",
+    "back_shiny": "versions/generation-iii/ruby-sapphire/back/shiny/"
   },
   "firered-leafgreen": {
-    "front": "/versions/generation-iii/firered-leafgreen",
-    "back": "/versions/generation-iii/firered-leafgreen/back",
-    "front_shiny": "/versions/generation-iii/firered-leafgreen/shiny",
-    "back_shiny": "/versions/generation-iii/firered-leafgreen/back/shiny"
+    "front": "versions/generation-iii/firered-leafgreen/",
+    "back": "versions/generation-iii/firered-leafgreen/back/",
+    "front_shiny": "versions/generation-iii/firered-leafgreen/shiny/",
+    "back_shiny": "versions/generation-iii/firered-leafgreen/back/shiny/"
   },
   "emerald": {
-    "front": "/versions/generation-iii/emerald",
-    "front_shiny": "/versions/generation-iii/emerald/shiny"
+    "front": "versions/generation-iii/emerald/",
+    "front_shiny": "versions/generation-iii/emerald/shiny/"
   },
   "platinum": {
-    "front": "/versions/generation-iv/platinum",
-    "front_shiny": "/versions/generation-iv/platinum/shiny",
-    "back": "/versions/generation-iv/platinum/back",
-    "back_shiny": "/versions/generation-iv/platinum/back/shiny",
-    "front_female": "/versions/generation-iv/platinum/female",
-    "front_shiny_female": "/versions/generation-iv/platinum/shiny/female",
-    "back_female": "/versions/generation-iv/platinum/back/female",
-    "back_shiny_female": "/versions/generation-iv/platinum/back/shiny/female"
+    "front": "versions/generation-iv/platinum/",
+    "front_shiny": "versions/generation-iv/platinum/shiny/",
+    "back": "versions/generation-iv/platinum/back/",
+    "back_shiny": "versions/generation-iv/platinum/back/shiny/",
+    "front_female": "versions/generation-iv/platinum/female/",
+    "front_shiny_female": "versions/generation-iv/platinum/shiny/female/",
+    "back_female": "versions/generation-iv/platinum/back/female/",
+    "back_shiny_female": "versions/generation-iv/platinum/back/shiny/female/"
   },
-  "heartgold_soulsilver": {
-    "front": "/versions/generation-iv/heartgold_soulsilver",
-    "front_shiny": "/versions/generation-iv/heartgold_soulsilver/shiny",
-    "back": "/versions/generation-iv/heartgold_soulsilver/back",
-    "back_shiny": "/versions/generation-iv/heartgold_soulsilver/back/shiny",
-    "front_female": "/versions/generation-iv/heartgold_soulsilver/female",
-    "front_shiny_female": "/versions/generation-iv/heartgold_soulsilver/shiny/female",
-    "back_female": "/versions/generation-iv/heartgold_soulsilver/back/female",
-    "back_shiny_female": "/versions/generation-iv/heartgold_soulsilver/back/shiny/female"
+  "heartgold-soulsilver": {
+    "front": "versions/generation-iv/heartgold-soulsilver/",
+    "front_shiny": "versions/generation-iv/heartgold-soulsilver/shiny/",
+    "back": "versions/generation-iv/heartgold-soulsilver/back/",
+    "back_shiny": "versions/generation-iv/heartgold-soulsilver/back/shiny/",
+    "front_female": "versions/generation-iv/heartgold-soulsilver/female/",
+    "front_shiny_female": "versions/generation-iv/heartgold-soulsilver/shiny/female/",
+    "back_female": "versions/generation-iv/heartgold-soulsilver/back/female/",
+    "back_shiny_female": "versions/generation-iv/heartgold-soulsilver/back/shiny/female/"
   },
   "diamond-pearl": {
-    "front": "/versions/generation-iv/diamond-pearl",
-    "front_shiny": "/versions/generation-iv/diamond-pearl/shiny",
-    "back": "/versions/generation-iv/diamond-pearl/back",
-    "back_shiny": "/versions/generation-iv/diamond-pearl/back/shiny",
-    "front_female": "/versions/generation-iv/diamond-pearl/female",
-    "front_shiny_female": "/versions/generation-iv/diamond-pearl/shiny/female",
-    "back_female": "/versions/generation-iv/diamond-pearl/back/female",
-    "back_shiny_female": "/versions/generation-iv/diamond-pearl/back/shiny/female"
+    "front": "versions/generation-iv/diamond-pearl/",
+    "front_shiny": "versions/generation-iv/diamond-pearl/shiny/",
+    "back": "versions/generation-iv/diamond-pearl/back/",
+    "back_shiny": "versions/generation-iv/diamond-pearl/back/shiny/",
+    "front_female": "versions/generation-iv/diamond-pearl/female/",
+    "front_shiny_female": "versions/generation-iv/diamond-pearl/shiny/female/",
+    "back_female": "versions/generation-iv/diamond-pearl/back/female/",
+    "back_shiny_female": "versions/generation-iv/diamond-pearl/back/shiny/female/"
   },
   "black-white": {
-    "front": "/versions/generation-v/black-white",
-    "front_shiny": "/versions/generation-v/black-white/shiny",
-    "back": "/versions/generation-v/black-white/back",
-    "back_shiny": "/versions/generation-v/black-white/back/shiny",
-    "front_female": "/versions/generation-v/black-white/female",
-    "front_shiny_female": "/versions/generation-v/black-white/shiny/female",
-    "back_female": "/versions/generation-v/black-white/back/female",
-    "back_shiny_female": "/versions/generation-v/black-white/back/shiny/female",
-    "front_animated": "/versions/generation-v/black-white/animated",
-    "front_shiny_animated": "/versions/generation-v/black-white/animated/shiny",
-    "back_animated": "/versions/generation-v/black-white/animated/back",
-    "back_shiny_animated": "/versions/generation-v/black-white/animated/back/shiny",
-    "front_female_animated": "/versions/generation-v/black-white/animated/female",
-    "front_shiny_female_animated": "/versions/generation-v/black-white/animated/shiny/female",
-    "back_female_animated": "/versions/generation-v/black-white/animated/back/female",
-    "back_shiny_female_animated": "/versions/generation-v/black-white/animated/back/shiny/female"
+    "front": "versions/generation-v/black-white/",
+    "front_shiny": "versions/generation-v/black-white/shiny/",
+    "back": "versions/generation-v/black-white/back/",
+    "back_shiny": "versions/generation-v/black-white/back/shiny/",
+    "front_female": "versions/generation-v/black-white/female/",
+    "front_shiny_female": "versions/generation-v/black-white/shiny/female/",
+    "back_female": "versions/generation-v/black-white/back/female/",
+    "back_shiny_female": "versions/generation-v/black-white/back/shiny/female/",
+    "front_animated": "versions/generation-v/black-white/animated/",
+    "front_shiny_animated": "versions/generation-v/black-white/animated/shiny/",
+    "back_animated": "versions/generation-v/black-white/animated/back/",
+    "back_shiny_animated": "versions/generation-v/black-white/animated/back/shiny/",
+    "front_female_animated": "versions/generation-v/black-white/animated/female/",
+    "front_shiny_female_animated": "versions/generation-v/black-white/animated/shiny/female/",
+    "back_female_animated": "versions/generation-v/black-white/animated/back/female/",
+    "back_shiny_female_animated": "versions/generation-v/black-white/animated/back/shiny/female/"
   },
   "x-y": {
-    "front": "/versions/generation-vi/x-y",
-    "front_shiny": "/versions/generation-vi/x-y/shiny",
-    "front_female": "/versions/generation-vi/x-y/female",
-    "front_shiny_female": "/versions/generation-vi/x-y/shiny/female"
+    "front": "versions/generation-vi/x-y/",
+    "front_shiny": "versions/generation-vi/x-y/shiny/",
+    "front_female": "versions/generation-vi/x-y/female/",
+    "front_shiny_female": "versions/generation-vi/x-y/shiny/female/"
   },
   "omegaruby-alphasapphire": {
-    "front": "/versions/generation-vi/omegaruby-alphasapphire",
-    "front_shiny": "/versions/generation-vi/omegaruby-alphasapphire/shiny",
-    "front_female": "/versions/generation-vi/omegaruby-alphasapphire/female",
-    "front_shiny_female": "/versions/generation-vi/omegaruby-alphasapphire/shiny/female"
+    "front": "versions/generation-vi/omegaruby-alphasapphire/",
+    "front_shiny": "versions/generation-vi/omegaruby-alphasapphire/shiny/",
+    "front_female": "versions/generation-vi/omegaruby-alphasapphire/female/",
+    "front_shiny_female": "versions/generation-vi/omegaruby-alphasapphire/shiny/female/"
   },
   "ultra-sun-ultra-moon": {
-    "front": "/versions/generation-vii/ultra-sun-ultra-moon",
-    "front_shiny": "/versions/generation-vii/ultra-sun-ultra-moon/shiny",
-    "front_female": "/versions/generation-vii/ultra-sun-ultra-moon/female",
-    "front_shiny_female": "/versions/generation-vii/ultra-sun-ultra-moon/shiny/female"
+    "front": "versions/generation-vii/ultra-sun-ultra-moon/",
+    "front_shiny": "versions/generation-vii/ultra-sun-ultra-moon/shiny/",
+    "front_female": "versions/generation-vii/ultra-sun-ultra-moon/female/",
+    "front_shiny_female": "versions/generation-vii/ultra-sun-ultra-moon/shiny/female/"
   }
 }

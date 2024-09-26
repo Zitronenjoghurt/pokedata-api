@@ -12,3 +12,4 @@ pokedata_api_utils = { path = "../utils" }
 reqwest = { version = "0.12.7", features = ["blocking", "json"] }
 serde = { version = "1.0.210", features = ["derive"] }
 serde_json = "1.0.128"
+uuid = { version = "1.10.0", features = ["v4"] }

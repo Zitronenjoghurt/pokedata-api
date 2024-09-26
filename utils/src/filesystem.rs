@@ -15,3 +15,10 @@ pub fn get_data_path() -> Option<PathBuf> {
         None => None
     }
 }
+
+pub fn get_file_name_without_extension(entry: &std::fs::DirEntry) -> Option<String> {
+    entry.path()
+        .file_stem()
+        .and_then(|s| s.to_str())
+        .map(String::from)
+}

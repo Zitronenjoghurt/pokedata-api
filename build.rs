@@ -1,5 +1,5 @@
 use pokedata_api_build::initialize::build_app_state;
-use pokedata_api_utils::filesystem::{create_directory, get_data_path};
+use pokedata_api_utils::filesystem::create_directory;
 use std::env;
 use std::fs::File;
 use std::io::Write;
@@ -7,8 +7,9 @@ use std::path::PathBuf;
 use std::process::Command;
 
 fn main() {
-    create_data_path();
-    let data_path = get_data_path().unwrap();
+    let data_path = PathBuf::from("./data");
+    create_directory(&data_path);
+
     let out_dir = env::var("OUT_DIR").unwrap();
     let dest_path = PathBuf::from(out_dir).join("data.bin");
 
@@ -22,11 +23,6 @@ fn main() {
 
     println!("cargo:rerun-if-changed=commands/src");
     println!("cargo:rerun-if-changed=data");
-}
-
-fn create_data_path() {
-    let data_path = get_data_path().expect("Unable to find system data directory");
-    create_directory(&data_path);
 }
 
 fn build_cli() {
