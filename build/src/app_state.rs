@@ -1,3 +1,4 @@
+use crate::sprites::load_sprite_index;
 use pokedata_api_types::app_state::AppState;
 use pokedata_api_types::entities::api::pokemon_type::get_major_type_ids;
 use pokedata_api_types::entities::csv::evolution_chains::EvolutionChainConversionData;
@@ -10,6 +11,7 @@ use pokedata_api_types::entities::traits::api_csv_entity::ApiCSVEntity;
 use pokedata_api_types::entities::traits::into_id_map::IntoIdMap;
 use pokedata_api_types::entities::traits::into_localized_values_map::IntoLocalizedValuesMap;
 use std::path::PathBuf;
+use std::sync::Arc;
 
 pub fn create_app_state(csv_path: &PathBuf) -> AppState {
     let color_names = pokemon_color_names::PokemonColorNamesCSV::load(csv_path).unwrap().into_localized_values_map();
@@ -22,7 +24,8 @@ pub fn create_app_state(csv_path: &PathBuf) -> AppState {
     let type_names = type_names::TypeNamesCSV::load(csv_path).unwrap().into_localized_values_map();
     let version_names = version_names::VersionNamesCSV::load(csv_path).unwrap().into_localized_values_map();
 
-    let pokemon_data = PokemonConversionData::load(csv_path);
+    let sprite_index = Arc::new(load_sprite_index());
+    let pokemon_data = PokemonConversionData::load(csv_path, sprite_index);
     let pokemon_shapes_data = PokemonShapesConversionData::load(csv_path);
 
     let abilities = abilities::AbilitiesCSV::load_and_convert(csv_path, &()).unwrap().into_id_map();

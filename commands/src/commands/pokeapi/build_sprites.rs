@@ -1,31 +1,21 @@
 use crate::commands::pokeapi::{POKEAPI_SPRITES_CONTENT_BASE_PATH, POKEAPI_SPRITES_REPO_HTTPS};
 use git2::Repository;
+use pokedata_api_types::entities::sprites::{SpriteIndex, SpritePaths};
 use pokedata_api_utils::directories::data_path;
 use pokedata_api_utils::files::pokeapi_pokemon_sprites_index_config_file;
-use pokedata_api_utils::filesystem::{create_directory, get_file_name_without_extension};
-use serde::{Deserialize, Serialize};
+use pokedata_api_utils::filesystem::{create_directory, get_file_name_without_extension, panic_if_not_exists};
 use std::collections::HashMap;
 use std::fs::{read_dir, File};
 use std::io::{BufReader, Write};
 use std::path::PathBuf;
 use uuid::Uuid;
 
-/// HashMap<SpriteGroup, HashMap<SpriteType, Path>>
-#[derive(Debug, Serialize, Deserialize)]
-struct SpritePaths(HashMap<String, HashMap<String, String>>);
-
-/// HashMap<PokemonId, HashMap<SpriteGroup, HashMap<SpriteType, FilePath>>>
-/// PokemonId can include an optional form identifier appended with a hyphen, like: 493-bug for Arceus bug form
-///
-/// When self-host is enabled, the filepath will be the tokenized file names,
-/// else they will be the path relative to the public PokeAPI sprites repository at:
-/// https://raw.githubusercontent.com/PokeAPI/sprites/refs/heads/master/sprites/
-/// for example:
-/// "pokemon/1.png" points to https://raw.githubusercontent.com/PokeAPI/sprites/refs/heads/master/sprites/pokemon/1.png
-#[derive(Debug, Serialize, Deserialize)]
-struct SpriteIndex(HashMap<String, HashMap<String, HashMap<String, String>>>);
-
 pub fn build_sprites(self_host: bool) -> Result<(), String> {
+    panic_if_not_exists(
+        &pokeapi_pokemon_sprites_index_config_file(),
+        "Make sure you provide a valid pokemon sprite index config or use the default one.",
+    );
+
     let repo_path = data_path().join("pokemon-sprites-repo");
     if !repo_path.exists() {
         clone_repository(&repo_path)?;

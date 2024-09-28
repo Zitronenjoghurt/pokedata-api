@@ -1,7 +1,9 @@
 use crate::entities::api::pokemon_stats::PokemonStats;
 use crate::entities::api::type_slots::{TypeSlots, TypeSlotsPast};
+use crate::entities::sprites::SpritePaths;
 use crate::entities::traits::has_id::HasId;
 use serde::{Deserialize, Serialize};
+use std::collections::HashMap;
 use utoipa::ToSchema;
 
 #[derive(Clone, Debug, Default, Serialize, Deserialize, ToSchema)]
@@ -23,6 +25,8 @@ pub struct Pokemon {
     pub types_past: Option<TypeSlotsPast>,
     /// The version ids of the games this pokemon exists in
     pub version_ids: Vec<u32>,
+    pub sprites: SpritePaths,
+    pub form_sprites: HashMap<String, SpritePaths>,
 }
 
 impl HasId for Pokemon {

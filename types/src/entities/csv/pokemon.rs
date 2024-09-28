@@ -6,12 +6,14 @@ use crate::entities::csv::pokemon_stats::PokemonStatsCSV;
 use crate::entities::csv::pokemon_types::PokemonTypesCSV;
 use crate::entities::csv::pokemon_types_past::PokemonTypesPastCSV;
 use crate::entities::csv_entity::CSVEntity;
+use crate::entities::sprites::SpriteIndex;
 use crate::entities::traits::api_csv_entity::ApiCSVEntity;
 use crate::entities::traits::id_value_pairing::GroupById;
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 use std::error::Error;
 use std::path::PathBuf;
+use std::sync::Arc;
 
 #[derive(Debug, Default, Clone, Serialize, Deserialize)]
 pub struct PokemonCSV {
@@ -36,6 +38,8 @@ impl ApiCSVEntity for PokemonCSV {
     type ConversionData = PokemonConversionData;
 
     fn convert(entry: Self, data: &Self::ConversionData) -> Result<Self::ApiType, Box<dyn Error>> {
+        let (sprites, form_sprites) = data.sprite_index.get_by_id(entry.id).unwrap_or_default();
+
         Ok(
             Pokemon {
                 id: entry.id,
@@ -50,21 +54,24 @@ impl ApiCSVEntity for PokemonCSV {
                 types: data.type_slots_map.get(&entry.id).cloned().unwrap_or_default(),
                 types_past: data.type_slots_past_map.get(&entry.id).cloned(),
                 version_ids: data.version_id_map.get(&entry.id).cloned().unwrap_or_default(),
+                sprites,
+                form_sprites,
             }
         )
     }
 }
 
-#[derive(Debug, Default)]
+#[derive(Debug)]
 pub struct PokemonConversionData {
     pub version_id_map: HashMap<u32, Vec<u32>>,
     pub stats_map: HashMap<u32, PokemonStats>,
     pub type_slots_map: HashMap<u32, TypeSlots>,
     pub type_slots_past_map: HashMap<u32, TypeSlotsPast>,
+    pub sprite_index: Arc<SpriteIndex>,
 }
 
 impl PokemonConversionData {
-    pub fn load(data_path: &PathBuf) -> Self {
+    pub fn load(data_path: &PathBuf, sprite_index: Arc<SpriteIndex>) -> Self {
         let stats = PokemonStatsCSV::load(data_path).unwrap();
         let types = PokemonTypesCSV::load(data_path).unwrap();
         let types_past = PokemonTypesPastCSV::load(data_path).unwrap();
@@ -73,6 +80,7 @@ impl PokemonConversionData {
             stats_map: PokemonStatsCSV::map(stats),
             type_slots_map: PokemonTypesCSV::map(types),
             type_slots_past_map: PokemonTypesPastCSV::map(types_past),
+            sprite_index,
         }
     }
 }

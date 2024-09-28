@@ -5,7 +5,7 @@ use std::path::PathBuf;
 /// Implemented by CSV Entities that can be converted to API entities
 pub trait ApiCSVEntity: CSVEntity {
     type ApiType;
-    type ConversionData: Default;
+    type ConversionData;
 
     fn convert(entry: Self, data: &Self::ConversionData) -> Result<Self::ApiType, Box<dyn Error>>;
 
