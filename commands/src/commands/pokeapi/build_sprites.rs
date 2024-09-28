@@ -1,5 +1,6 @@
-use crate::commands::pokeapi::{POKEAPI_SPRITES_CONTENT_BASE_PATH, POKEAPI_SPRITES_REPO_HTTPS, POKEMON_SPRITES_INDEX_CONFIG_PATH, SPRITES_INDEX_OUTPUT_BASE_PATH};
+use crate::commands::pokeapi::{POKEAPI_SPRITES_CONTENT_BASE_PATH, POKEAPI_SPRITES_REPO_HTTPS, POKEMON_SPRITES_INDEX_CONFIG_PATH};
 use git2::Repository;
+use pokedata_api_utils::directories::data_path;
 use pokedata_api_utils::filesystem::{create_directory, get_file_name_without_extension};
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
@@ -24,26 +25,26 @@ struct SpritePaths(HashMap<String, HashMap<String, String>>);
 struct SpriteIndex(HashMap<String, HashMap<String, HashMap<String, String>>>);
 
 pub fn build_sprites(self_host: bool) -> Result<(), String> {
-    let repo_path = PathBuf::from("./data/pokemon-sprites-repo");
+    let repo_path = data_path().join("pokemon-sprites-repo");
     if !repo_path.exists() {
         clone_repository(&repo_path)?;
     } else {
         println!("Found cloned sprites repository");
     }
 
-    let self_host_path = PathBuf::from("./data/pokemon-sprites-self-host");
+    let self_host_path = data_path().join("pokemon-sprites-self-host");
     if self_host {
         create_directory(&self_host_path);
     }
 
     let pokemon_index = build_pokemon_sprites(&repo_path, &self_host_path, self_host);
 
-    output_json(
+    let output_path = output_json(
         serde_json::to_string_pretty(&pokemon_index).unwrap(),
         "pokemon",
     );
 
-    println!("Done. Check ./data");
+    println!("Done. Check {}", output_path.display());
 
     Ok(())
 }
@@ -152,8 +153,9 @@ fn build_pokemon_sprites(repo_path: &PathBuf, self_host_path: &PathBuf, self_hos
 fn output_json(
     json: String,
     file_name: &str,
-) {
-    let output_path = PathBuf::from(SPRITES_INDEX_OUTPUT_BASE_PATH).join(format!("{}.json", file_name));
-    let mut file = File::create(output_path).unwrap();
+) -> PathBuf {
+    let output_path = data_path().join(format!("{}.json", file_name));
+    let mut file = File::create(&output_path).unwrap();
     file.write_all(json.as_bytes()).unwrap();
+    output_path
 }

@@ -11,7 +11,6 @@ const POKEAPI_REPO: &'static str = "pokeapi";
 const POKEAPI_SPRITES_REPO_HTTPS: &'static str = "https://github.com/PokeAPI/sprites.git";
 const POKEAPI_SPRITES_CONTENT_BASE_PATH: &'static str = "https://raw.githubusercontent.com/PokeAPI/sprites/refs/heads/master/sprites/";
 const POKEMON_SPRITES_INDEX_CONFIG_PATH: &'static str = "./configuration/pokeapi_pokemon_sprites_index.json";
-const SPRITES_INDEX_OUTPUT_BASE_PATH: &'static str = "./data/";
 
 pub struct PokeApiCommand;
 

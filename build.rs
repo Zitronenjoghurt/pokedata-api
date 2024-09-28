@@ -1,4 +1,5 @@
 use pokedata_api_build::initialize::build_app_state;
+use pokedata_api_utils::directories::data_path;
 use pokedata_api_utils::filesystem::create_directory;
 use std::env;
 use std::fs::File;
@@ -7,13 +8,12 @@ use std::path::PathBuf;
 use std::process::Command;
 
 fn main() {
-    let data_path = PathBuf::from("./data");
-    create_directory(&data_path);
+    create_data_path();
 
     let out_dir = env::var("OUT_DIR").unwrap();
     let dest_path = PathBuf::from(out_dir).join("data.bin");
 
-    let app_state = build_app_state(&data_path);
+    let app_state = build_app_state(&data_path());
     let encoded_state: Vec<u8> = bincode::serialize(&app_state).unwrap();
 
     let mut file = File::create(dest_path).unwrap();
@@ -23,6 +23,10 @@ fn main() {
 
     println!("cargo:rerun-if-changed=commands/src");
     println!("cargo:rerun-if-changed=data");
+}
+
+fn create_data_path() {
+    create_directory(&data_path());
 }
 
 fn build_cli() {
