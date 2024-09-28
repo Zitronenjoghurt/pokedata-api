@@ -1,6 +1,7 @@
-use crate::commands::pokeapi::{POKEAPI_SPRITES_CONTENT_BASE_PATH, POKEAPI_SPRITES_REPO_HTTPS, POKEMON_SPRITES_INDEX_CONFIG_PATH};
+use crate::commands::pokeapi::{POKEAPI_SPRITES_CONTENT_BASE_PATH, POKEAPI_SPRITES_REPO_HTTPS};
 use git2::Repository;
 use pokedata_api_utils::directories::data_path;
+use pokedata_api_utils::files::pokeapi_pokemon_sprites_index_config_file;
 use pokedata_api_utils::filesystem::{create_directory, get_file_name_without_extension};
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
@@ -144,7 +145,7 @@ fn determine_final_path(
 }
 
 fn build_pokemon_sprites(repo_path: &PathBuf, self_host_path: &PathBuf, self_host: bool) -> SpriteIndex {
-    let file = File::open(POKEMON_SPRITES_INDEX_CONFIG_PATH).unwrap();
+    let file = File::open(pokeapi_pokemon_sprites_index_config_file()).unwrap();
     let reader = BufReader::new(file);
     let pokemon_sprite_paths: SpritePaths = serde_json::from_reader(reader).unwrap();
     build_sprites_from_paths(repo_path, "pokemon", pokemon_sprite_paths, self_host_path, self_host)
