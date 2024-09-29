@@ -4,8 +4,8 @@ use axum::extract::{Query, State};
 use axum::response::Response;
 use axum::routing::get;
 use axum::Router;
-use pokedata_api_types::app_state::AppState;
-use pokedata_api_types::entities::api::pokemon_move::PokemonMove;
+use pokedata_api_entities::api::pokemon_move::PokemonMove;
+use pokedata_api_entities::app_state::AppState;
 
 /// Fetch pokemon moves
 ///

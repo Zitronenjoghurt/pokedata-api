@@ -1,7 +1,7 @@
 use crate::models::bulk_response::BulkResponse;
 use axum::response::{IntoResponse, Response};
 use axum::Json;
-use pokedata_api_types::entities::traits::has_id::HasId;
+use pokedata_api_entities::traits::has_id::HasId;
 use serde::Serialize;
 use std::collections::HashMap;
 use utoipa::ToSchema;

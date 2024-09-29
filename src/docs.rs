@@ -1,7 +1,6 @@
 use crate::models::{bulk_response::*, message_response::MessageResponse, type_effectiveness::*};
 use crate::resources;
-use pokedata_api_types::entities::api::*;
-use pokedata_api_types::entities::sprites::SpritePaths;
+use pokedata_api_entities::api::*;
 use pokemon_color::*;
 use utoipa::OpenApi;
 
@@ -74,13 +73,13 @@ use utoipa::OpenApi;
             pokemon_type_efficacy::PokemonTypeEfficacyEntry,
             region::Region,
             species::Species,
+            sprites::SpritePaths,
             stat::Stat,
             stat_value::StatValue,
             type_slots::TypeSlots,
             type_slots::TypeSlotsPast,
             version::Version,
             version_group::VersionGroup,
-            SpritePaths,
             AllTypeEffectivenessResponse,
             ColorBulkResponse,
             EvolutionBulkResponse,

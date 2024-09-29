@@ -4,7 +4,7 @@ use axum::extract::{Query, State};
 use axum::response::{IntoResponse, Response};
 use axum::routing::get;
 use axum::{Json, Router};
-use pokedata_api_types::app_state::AppState;
+use pokedata_api_entities::app_state::AppState;
 
 /// Get the damage factor of a type against a given type combination
 ///

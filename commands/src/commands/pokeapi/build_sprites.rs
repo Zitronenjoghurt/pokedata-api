@@ -1,6 +1,6 @@
 use crate::commands::pokeapi::{POKEAPI_SPRITES_CONTENT_BASE_PATH, POKEAPI_SPRITES_REPO_HTTPS};
 use git2::Repository;
-use pokedata_api_types::entities::sprites::{SpriteIndex, SpritePaths};
+use pokedata_api_entities::api::sprites::{SpriteIndex, SpritePaths};
 use pokedata_api_utils::directories::data_path;
 use pokedata_api_utils::files::pokeapi_pokemon_sprites_index_config_file;
 use pokedata_api_utils::filesystem::{create_directory, get_file_name_without_extension, panic_if_not_exists};
@@ -104,7 +104,6 @@ fn build_sprites_from_paths(
                         .insert(sprite_type.clone(), final_path.clone());
 
                     if self_host {
-                        println!("Path: {}", &file_path.display());
                         let destination = self_host_path.join(&final_path);
                         std::fs::create_dir_all(destination.parent().unwrap())
                             .expect("Failed to create directories");

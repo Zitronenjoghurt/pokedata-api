@@ -1,5 +1,5 @@
 use crate::commands::pokeapi::{CSV_DATA_PATH, IGNORE_FILE_PREFIXES, POKEAPI_OWNER, POKEAPI_REPO};
-use pokedata_api_types::entities::csv_entity::get_all_metadata;
+use pokedata_api_parsing::csv_entity::get_all_metadata;
 use reqwest::blocking::Client;
 use reqwest::header::{HeaderMap, HeaderValue, USER_AGENT};
 use serde::Deserialize;

@@ -7,8 +7,9 @@ edition = "2021"
 clap = "4.5.17"
 dotenv = "0.15.0"
 git2 = "0.19.0"
-pokedata_api_types = { path = "../types" }
-pokedata_api_utils = { path = "../utils" }
+pokedata_api_entities = { path = "../libraries/entities" }
+pokedata_api_parsing = { path = "../libraries/parsing" }
+pokedata_api_utils = { path = "../libraries/utils" }
 reqwest = { version = "0.12.7", features = ["blocking", "json"] }
 serde = { version = "1.0.210", features = ["derive"] }
 serde_json = "1.0.128"

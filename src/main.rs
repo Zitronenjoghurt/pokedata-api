@@ -1,7 +1,7 @@
 use axum::Router;
 use bincode;
 use once_cell::sync::Lazy;
-use pokedata_api_types::app_state::AppState;
+use pokedata_api_entities::app_state::AppState;
 use std::io;
 use utoipa::OpenApi;
 use utoipa_rapidoc::RapiDoc;

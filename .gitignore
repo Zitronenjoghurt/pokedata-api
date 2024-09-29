@@ -2,10 +2,12 @@
 .idea
 /data
 /target
-build/target
+libraries/build/target
 commands/target
+libraries/entities/target
+libraries/parsing/target
+libraries/utils/target
 types/target
-utils/target
 Cargo.lock
 cobertura.xml
 cli

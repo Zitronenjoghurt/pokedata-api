@@ -2,7 +2,7 @@ use crate::models::message_response::MessageResponse;
 use axum::response::{IntoResponse, Response};
 use axum::routing::get;
 use axum::{Json, Router};
-use pokedata_api_types::app_state::AppState;
+use pokedata_api_entities::app_state::AppState;
 
 /// PING
 ///
