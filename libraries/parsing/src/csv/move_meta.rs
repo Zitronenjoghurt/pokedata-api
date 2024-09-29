@@ -4,23 +4,23 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Default, Clone, Serialize, Deserialize)]
 pub struct MoveMetaCSV {
-    pub move_id: u32,
-    pub meta_category_id: Option<u32>,
-    pub meta_ailment_id: Option<u32>,
-    pub min_hits: Option<u32>,
-    pub max_hits: Option<u32>,
-    pub min_turns: Option<u32>,
-    pub max_turns: Option<u32>,
+    pub move_id: i32,
+    pub meta_category_id: Option<i32>,
+    pub meta_ailment_id: Option<i32>,
+    pub min_hits: Option<i32>,
+    pub max_hits: Option<i32>,
+    pub min_turns: Option<i32>,
+    pub max_turns: Option<i32>,
     pub drain: Option<i32>,
-    pub healing: Option<u32>,
-    pub crit_rate: Option<u32>,
-    pub ailment_chance: Option<u32>,
-    pub flinch_chance: Option<u32>,
-    pub stat_chance: Option<u32>,
+    pub healing: Option<i32>,
+    pub crit_rate: Option<i32>,
+    pub ailment_chance: Option<i32>,
+    pub flinch_chance: Option<i32>,
+    pub stat_chance: Option<i32>,
 }
 
 impl HasId for MoveMetaCSV {
-    fn id(&self) -> u32 {
+    fn id(&self) -> i32 {
         self.move_id
     }
 }

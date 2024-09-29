@@ -29,8 +29,8 @@ pub mod version_group;
 
 /// A generalized handler to get entities by ids
 pub async fn get_entities<T: Clone + HasId + Serialize + for<'s> ToSchema<'s>>(
-    ids: Option<Vec<u32>>,
-    entities: &HashMap<u32, T>,
+    ids: Option<Vec<i32>>,
+    entities: &HashMap<i32, T>,
 ) -> Response {
     let ids = ids.unwrap_or_default();
 

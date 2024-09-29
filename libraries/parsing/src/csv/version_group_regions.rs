@@ -4,8 +4,8 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Default, Clone, Serialize, Deserialize)]
 pub struct VersionGroupRegionsCSV {
-    pub version_group_id: u32,
-    pub region_id: u32,
+    pub version_group_id: i32,
+    pub region_id: i32,
 }
 
 impl CSVEntity for VersionGroupRegionsCSV {
@@ -15,8 +15,8 @@ impl CSVEntity for VersionGroupRegionsCSV {
 }
 
 impl IdValuePairing for VersionGroupRegionsCSV {
-    type Id = u32;
-    type Value = u32;
+    type Id = i32;
+    type Value = i32;
 
     fn into_pair(self) -> (Self::Id, Self::Value) {
         (self.version_group_id, self.region_id)

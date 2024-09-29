@@ -4,8 +4,8 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Default, Clone, Serialize, Deserialize)]
 pub struct MoveFlagMapCSV {
-    pub move_id: u32,
-    pub move_flag_id: u32,
+    pub move_id: i32,
+    pub move_flag_id: i32,
 }
 
 impl CSVEntity for MoveFlagMapCSV {
@@ -15,8 +15,8 @@ impl CSVEntity for MoveFlagMapCSV {
 }
 
 impl IdValuePairing for MoveFlagMapCSV {
-    type Id = u32;
-    type Value = u32;
+    type Id = i32;
+    type Value = i32;
 
     fn into_pair(self) -> (Self::Id, Self::Value) {
         (self.move_id, self.move_flag_id)

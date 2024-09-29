@@ -4,8 +4,8 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Default, Clone, Serialize, Deserialize)]
 pub struct PokemonShapeNamesCSV {
-    pub pokemon_shape_id: u32,
-    pub local_language_id: u32,
+    pub pokemon_shape_id: i32,
+    pub local_language_id: i32,
     pub name: String,
 }
 
@@ -16,11 +16,11 @@ impl CSVEntity for PokemonShapeNamesCSV {
 }
 
 impl HasLocalizedValues for PokemonShapeNamesCSV {
-    fn id(&self) -> u32 {
+    fn id(&self) -> i32 {
         self.pokemon_shape_id
     }
 
-    fn language_id(&self) -> u32 {
+    fn language_id(&self) -> i32 {
         self.local_language_id
     }
 
@@ -32,8 +32,8 @@ impl HasLocalizedValues for PokemonShapeNamesCSV {
 
 #[derive(Debug, Default, Clone, Serialize, Deserialize)]
 pub struct PokemonShapeAwesomeNamesCSV {
-    pub pokemon_shape_id: u32,
-    pub local_language_id: u32,
+    pub pokemon_shape_id: i32,
+    pub local_language_id: i32,
     pub awesome_name: String,
 }
 
@@ -44,11 +44,11 @@ impl CSVEntity for PokemonShapeAwesomeNamesCSV {
 }
 
 impl HasLocalizedValues for PokemonShapeAwesomeNamesCSV {
-    fn id(&self) -> u32 {
+    fn id(&self) -> i32 {
         self.pokemon_shape_id
     }
 
-    fn language_id(&self) -> u32 {
+    fn language_id(&self) -> i32 {
         self.local_language_id
     }
 
@@ -60,8 +60,8 @@ impl HasLocalizedValues for PokemonShapeAwesomeNamesCSV {
 
 #[derive(Debug, Default, Clone, Serialize, Deserialize)]
 pub struct PokemonShapeDescriptionsCSV {
-    pub pokemon_shape_id: u32,
-    pub local_language_id: u32,
+    pub pokemon_shape_id: i32,
+    pub local_language_id: i32,
     pub description: String,
 }
 
@@ -72,11 +72,11 @@ impl CSVEntity for PokemonShapeDescriptionsCSV {
 }
 
 impl HasLocalizedValues for PokemonShapeDescriptionsCSV {
-    fn id(&self) -> u32 {
+    fn id(&self) -> i32 {
         self.pokemon_shape_id
     }
 
-    fn language_id(&self) -> u32 {
+    fn language_id(&self) -> i32 {
         self.local_language_id
     }
 

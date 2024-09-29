@@ -7,8 +7,8 @@ use std::error::Error;
 
 #[derive(Debug, Default, Clone, Serialize, Deserialize)]
 pub struct VersionsCSV {
-    pub id: u32,
-    pub version_group_id: u32,
+    pub id: i32,
+    pub version_group_id: i32,
     pub identifier: String,
 }
 

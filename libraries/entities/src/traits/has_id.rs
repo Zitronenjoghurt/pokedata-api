@@ -1,3 +1,3 @@
 pub trait HasId {
-    fn id(&self) -> u32;
+    fn id(&self) -> i32;
 }

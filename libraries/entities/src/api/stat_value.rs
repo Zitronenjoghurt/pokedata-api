@@ -3,6 +3,6 @@ use utoipa::ToSchema;
 
 #[derive(Clone, Debug, Default, Serialize, Deserialize, ToSchema)]
 pub struct StatValue {
-    pub value: u32,
-    pub effort: u32,
+    pub value: i32,
+    pub effort: i32,
 }

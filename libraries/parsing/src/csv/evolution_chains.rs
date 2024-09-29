@@ -9,8 +9,8 @@ use std::error::Error;
 
 #[derive(Debug, Default, Clone, Serialize, Deserialize)]
 pub struct EvolutionChainsCSV {
-    pub id: u32,
-    pub baby_trigger_item_id: Option<u32>,
+    pub id: i32,
+    pub baby_trigger_item_id: Option<i32>,
 }
 
 impl CSVEntity for EvolutionChainsCSV {
@@ -24,19 +24,19 @@ impl ApiCSVEntity for EvolutionChainsCSV {
     type ConversionData = EvolutionChainConversionData;
 
     fn convert(entry: Self, data: &Self::ConversionData) -> Result<Self::ApiType, Box<dyn Error>> {
-        let species: HashMap<u32, &Species> = data.species_map
+        let species: HashMap<i32, &Species> = data.species_map
             .iter()
             .filter(|(_, species)| species.evolution_chain_id == Some(entry.id))
             .map(|(&id, species)| (id, species))
             .collect();
 
-        let evolutions: HashMap<u32, &Evolution> = data.evolutions_map
+        let evolutions: HashMap<i32, &Evolution> = data.evolutions_map
             .iter()
             .filter(|(_, evolution)| species.contains_key(&evolution.evolved_species_id))
             .map(|(&id, evolution)| (id, evolution))
             .collect();
 
-        let evolved_species_ids: HashSet<u32> = evolutions.values()
+        let evolved_species_ids: HashSet<i32> = evolutions.values()
             .map(|e| e.evolved_species_id)
             .collect();
 
@@ -55,9 +55,9 @@ impl ApiCSVEntity for EvolutionChainsCSV {
 }
 
 fn create_evolution_chain_node(
-    species_id: u32,
-    species_map: &HashMap<u32, &Species>,
-    evolutions_map: &HashMap<u32, &Evolution>,
+    species_id: i32,
+    species_map: &HashMap<i32, &Species>,
+    evolutions_map: &HashMap<i32, &Evolution>,
 ) -> Result<EvolutionChainNode, Box<dyn Error>> {
     let evolution_to_this_species = evolutions_map.values()
         .find(|&e| e.evolved_species_id == species_id);
@@ -68,7 +68,7 @@ fn create_evolution_chain_node(
         next: vec![],
     };
 
-    let next_species: Vec<u32> = evolutions_map.values()
+    let next_species: Vec<i32> = evolutions_map.values()
         .filter(|&e| species_map.get(&e.evolved_species_id)
             .and_then(|s| s.evolves_from_species_id) == Some(species_id))
         .map(|e| e.evolved_species_id)
@@ -84,12 +84,12 @@ fn create_evolution_chain_node(
 
 #[derive(Debug, Default)]
 pub struct EvolutionChainConversionData {
-    pub evolutions_map: HashMap<u32, Evolution>,
-    pub species_map: HashMap<u32, Species>,
+    pub evolutions_map: HashMap<i32, Evolution>,
+    pub species_map: HashMap<i32, Species>,
 }
 
 impl EvolutionChainConversionData {
-    pub fn load(evolutions: &HashMap<u32, Evolution>, species: &HashMap<u32, Species>) -> Self {
+    pub fn load(evolutions: &HashMap<i32, Evolution>, species: &HashMap<i32, Species>) -> Self {
         Self {
             evolutions_map: evolutions.clone(),
             species_map: species.clone(),

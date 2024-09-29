@@ -5,14 +5,14 @@ use utoipa::ToSchema;
 
 #[derive(Clone, Debug, Default, Serialize, Deserialize, ToSchema)]
 pub struct Generation {
-    pub id: u32,
-    pub main_region_id: u32,
+    pub id: i32,
+    pub main_region_id: i32,
     pub identifier: String,
     pub names: Option<LocalizedValues>,
 }
 
 impl HasId for Generation {
-    fn id(&self) -> u32 {
+    fn id(&self) -> i32 {
         self.id
     }
 }

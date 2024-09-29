@@ -12,10 +12,10 @@ use std::path::PathBuf;
 
 #[derive(Debug, Default, Clone, Serialize, Deserialize)]
 pub struct VersionGroupsCSV {
-    pub id: u32,
+    pub id: i32,
     pub identifier: String,
-    pub generation_id: u32,
-    pub order: u32,
+    pub generation_id: i32,
+    pub order: i32,
 }
 
 impl CSVEntity for VersionGroupsCSV {
@@ -41,7 +41,7 @@ impl ApiCSVEntity for VersionGroupsCSV {
     }
 }
 
-fn get_version_ids_by_versions(version_map: &HashMap<u32, Version>, version_group_id: u32) -> Vec<u32> {
+fn get_version_ids_by_versions(version_map: &HashMap<i32, Version>, version_group_id: i32) -> Vec<i32> {
     version_map
         .values()
         .filter(|version| version.version_group_id == version_group_id)
@@ -51,13 +51,13 @@ fn get_version_ids_by_versions(version_map: &HashMap<u32, Version>, version_grou
 
 #[derive(Default)]
 pub struct VersionGroupConversionData {
-    pub versions_map: HashMap<u32, Version>,
-    pub region_ids_map: HashMap<u32, Vec<u32>>,
-    pub move_method_ids_map: HashMap<u32, Vec<u32>>,
+    pub versions_map: HashMap<i32, Version>,
+    pub region_ids_map: HashMap<i32, Vec<i32>>,
+    pub move_method_ids_map: HashMap<i32, Vec<i32>>,
 }
 
 impl VersionGroupConversionData {
-    pub fn load(data_path: &PathBuf, versions_map: &HashMap<u32, Version>) -> Self {
+    pub fn load(data_path: &PathBuf, versions_map: &HashMap<i32, Version>) -> Self {
         Self {
             versions_map: versions_map.clone(),
             region_ids_map: VersionGroupRegionsCSV::load(data_path).unwrap().group_by_id(),

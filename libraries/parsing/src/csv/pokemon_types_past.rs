@@ -5,10 +5,10 @@ use std::collections::HashMap;
 
 #[derive(Debug, Default, Clone, Serialize, Deserialize)]
 pub struct PokemonTypesPastCSV {
-    pub pokemon_id: u32,
-    pub generation_id: u32,
-    pub type_id: u32,
-    pub slot: u32,
+    pub pokemon_id: i32,
+    pub generation_id: i32,
+    pub type_id: i32,
+    pub slot: i32,
 }
 
 impl CSVEntity for PokemonTypesPastCSV {
@@ -20,8 +20,8 @@ impl CSVEntity for PokemonTypesPastCSV {
 impl PokemonTypesPastCSV {
     /// Creates a mapped representation of the past types of a pokemon by generation:
     /// HashMap<pokemon_id, HashMap<generation_id, HashMap<slot, type_id>>>
-    pub fn map(entries: Vec<PokemonTypesPastCSV>) -> HashMap<u32, TypeSlotsPast> {
-        let mut result: HashMap<u32, TypeSlotsPast> = HashMap::new();
+    pub fn map(entries: Vec<PokemonTypesPastCSV>) -> HashMap<i32, TypeSlotsPast> {
+        let mut result: HashMap<i32, TypeSlotsPast> = HashMap::new();
 
         for entry in entries {
             result

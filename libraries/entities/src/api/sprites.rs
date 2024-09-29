@@ -19,7 +19,7 @@ pub struct SpriteIndex(pub HashMap<String, HashMap<String, HashMap<String, Strin
 
 impl SpriteIndex {
     /// Will return the sprite paths of the base form and potentially extra forms (if they exist)
-    pub fn get_by_id(&self, id: u32) -> Option<(SpritePaths, HashMap<String, SpritePaths>)> {
+    pub fn get_by_id(&self, id: i32) -> Option<(SpritePaths, HashMap<String, SpritePaths>)> {
         let base_id = id.to_string();
         let mut base_form = None;
         let mut additional_forms = HashMap::new();

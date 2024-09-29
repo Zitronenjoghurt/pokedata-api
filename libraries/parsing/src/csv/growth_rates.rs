@@ -7,7 +7,7 @@ use std::error::Error;
 
 #[derive(Debug, Default, Clone, Serialize, Deserialize)]
 pub struct GrowthRatesCSV {
-    pub id: u32,
+    pub id: i32,
     pub identifier: String,
     pub formula: String,
 }

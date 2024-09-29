@@ -8,23 +8,23 @@ use utoipa::ToSchema;
 
 #[derive(Clone, Debug, Default, Serialize, Deserialize, ToSchema)]
 pub struct Pokemon {
-    pub id: u32,
+    pub id: i32,
     pub identifier: String,
     /// The species this Pokémon belongs to.
-    pub species_id: u32,
-    pub height_decimeter: u32,
-    pub weight_hectograms: u32,
+    pub species_id: i32,
+    pub height_decimeter: i32,
+    pub weight_hectograms: i32,
     /// The base experience gained for defeating this Pokémon.
-    pub base_experience: u32,
+    pub base_experience: i32,
     /// Order for sorting. Almost national order, except families are grouped together.
-    pub dex_order: u32,
+    pub dex_order: i32,
     /// Set for exactly one Pokémon used as the default for each species.
     pub is_default: bool,
     pub stats: PokemonStats,
     pub types: TypeSlots,
     pub types_past: Option<TypeSlotsPast>,
     /// The version ids of the games this pokemon exists in
-    pub version_ids: Vec<u32>,
+    pub version_ids: Vec<i32>,
     /// Sprites mapped by sprite groups and sprite types
     pub sprites: SpritePaths,
     /// Pokemon SpritePaths mapped by their form identifier
@@ -32,7 +32,7 @@ pub struct Pokemon {
 }
 
 impl HasId for Pokemon {
-    fn id(&self) -> u32 {
+    fn id(&self) -> i32 {
         self.id
     }
 }

@@ -12,7 +12,7 @@ where
     C: IntoIterator<Item=T>,
 {
     fn into_localized_values_map(self) -> LocalizedValuesMap {
-        let mut result: HashMap<u32, LocalizedValues> = HashMap::new();
+        let mut result: HashMap<i32, LocalizedValues> = HashMap::new();
 
         for item in self {
             result

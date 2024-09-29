@@ -5,14 +5,14 @@ use utoipa::ToSchema;
 
 #[derive(Clone, Debug, Default, Serialize, Deserialize, ToSchema)]
 pub struct PokemonMoveFlag {
-    pub id: u32,
+    pub id: i32,
     pub identifier: String,
     pub names: Option<LocalizedValues>,
     pub descriptions: Option<LocalizedValues>,
 }
 
 impl HasId for PokemonMoveFlag {
-    fn id(&self) -> u32 {
+    fn id(&self) -> i32 {
         self.id
     }
 }

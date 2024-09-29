@@ -17,14 +17,14 @@ use std::sync::Arc;
 
 #[derive(Debug, Default, Clone, Serialize, Deserialize)]
 pub struct PokemonCSV {
-    pub id: u32,
+    pub id: i32,
     pub identifier: String,
-    pub species_id: u32,
-    pub height: Option<u32>,
-    pub weight: Option<u32>,
-    pub base_experience: Option<u32>,
-    pub order: Option<u32>,
-    pub is_default: Option<u32>,
+    pub species_id: i32,
+    pub height: Option<i32>,
+    pub weight: Option<i32>,
+    pub base_experience: Option<i32>,
+    pub order: Option<i32>,
+    pub is_default: Option<i32>,
 }
 
 impl CSVEntity for PokemonCSV {
@@ -63,10 +63,10 @@ impl ApiCSVEntity for PokemonCSV {
 
 #[derive(Debug)]
 pub struct PokemonConversionData {
-    pub version_id_map: HashMap<u32, Vec<u32>>,
-    pub stats_map: HashMap<u32, PokemonStats>,
-    pub type_slots_map: HashMap<u32, TypeSlots>,
-    pub type_slots_past_map: HashMap<u32, TypeSlotsPast>,
+    pub version_id_map: HashMap<i32, Vec<i32>>,
+    pub stats_map: HashMap<i32, PokemonStats>,
+    pub type_slots_map: HashMap<i32, TypeSlots>,
+    pub type_slots_past_map: HashMap<i32, TypeSlotsPast>,
     pub sprite_index: Arc<SpriteIndex>,
 }
 

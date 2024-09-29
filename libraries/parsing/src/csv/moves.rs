@@ -15,21 +15,21 @@ use std::path::PathBuf;
 
 #[derive(Debug, Default, Clone, Serialize, Deserialize)]
 pub struct MovesCSV {
-    pub id: u32,
+    pub id: i32,
     pub identifier: String,
-    pub generation_id: u32,
-    pub type_id: u32,
-    pub power: Option<u32>,
-    pub pp: Option<u32>,
-    pub accuracy: Option<u32>,
+    pub generation_id: i32,
+    pub type_id: i32,
+    pub power: Option<i32>,
+    pub pp: Option<i32>,
+    pub accuracy: Option<i32>,
     pub priority: i32,
-    pub target_id: u32,
-    pub damage_class_id: u32,
-    pub effect_id: Option<u32>,
-    pub effect_chance: Option<u32>,
-    pub contest_type_id: Option<u32>,
-    pub contest_effect_id: Option<u32>,
-    pub super_contest_effect_id: Option<u32>,
+    pub target_id: i32,
+    pub damage_class_id: i32,
+    pub effect_id: Option<i32>,
+    pub effect_chance: Option<i32>,
+    pub contest_type_id: Option<i32>,
+    pub contest_effect_id: Option<i32>,
+    pub super_contest_effect_id: Option<i32>,
 }
 
 impl CSVEntity for MovesCSV {
@@ -81,8 +81,8 @@ impl ApiCSVEntity for MovesCSV {
 
 #[derive(Debug)]
 pub struct PokemonMoveConversionData {
-    pub move_meta_map: HashMap<u32, MoveMetaCSV>,
-    pub flag_id_map: HashMap<u32, Vec<u32>>,
+    pub move_meta_map: HashMap<i32, MoveMetaCSV>,
+    pub flag_id_map: HashMap<i32, Vec<i32>>,
     pub flavor_text_map: VersionGroupedLocalizedValuesMap,
 }
 

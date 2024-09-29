@@ -7,10 +7,10 @@ use std::collections::HashMap;
 
 #[derive(Debug, Default, Clone, Serialize, Deserialize)]
 pub struct PokemonStatsCSV {
-    pub pokemon_id: u32,
-    pub stat_id: u32,
-    pub base_stat: u32,
-    pub effort: u32,
+    pub pokemon_id: i32,
+    pub stat_id: i32,
+    pub base_stat: i32,
+    pub effort: i32,
 }
 
 impl CSVEntity for PokemonStatsCSV {
@@ -20,8 +20,8 @@ impl CSVEntity for PokemonStatsCSV {
 }
 
 impl IdValuePairingMapped for PokemonStatsCSV {
-    type Id = u32;
-    type Key = u32;
+    type Id = i32;
+    type Key = i32;
     type Value = StatValue;
 
     fn into_triple(self) -> (Self::Id, Self::Key, Self::Value) {
@@ -30,7 +30,7 @@ impl IdValuePairingMapped for PokemonStatsCSV {
 }
 
 impl PokemonStatsCSV {
-    pub fn map(entries: Vec<PokemonStatsCSV>) -> HashMap<u32, PokemonStats> {
+    pub fn map(entries: Vec<PokemonStatsCSV>) -> HashMap<i32, PokemonStats> {
         let result = entries.group_by_id_mapped();
         result.into_iter()
             .map(|(pokemon_id, stats)| (pokemon_id, PokemonStats(stats)))

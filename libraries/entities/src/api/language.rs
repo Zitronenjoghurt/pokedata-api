@@ -5,16 +5,16 @@ use utoipa::ToSchema;
 
 #[derive(Clone, Debug, Default, Serialize, Deserialize, ToSchema)]
 pub struct Language {
-    pub id: u32,
+    pub id: i32,
     pub iso639: String,
     pub iso3166: String,
     pub official: bool,
-    pub order: u32,
+    pub order: i32,
     pub names: Option<LocalizedValues>,
 }
 
 impl HasId for Language {
-    fn id(&self) -> u32 {
+    fn id(&self) -> i32 {
         self.id
     }
 }

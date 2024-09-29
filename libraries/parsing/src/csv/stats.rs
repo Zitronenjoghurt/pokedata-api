@@ -7,11 +7,11 @@ use std::error::Error;
 
 #[derive(Debug, Default, Clone, Serialize, Deserialize)]
 pub struct StatsCSV {
-    pub id: u32,
-    pub damage_class_id: Option<u32>,
+    pub id: i32,
+    pub damage_class_id: Option<i32>,
     pub identifier: String,
-    pub is_battle_only: u32,
-    pub game_index: Option<u32>,
+    pub is_battle_only: i32,
+    pub game_index: Option<i32>,
 }
 
 impl CSVEntity for StatsCSV {

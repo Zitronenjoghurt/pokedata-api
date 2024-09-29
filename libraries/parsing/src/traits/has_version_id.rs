@@ -1,3 +1,3 @@
 pub trait HasVersionId {
-    fn version_id(&self) -> u32;
+    fn version_id(&self) -> i32;
 }

@@ -4,8 +4,8 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Default, Clone, Serialize, Deserialize)]
 pub struct RegionNamesCSV {
-    pub region_id: u32,
-    pub local_language_id: u32,
+    pub region_id: i32,
+    pub local_language_id: i32,
     pub name: String,
 }
 
@@ -16,11 +16,11 @@ impl CSVEntity for RegionNamesCSV {
 }
 
 impl HasLocalizedValues for RegionNamesCSV {
-    fn id(&self) -> u32 {
+    fn id(&self) -> i32 {
         self.region_id
     }
 
-    fn language_id(&self) -> u32 {
+    fn language_id(&self) -> i32 {
         self.local_language_id
     }
 

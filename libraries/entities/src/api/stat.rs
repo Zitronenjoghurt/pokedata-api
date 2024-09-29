@@ -5,16 +5,16 @@ use utoipa::ToSchema;
 
 #[derive(Clone, Debug, Default, Serialize, Deserialize, ToSchema)]
 pub struct Stat {
-    pub id: u32,
+    pub id: i32,
     pub identifier: String,
-    pub damage_class_id: Option<u32>,
+    pub damage_class_id: Option<i32>,
     pub is_battle_only: bool,
-    pub game_index: Option<u32>,
+    pub game_index: Option<i32>,
     pub names: Option<LocalizedValues>,
 }
 
 impl HasId for Stat {
-    fn id(&self) -> u32 {
+    fn id(&self) -> i32 {
         self.id
     }
 }

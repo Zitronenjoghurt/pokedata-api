@@ -5,7 +5,7 @@ use utoipa::ToSchema;
 
 #[derive(Clone, Debug, Default, Serialize, Deserialize, ToSchema)]
 pub struct PokemonShape {
-    pub id: u32,
+    pub id: i32,
     pub identifier: String,
     pub names: Option<LocalizedValues>,
     /// The "scientific" name of this Pokémon shape listed in different languages.
@@ -14,7 +14,7 @@ pub struct PokemonShape {
 }
 
 impl HasId for PokemonShape {
-    fn id(&self) -> u32 {
+    fn id(&self) -> i32 {
         self.id
     }
 }

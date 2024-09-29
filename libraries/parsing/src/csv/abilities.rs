@@ -6,10 +6,10 @@ use std::error::Error;
 
 #[derive(Debug, Default, Clone, Serialize, Deserialize)]
 pub struct AbilitiesCSV {
-    pub id: u32,
+    pub id: i32,
     pub identifier: String,
-    pub generation_id: u32,
-    pub is_main_series: u32,
+    pub generation_id: i32,
+    pub is_main_series: i32,
 }
 
 impl CSVEntity for AbilitiesCSV {

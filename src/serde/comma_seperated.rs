@@ -1,6 +1,6 @@
 use serde::Deserialize;
 
-pub fn deserialize_comma_separated<'de, D>(deserializer: D) -> Result<Vec<u32>, D::Error>
+pub fn deserialize_comma_separated<'de, D>(deserializer: D) -> Result<Vec<i32>, D::Error>
 where
     D: serde::Deserializer<'de>,
 {
@@ -15,7 +15,7 @@ where
     }
 }
 
-pub fn deserialize_optional_comma_separated<'de, D>(deserializer: D) -> Result<Option<Vec<u32>>, D::Error>
+pub fn deserialize_optional_comma_separated<'de, D>(deserializer: D) -> Result<Option<Vec<i32>>, D::Error>
 where
     D: serde::Deserializer<'de>,
 {

@@ -10,7 +10,7 @@ use std::path::PathBuf;
 
 #[derive(Debug, Default, Clone, Serialize, Deserialize)]
 pub struct MoveFlagsCSV {
-    pub id: u32,
+    pub id: i32,
     pub identifier: String,
 }
 

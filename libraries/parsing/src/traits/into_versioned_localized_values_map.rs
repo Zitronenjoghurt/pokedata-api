@@ -13,7 +13,7 @@ where
     C: IntoIterator<Item=T>,
 {
     fn into_versioned_localized_values_map(self) -> VersionedLocalizedValuesMap {
-        let mut result: HashMap<u32, VersionedLocalizedValues> = HashMap::new();
+        let mut result: HashMap<i32, VersionedLocalizedValues> = HashMap::new();
 
         for item in self {
             result

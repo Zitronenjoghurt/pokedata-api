@@ -9,9 +9,9 @@ use std::path::PathBuf;
 
 #[derive(Debug, Default, Clone, Serialize, Deserialize)]
 pub struct TypeEfficacyCSV {
-    pub damage_type_id: u32,
-    pub target_type_id: u32,
-    pub damage_factor: u32,
+    pub damage_type_id: i32,
+    pub target_type_id: i32,
+    pub damage_factor: i32,
 }
 
 impl CSVEntity for TypeEfficacyCSV {
@@ -48,10 +48,10 @@ impl ApiCSVEntity for TypeEfficacyCSV {
 
 pub fn build_efficacies_by_generation(
     data_path: &PathBuf,
-    latest_gen: u32,
+    latest_gen: i32,
 ) -> Result<PokemonTypeEfficacies, Box<dyn Error>> {
     let past_efficacies = TypeEfficacyPastCSV::load(data_path).unwrap();
-    let mut efficacies_by_gen: HashMap<u32, Vec<PokemonTypeEfficacyEntry>> = HashMap::new();
+    let mut efficacies_by_gen: HashMap<i32, Vec<PokemonTypeEfficacyEntry>> = HashMap::new();
 
     for gen in (1..=latest_gen).rev() {
         let conversion_data = TypeEfficacyConversionData::new(past_efficacies.clone(), gen);
@@ -65,11 +65,11 @@ pub fn build_efficacies_by_generation(
 #[derive(Default)]
 pub struct TypeEfficacyConversionData {
     pub type_efficacy_past: Vec<TypeEfficacyPastCSV>,
-    pub current_gen: u32,
+    pub current_gen: i32,
 }
 
 impl TypeEfficacyConversionData {
-    pub fn new(past_efficacies: Vec<TypeEfficacyPastCSV>, current_gen: u32) -> Self {
+    pub fn new(past_efficacies: Vec<TypeEfficacyPastCSV>, current_gen: i32) -> Self {
         Self {
             type_efficacy_past: past_efficacies,
             current_gen,

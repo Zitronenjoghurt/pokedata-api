@@ -5,4 +5,4 @@ use utoipa::ToSchema;
 
 /// Pokemon stat values mapped by stat id
 #[derive(Clone, Debug, Default, Serialize, Deserialize, ToSchema)]
-pub struct PokemonStats(pub HashMap<u32, StatValue>);
+pub struct PokemonStats(pub HashMap<i32, StatValue>);

@@ -14,26 +14,26 @@ use std::path::PathBuf;
 
 #[derive(Debug, Default, Clone, Serialize, Deserialize)]
 pub struct PokemonSpeciesCSV {
-    pub id: u32,
+    pub id: i32,
     pub identifier: String,
-    pub generation_id: u32,
-    pub evolves_from_species_id: Option<u32>,
-    pub evolution_chain_id: Option<u32>,
-    pub color_id: Option<u32>,
-    pub shape_id: Option<u32>,
-    pub habitat_id: Option<u32>,
+    pub generation_id: i32,
+    pub evolves_from_species_id: Option<i32>,
+    pub evolution_chain_id: Option<i32>,
+    pub color_id: Option<i32>,
+    pub shape_id: Option<i32>,
+    pub habitat_id: Option<i32>,
     pub gender_rate: Option<i32>,
-    pub capture_rate: Option<u32>,
-    pub base_happiness: Option<u32>,
-    pub is_baby: Option<u32>,
-    pub hatch_counter: Option<u32>,
-    pub has_gender_differences: Option<u32>,
-    pub growth_rate_id: Option<u32>,
-    pub forms_switchable: Option<u32>,
-    pub is_legendary: Option<u32>,
-    pub is_mythical: Option<u32>,
-    pub order: Option<u32>,
-    pub conquest_order: Option<u32>,
+    pub capture_rate: Option<i32>,
+    pub base_happiness: Option<i32>,
+    pub is_baby: Option<i32>,
+    pub hatch_counter: Option<i32>,
+    pub has_gender_differences: Option<i32>,
+    pub growth_rate_id: Option<i32>,
+    pub forms_switchable: Option<i32>,
+    pub is_legendary: Option<i32>,
+    pub is_mythical: Option<i32>,
+    pub order: Option<i32>,
+    pub conquest_order: Option<i32>,
 }
 
 impl CSVEntity for PokemonSpeciesCSV {
@@ -75,7 +75,7 @@ impl ApiCSVEntity for PokemonSpeciesCSV {
     }
 }
 
-fn get_pokemon_ids_by_species(pokemon_map: &HashMap<u32, Pokemon>, species_id: u32) -> Vec<u32> {
+fn get_pokemon_ids_by_species(pokemon_map: &HashMap<i32, Pokemon>, species_id: i32) -> Vec<i32> {
     pokemon_map
         .values()
         .filter(|pokemon| pokemon.species_id == species_id)
@@ -85,14 +85,14 @@ fn get_pokemon_ids_by_species(pokemon_map: &HashMap<u32, Pokemon>, species_id: u
 
 #[derive(Default)]
 pub struct PokemonSpeciesConversionData {
-    pub pokemon_map: HashMap<u32, Pokemon>,
+    pub pokemon_map: HashMap<i32, Pokemon>,
     pub names_map: LocalizedValuesMap,
     pub genera_map: LocalizedValuesMap,
     pub flavor_text_map: VersionedLocalizedValuesMap,
 }
 
 impl PokemonSpeciesConversionData {
-    pub fn load(data_path: &PathBuf, pokemon: &HashMap<u32, Pokemon>) -> Self {
+    pub fn load(data_path: &PathBuf, pokemon: &HashMap<i32, Pokemon>) -> Self {
         Self {
             pokemon_map: pokemon.clone(),
             names_map: PokemonSpeciesNamesCSV::load(data_path).unwrap().into_localized_values_map(),

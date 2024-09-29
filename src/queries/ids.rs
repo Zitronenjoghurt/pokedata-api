@@ -6,5 +6,5 @@ use utoipa::IntoParams;
 #[into_params(parameter_in = Query)]
 pub struct IdsQuery {
     #[serde(default, deserialize_with = "deserialize_optional_comma_separated")]
-    pub ids: Option<Vec<u32>>,
+    pub ids: Option<Vec<i32>>,
 }

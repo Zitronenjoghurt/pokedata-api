@@ -4,8 +4,8 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Default, Clone, Serialize, Deserialize)]
 pub struct MoveTargetNamesCSV {
-    pub move_target_id: u32,
-    pub local_language_id: u32,
+    pub move_target_id: i32,
+    pub local_language_id: i32,
     pub name: String,
 }
 
@@ -16,11 +16,11 @@ impl CSVEntity for MoveTargetNamesCSV {
 }
 
 impl HasLocalizedValues for MoveTargetNamesCSV {
-    fn id(&self) -> u32 {
+    fn id(&self) -> i32 {
         self.move_target_id
     }
 
-    fn language_id(&self) -> u32 {
+    fn language_id(&self) -> i32 {
         self.local_language_id
     }
 
@@ -32,8 +32,8 @@ impl HasLocalizedValues for MoveTargetNamesCSV {
 
 #[derive(Debug, Default, Clone, Serialize, Deserialize)]
 pub struct MoveTargetDescriptionsCSV {
-    pub move_target_id: u32,
-    pub local_language_id: u32,
+    pub move_target_id: i32,
+    pub local_language_id: i32,
     pub description: String,
 }
 
@@ -44,11 +44,11 @@ impl CSVEntity for MoveTargetDescriptionsCSV {
 }
 
 impl HasLocalizedValues for MoveTargetDescriptionsCSV {
-    fn id(&self) -> u32 {
+    fn id(&self) -> i32 {
         self.move_target_id
     }
 
-    fn language_id(&self) -> u32 {
+    fn language_id(&self) -> i32 {
         self.local_language_id
     }
 

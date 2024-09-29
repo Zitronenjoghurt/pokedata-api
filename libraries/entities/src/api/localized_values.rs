@@ -9,19 +9,19 @@ use utoipa::ToSchema;
 #[schema(
     example = json!({"6": "german name", "9": "english name", "...": "..."}),
 )]
-pub struct LocalizedValues(pub HashMap<u32, String>);
+pub struct LocalizedValues(pub HashMap<i32, String>);
 
 impl LocalizedValues {
-    pub fn get(&self, language_id: u32) -> Option<String> {
+    pub fn get(&self, language_id: i32) -> Option<String> {
         self.0.get(&language_id).cloned()
     }
 }
 
 #[derive(Clone, Debug, Default)]
-pub struct LocalizedValuesMap(pub HashMap<u32, LocalizedValues>);
+pub struct LocalizedValuesMap(pub HashMap<i32, LocalizedValues>);
 
 impl LocalizedValuesMap {
-    pub fn get(&self, entity_id: u32) -> Option<LocalizedValues> {
+    pub fn get(&self, entity_id: i32) -> Option<LocalizedValues> {
         self.0.get(&entity_id).cloned()
     }
 }
@@ -31,13 +31,13 @@ impl LocalizedValuesMap {
 #[schema(
     example = json!({"1": {"6": "german name", "9": "english name", "...": "..."}, "2": {"6": "german name", "9": "english name", "...": "..."}, "...": {"...": "..."}}),
 )]
-pub struct VersionedLocalizedValues(pub HashMap<u32, LocalizedValues>);
+pub struct VersionedLocalizedValues(pub HashMap<i32, LocalizedValues>);
 
 #[derive(Clone, Debug, Default)]
-pub struct VersionedLocalizedValuesMap(pub HashMap<u32, VersionedLocalizedValues>);
+pub struct VersionedLocalizedValuesMap(pub HashMap<i32, VersionedLocalizedValues>);
 
 impl VersionedLocalizedValuesMap {
-    pub fn get(&self, entity_id: u32) -> Option<VersionedLocalizedValues> {
+    pub fn get(&self, entity_id: i32) -> Option<VersionedLocalizedValues> {
         self.0.get(&entity_id).cloned()
     }
 }
@@ -47,13 +47,13 @@ impl VersionedLocalizedValuesMap {
 #[schema(
     example = json!({"1": {"6": "german name", "9": "english name", "...": "...."}, "2": {"6": "german name", "9": "english name", "...": "..."}, "...": {"...": "..."}}),
 )]
-pub struct VersionGroupedLocalizedValues(pub HashMap<u32, LocalizedValues>);
+pub struct VersionGroupedLocalizedValues(pub HashMap<i32, LocalizedValues>);
 
 #[derive(Clone, Debug, Default)]
-pub struct VersionGroupedLocalizedValuesMap(pub HashMap<u32, VersionGroupedLocalizedValues>);
+pub struct VersionGroupedLocalizedValuesMap(pub HashMap<i32, VersionGroupedLocalizedValues>);
 
 impl VersionGroupedLocalizedValuesMap {
-    pub fn get(&self, entity_id: u32) -> Option<VersionGroupedLocalizedValues> {
+    pub fn get(&self, entity_id: i32) -> Option<VersionGroupedLocalizedValues> {
         self.0.get(&entity_id).cloned()
     }
 }

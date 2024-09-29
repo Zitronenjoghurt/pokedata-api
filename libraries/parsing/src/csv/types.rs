@@ -7,11 +7,11 @@ use std::error::Error;
 
 #[derive(Debug, Default, Clone, Serialize, Deserialize)]
 pub struct TypesCSV {
-    pub id: u32,
+    pub id: i32,
     pub identifier: String,
-    pub generation_id: u32,
-    pub damage_class_id: Option<u32>,
-    pub is_major_type: u32,
+    pub generation_id: i32,
+    pub damage_class_id: Option<i32>,
+    pub is_major_type: i32,
 }
 
 impl CSVEntity for TypesCSV {
