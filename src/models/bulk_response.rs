@@ -9,6 +9,7 @@ use pokemon::*;
 use pokemon_color::*;
 use pokemon_habitat::*;
 use pokemon_move::*;
+use pokemon_move_flag::*;
 use pokemon_move_target::*;
 use pokemon_shape::*;
 use pokemon_type::*;
@@ -31,6 +32,7 @@ use version_group::*;
     LanguageBulkResponse = BulkResponse<Language>,
     PokemonBulkResponse = BulkResponse<Pokemon>,
     PokemonMoveBulkResponse = BulkResponse<PokemonMove>,
+    PokemonMoveFlagBulkResponse = BulkResponse<PokemonMoveFlag>,
     PokemonMoveTargetBulkResponse = BulkResponse<PokemonMoveTarget>,
     PokemonTypeBulkResponse = BulkResponse<PokemonType>,
     RegionBulkResponse = BulkResponse<Region>,

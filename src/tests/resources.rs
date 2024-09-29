@@ -10,13 +10,15 @@ mod growth_rate;
 mod habitat;
 mod language;
 mod ping;
+mod pokemon_move_target;
 mod pokemon_type;
 mod pokemon_type_efficacy;
+mod region;
 mod shape;
 mod stat;
 mod version;
 mod version_group;
-mod region;
+mod pokemon_move_flag;
 
 static TEST_SERVER: Lazy<TestServer> = Lazy::new(|| {
     let app = build_app();

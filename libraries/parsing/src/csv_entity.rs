@@ -6,6 +6,10 @@ use crate::csv::growth_rate_prose::GrowthRateProseCSV;
 use crate::csv::growth_rates::GrowthRatesCSV;
 use crate::csv::language_names::LanguageNamesCSV;
 use crate::csv::languages::LanguagesCSV;
+use crate::csv::move_flag_map::MoveFlagMapCSV;
+use crate::csv::move_flag_prose::{MoveFlagDescriptionsCSV, MoveFlagNamesCSV};
+use crate::csv::move_flags::MoveFlagsCSV;
+use crate::csv::move_flavor_text::MoveFlavorTextCSV;
 use crate::csv::move_target_prose::{MoveTargetDescriptionsCSV, MoveTargetNamesCSV};
 use crate::csv::move_targets::MoveTargetsCSV;
 use crate::csv::moves::MovesCSV;
@@ -93,6 +97,11 @@ pub fn get_all_metadata() -> Vec<CSVEntityMetaData> {
         LanguagesCSV::get_metadata(),
         LanguageNamesCSV::get_metadata(),
         MovesCSV::get_metadata(),
+        MoveFlagsCSV::get_metadata(),
+        MoveFlagDescriptionsCSV::get_metadata(),
+        MoveFlagMapCSV::get_metadata(),
+        MoveFlagNamesCSV::get_metadata(),
+        MoveFlavorTextCSV::get_metadata(),
         MoveTargetsCSV::get_metadata(),
         MoveTargetDescriptionsCSV::get_metadata(),
         MoveTargetNamesCSV::get_metadata(),

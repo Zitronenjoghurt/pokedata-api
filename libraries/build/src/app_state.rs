@@ -3,7 +3,9 @@ use pokedata_api_entities::api::pokemon_type::get_major_type_ids;
 use pokedata_api_entities::app_state::AppState;
 use pokedata_api_entities::traits::into_id_map::IntoIdMap;
 use pokedata_api_parsing::csv::evolution_chains::EvolutionChainConversionData;
+use pokedata_api_parsing::csv::move_flags::PokemonMoveFlagConversionData;
 use pokedata_api_parsing::csv::move_targets::PokemonMoveTargetConversionData;
+use pokedata_api_parsing::csv::moves::PokemonMoveConversionData;
 use pokedata_api_parsing::csv::pokemon::PokemonConversionData;
 use pokedata_api_parsing::csv::pokemon_shapes::PokemonShapesConversionData;
 use pokedata_api_parsing::csv::type_efficacy::build_efficacies_by_generation;
@@ -26,6 +28,8 @@ pub fn create_app_state(csv_path: &PathBuf) -> AppState {
     let version_names = version_names::VersionNamesCSV::load(csv_path).unwrap().into_localized_values_map();
 
     let sprite_index = Arc::new(load_sprite_index());
+    let moves_data = PokemonMoveConversionData::load(csv_path);
+    let move_flags_data = PokemonMoveFlagConversionData::load(csv_path);
     let move_targets_data = PokemonMoveTargetConversionData::load(csv_path);
     let pokemon_data = PokemonConversionData::load(csv_path, sprite_index);
     let pokemon_shapes_data = PokemonShapesConversionData::load(csv_path);
@@ -37,7 +41,8 @@ pub fn create_app_state(csv_path: &PathBuf) -> AppState {
     let growth_rates = growth_rates::GrowthRatesCSV::load_and_convert(csv_path, &growth_rate_names).unwrap().into_id_map();
     let habitats = pokemon_habitats::PokemonHabitatsCSV::load_and_convert(csv_path, &habitat_names).unwrap().into_id_map();
     let languages = languages::LanguagesCSV::load_and_convert(csv_path, &language_names).unwrap().into_id_map();
-    let moves = moves::MovesCSV::load_and_convert(csv_path, &()).unwrap().into_id_map();
+    let moves = moves::MovesCSV::load_and_convert(csv_path, &moves_data).unwrap().into_id_map();
+    let move_flags = move_flags::MoveFlagsCSV::load_and_convert(csv_path, &move_flags_data).unwrap().into_id_map();
     let move_targets = move_targets::MoveTargetsCSV::load_and_convert(csv_path, &move_targets_data).unwrap().into_id_map();
     let pokemon = pokemon::PokemonCSV::load_and_convert(csv_path, &pokemon_data).unwrap().into_id_map();
     let regions = regions::RegionsCSV::load_and_convert(csv_path, &region_names).unwrap().into_id_map();
@@ -69,6 +74,7 @@ pub fn create_app_state(csv_path: &PathBuf) -> AppState {
         habitats,
         languages,
         moves,
+        move_flags,
         move_targets,
         pokemon,
         regions,

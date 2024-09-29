@@ -1,3 +1,4 @@
+use crate::api::localized_values::VersionGroupedLocalizedValues;
 use crate::traits::has_id::HasId;
 use serde::{Deserialize, Serialize};
 use utoipa::ToSchema;
@@ -19,6 +20,8 @@ pub struct PokemonMove {
     pub contest_type_id: Option<u32>,
     pub contest_effect_id: Option<u32>,
     pub super_contest_effect_id: Option<u32>,
+    pub flavor_texts: Option<VersionGroupedLocalizedValues>,
+    pub flag_ids: Vec<u32>,
 }
 
 impl HasId for PokemonMove {
