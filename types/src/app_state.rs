@@ -7,6 +7,8 @@ use crate::entities::api::language::Language;
 use crate::entities::api::pokemon::Pokemon;
 use crate::entities::api::pokemon_color::PokemonColor;
 use crate::entities::api::pokemon_habitat::PokemonHabitat;
+use crate::entities::api::pokemon_move::PokemonMove;
+use crate::entities::api::pokemon_move_target::PokemonMoveTarget;
 use crate::entities::api::pokemon_shape::PokemonShape;
 use crate::entities::api::pokemon_type::PokemonType;
 use crate::entities::api::pokemon_type_efficacy::PokemonTypeEfficacies;
@@ -28,6 +30,8 @@ pub struct AppState {
     pub growth_rates: HashMap<u32, GrowthRate>,
     pub habitats: HashMap<u32, PokemonHabitat>,
     pub languages: HashMap<u32, Language>,
+    pub moves: HashMap<u32, PokemonMove>,
+    pub move_targets: HashMap<u32, PokemonMoveTarget>,
     pub pokemon: HashMap<u32, Pokemon>,
     pub regions: HashMap<u32, Region>,
     pub shapes: HashMap<u32, PokemonShape>,

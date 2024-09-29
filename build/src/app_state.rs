@@ -2,6 +2,7 @@ use crate::sprites::load_sprite_index;
 use pokedata_api_types::app_state::AppState;
 use pokedata_api_types::entities::api::pokemon_type::get_major_type_ids;
 use pokedata_api_types::entities::csv::evolution_chains::EvolutionChainConversionData;
+use pokedata_api_types::entities::csv::move_targets::PokemonMoveTargetConversionData;
 use pokedata_api_types::entities::csv::pokemon::PokemonConversionData;
 use pokedata_api_types::entities::csv::pokemon_shapes::PokemonShapesConversionData;
 use pokedata_api_types::entities::csv::type_efficacy::build_efficacies_by_generation;
@@ -25,6 +26,7 @@ pub fn create_app_state(csv_path: &PathBuf) -> AppState {
     let version_names = version_names::VersionNamesCSV::load(csv_path).unwrap().into_localized_values_map();
 
     let sprite_index = Arc::new(load_sprite_index());
+    let move_targets_data = PokemonMoveTargetConversionData::load(csv_path);
     let pokemon_data = PokemonConversionData::load(csv_path, sprite_index);
     let pokemon_shapes_data = PokemonShapesConversionData::load(csv_path);
 
@@ -35,6 +37,8 @@ pub fn create_app_state(csv_path: &PathBuf) -> AppState {
     let growth_rates = growth_rates::GrowthRatesCSV::load_and_convert(csv_path, &growth_rate_names).unwrap().into_id_map();
     let habitats = pokemon_habitats::PokemonHabitatsCSV::load_and_convert(csv_path, &habitat_names).unwrap().into_id_map();
     let languages = languages::LanguagesCSV::load_and_convert(csv_path, &language_names).unwrap().into_id_map();
+    let moves = moves::MovesCSV::load_and_convert(csv_path, &()).unwrap().into_id_map();
+    let move_targets = move_targets::MoveTargetsCSV::load_and_convert(csv_path, &move_targets_data).unwrap().into_id_map();
     let pokemon = pokemon::PokemonCSV::load_and_convert(csv_path, &pokemon_data).unwrap().into_id_map();
     let regions = regions::RegionsCSV::load_and_convert(csv_path, &region_names).unwrap().into_id_map();
     let shapes = pokemon_shapes::PokemonShapesCSV::load_and_convert(csv_path, &pokemon_shapes_data).unwrap().into_id_map();
@@ -64,6 +68,8 @@ pub fn create_app_state(csv_path: &PathBuf) -> AppState {
         growth_rates,
         habitats,
         languages,
+        moves,
+        move_targets,
         pokemon,
         regions,
         shapes,

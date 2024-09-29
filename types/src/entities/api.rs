@@ -8,6 +8,8 @@ pub mod localized_values;
 pub mod pokemon;
 pub mod pokemon_color;
 pub mod pokemon_habitat;
+pub mod pokemon_move;
+pub mod pokemon_move_target;
 pub mod pokemon_shape;
 pub mod pokemon_stats;
 pub mod pokemon_type;

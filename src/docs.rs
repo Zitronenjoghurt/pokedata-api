@@ -1,6 +1,7 @@
 use crate::models::{bulk_response::*, message_response::MessageResponse, type_effectiveness::*};
 use crate::resources;
 use pokedata_api_types::entities::api::*;
+use pokedata_api_types::entities::sprites::SpritePaths;
 use pokemon_color::*;
 use utoipa::OpenApi;
 
@@ -20,6 +21,8 @@ use utoipa::OpenApi;
         resources::language::get_language,
         resources::ping::get_ping,
         resources::pokemon::get_pokemon,
+        resources::pokemon_move::get_move,
+        resources::pokemon_move_target::get_move_target,
         resources::pokemon_type::get_pokemon_type,
         resources::region::get_region,
         resources::shape::get_shape,
@@ -38,6 +41,7 @@ use utoipa::OpenApi;
         (name = "Growth Rates"),
         (name = "Habitats"),
         (name = "Languages"),
+        (name = "Moves"),
         (name = "Pokemon"),
         (name = "Pokemon Stats"),
         (name = "Regions"),
@@ -59,6 +63,8 @@ use utoipa::OpenApi;
             localized_values::VersionedLocalizedValues,
             localized_values::VersionGroupedLocalizedValues,
             pokemon::Pokemon,
+            pokemon_move::PokemonMove,
+            pokemon_move_target::PokemonMoveTarget,
             PokemonColor,
             pokemon_habitat::PokemonHabitat,
             pokemon_shape::PokemonShape,
@@ -74,6 +80,7 @@ use utoipa::OpenApi;
             type_slots::TypeSlotsPast,
             version::Version,
             version_group::VersionGroup,
+            SpritePaths,
             AllTypeEffectivenessResponse,
             ColorBulkResponse,
             EvolutionBulkResponse,
@@ -83,6 +90,8 @@ use utoipa::OpenApi;
             HabitatBulkResponse,
             LanguageBulkResponse,
             PokemonBulkResponse,
+            PokemonMoveBulkResponse,
+            PokemonMoveTargetBulkResponse,
             PokemonTypeBulkResponse,
             RegionBulkResponse,
             ShapeBulkResponse,

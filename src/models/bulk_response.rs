@@ -8,6 +8,8 @@ use pokedata_api_types::entities::traits::has_id::HasId;
 use pokemon::*;
 use pokemon_color::*;
 use pokemon_habitat::*;
+use pokemon_move::*;
+use pokemon_move_target::*;
 use pokemon_shape::*;
 use pokemon_type::*;
 use region::*;
@@ -28,6 +30,8 @@ use version_group::*;
     HabitatBulkResponse = BulkResponse<PokemonHabitat>,
     LanguageBulkResponse = BulkResponse<Language>,
     PokemonBulkResponse = BulkResponse<Pokemon>,
+    PokemonMoveBulkResponse = BulkResponse<PokemonMove>,
+    PokemonMoveTargetBulkResponse = BulkResponse<PokemonMoveTarget>,
     PokemonTypeBulkResponse = BulkResponse<PokemonType>,
     RegionBulkResponse = BulkResponse<Region>,
     ShapeBulkResponse = BulkResponse<PokemonShape>,

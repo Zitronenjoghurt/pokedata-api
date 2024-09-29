@@ -25,7 +25,9 @@ pub struct Pokemon {
     pub types_past: Option<TypeSlotsPast>,
     /// The version ids of the games this pokemon exists in
     pub version_ids: Vec<u32>,
+    /// Sprites mapped by sprite groups and sprite types
     pub sprites: SpritePaths,
+    /// Pokemon SpritePaths mapped by their form identifier
     pub form_sprites: HashMap<String, SpritePaths>,
 }
 
