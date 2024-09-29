@@ -7,6 +7,7 @@ pub mod growth_rate_prose;
 pub mod languages;
 pub mod language_names;
 pub mod moves;
+pub mod move_meta;
 pub mod move_flags;
 pub mod move_flag_map;
 pub mod move_flag_prose;

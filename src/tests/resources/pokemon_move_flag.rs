@@ -3,7 +3,7 @@ use crate::models::bulk_response::PokemonMoveFlagBulkResponse;
 use crate::tests::resources::test_get;
 
 #[tokio::test]
-async fn test_get_all_move_targets() {
+async fn test_get_all_move_flags() {
     let state = get_app_state();
     let response: PokemonMoveFlagBulkResponse = test_get("/move-flag").await.unwrap();
 
@@ -13,7 +13,7 @@ async fn test_get_all_move_targets() {
 }
 
 #[tokio::test]
-async fn test_get_specific_move_target() {
+async fn test_get_specific_move_flag() {
     let response: PokemonMoveFlagBulkResponse = test_get("/move-flag?ids=1").await.unwrap();
     let test_entity = response.results.get(0).cloned().unwrap_or_default();
 

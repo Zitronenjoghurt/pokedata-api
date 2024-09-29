@@ -10,6 +10,7 @@ use crate::csv::move_flag_map::MoveFlagMapCSV;
 use crate::csv::move_flag_prose::{MoveFlagDescriptionsCSV, MoveFlagNamesCSV};
 use crate::csv::move_flags::MoveFlagsCSV;
 use crate::csv::move_flavor_text::MoveFlavorTextCSV;
+use crate::csv::move_meta::MoveMetaCSV;
 use crate::csv::move_target_prose::{MoveTargetDescriptionsCSV, MoveTargetNamesCSV};
 use crate::csv::move_targets::MoveTargetsCSV;
 use crate::csv::moves::MovesCSV;
@@ -97,6 +98,7 @@ pub fn get_all_metadata() -> Vec<CSVEntityMetaData> {
         LanguagesCSV::get_metadata(),
         LanguageNamesCSV::get_metadata(),
         MovesCSV::get_metadata(),
+        MoveMetaCSV::get_metadata(),
         MoveFlagsCSV::get_metadata(),
         MoveFlagDescriptionsCSV::get_metadata(),
         MoveFlagMapCSV::get_metadata(),
