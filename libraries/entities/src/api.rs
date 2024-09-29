@@ -9,6 +9,8 @@ pub mod pokemon;
 pub mod pokemon_color;
 pub mod pokemon_habitat;
 pub mod pokemon_move;
+pub mod pokemon_move_ailment;
+pub mod pokemon_move_category;
 pub mod pokemon_move_flag;
 pub mod pokemon_move_target;
 pub mod pokemon_shape;

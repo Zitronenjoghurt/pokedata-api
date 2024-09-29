@@ -1,6 +1,7 @@
-use crate::api::localized_values::VersionGroupedLocalizedValues;
+use crate::api::localized_values::{LocalizedValues, VersionGroupedLocalizedValues};
 use crate::traits::has_id::HasId;
 use serde::{Deserialize, Serialize};
+use std::collections::HashMap;
 use utoipa::ToSchema;
 
 #[derive(Clone, Debug, Default, Serialize, Deserialize, ToSchema)]
@@ -29,6 +30,7 @@ pub struct PokemonMove {
     pub contest_type_id: Option<i32>,
     pub contest_effect_id: Option<i32>,
     pub super_contest_effect_id: Option<i32>,
+    pub names: Option<LocalizedValues>,
     pub flavor_texts: Option<VersionGroupedLocalizedValues>,
     pub flag_ids: Vec<i32>,
     /// The category of move this move falls under, e.g. damage or ailment.
@@ -55,6 +57,8 @@ pub struct PokemonMove {
     pub flinch_chance: Option<i32>,
     /// The likelihood this attack will cause a stat change in the target Pokémon.
     pub stat_chance: Option<i32>,
+    /// Amount of change mapped by the id of the affected stat.
+    pub stat_changes: Option<HashMap<i32, i32>>,
 }
 
 impl HasId for PokemonMove {

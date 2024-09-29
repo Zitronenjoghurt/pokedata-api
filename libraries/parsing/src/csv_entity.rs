@@ -11,6 +11,12 @@ use crate::csv::move_flag_prose::{MoveFlagDescriptionsCSV, MoveFlagNamesCSV};
 use crate::csv::move_flags::MoveFlagsCSV;
 use crate::csv::move_flavor_text::MoveFlavorTextCSV;
 use crate::csv::move_meta::MoveMetaCSV;
+use crate::csv::move_meta_ailment_names::MoveMetaAilmentNamesCSV;
+use crate::csv::move_meta_ailments::MoveMetaAilmentsCSV;
+use crate::csv::move_meta_categories::MoveMetaCategoriesCSV;
+use crate::csv::move_meta_category_prose::MoveMetaCategoryProseCSV;
+use crate::csv::move_meta_stat_changes::MoveMetaStatChangesCSV;
+use crate::csv::move_names::MoveNamesCSV;
 use crate::csv::move_target_prose::{MoveTargetDescriptionsCSV, MoveTargetNamesCSV};
 use crate::csv::move_targets::MoveTargetsCSV;
 use crate::csv::moves::MovesCSV;
@@ -98,12 +104,18 @@ pub fn get_all_metadata() -> Vec<CSVEntityMetaData> {
         LanguagesCSV::get_metadata(),
         LanguageNamesCSV::get_metadata(),
         MovesCSV::get_metadata(),
-        MoveMetaCSV::get_metadata(),
         MoveFlagsCSV::get_metadata(),
         MoveFlagDescriptionsCSV::get_metadata(),
         MoveFlagMapCSV::get_metadata(),
         MoveFlagNamesCSV::get_metadata(),
         MoveFlavorTextCSV::get_metadata(),
+        MoveMetaCSV::get_metadata(),
+        MoveMetaAilmentNamesCSV::get_metadata(),
+        MoveMetaAilmentsCSV::get_metadata(),
+        MoveMetaCategoriesCSV::get_metadata(),
+        MoveMetaCategoryProseCSV::get_metadata(),
+        MoveMetaStatChangesCSV::get_metadata(),
+        MoveNamesCSV::get_metadata(),
         MoveTargetsCSV::get_metadata(),
         MoveTargetDescriptionsCSV::get_metadata(),
         MoveTargetNamesCSV::get_metadata(),

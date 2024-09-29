@@ -1,11 +1,15 @@
 use crate::csv::move_flag_map::MoveFlagMapCSV;
 use crate::csv::move_flavor_text::MoveFlavorTextCSV;
 use crate::csv::move_meta::MoveMetaCSV;
+use crate::csv::move_meta_stat_changes::MoveMetaStatChangesCSV;
+use crate::csv::move_names::MoveNamesCSV;
 use crate::csv_entity::CSVEntity;
 use crate::traits::api_csv_entity::ApiCSVEntity;
 use crate::traits::id_value_pairing::GroupById;
+use crate::traits::id_value_pairing_mapped::HashMapGroupById;
+use crate::traits::into_localized_values_map::IntoLocalizedValuesMap;
 use crate::traits::into_version_grouped_localized_values_map::IntoVersionGroupedLocalizedValuesMap;
-use pokedata_api_entities::api::localized_values::VersionGroupedLocalizedValuesMap;
+use pokedata_api_entities::api::localized_values::{LocalizedValuesMap, VersionGroupedLocalizedValuesMap};
 use pokedata_api_entities::api::pokemon_move::PokemonMove;
 use pokedata_api_entities::traits::into_id_map::IntoIdMap;
 use serde::{Deserialize, Serialize};
@@ -61,6 +65,7 @@ impl ApiCSVEntity for MovesCSV {
             contest_type_id: entry.contest_type_id,
             contest_effect_id: entry.contest_effect_id,
             super_contest_effect_id: entry.super_contest_effect_id,
+            names: data.names_map.get(entry.id),
             flavor_texts: data.flavor_text_map.get(entry.id),
             flag_ids: data.flag_id_map.get(&entry.id).cloned().unwrap_or_default(),
             category_id: meta.meta_category_id,
@@ -75,23 +80,28 @@ impl ApiCSVEntity for MovesCSV {
             ailment_chance: meta.ailment_chance,
             flinch_chance: meta.flinch_chance,
             stat_chance: meta.stat_chance,
+            stat_changes: data.stat_changes_map.get(&entry.id).cloned(),
         })
     }
 }
 
 #[derive(Debug)]
 pub struct PokemonMoveConversionData {
-    pub move_meta_map: HashMap<i32, MoveMetaCSV>,
     pub flag_id_map: HashMap<i32, Vec<i32>>,
     pub flavor_text_map: VersionGroupedLocalizedValuesMap,
+    pub move_meta_map: HashMap<i32, MoveMetaCSV>,
+    pub names_map: LocalizedValuesMap,
+    pub stat_changes_map: HashMap<i32, HashMap<i32, i32>>,
 }
 
 impl PokemonMoveConversionData {
     pub fn load(data_path: &PathBuf) -> Self {
         Self {
-            move_meta_map: MoveMetaCSV::load(data_path).unwrap().into_id_map(),
             flag_id_map: MoveFlagMapCSV::load(data_path).unwrap().group_by_id(),
             flavor_text_map: MoveFlavorTextCSV::load(data_path).unwrap().into_version_grouped_localized_values_map(),
+            move_meta_map: MoveMetaCSV::load(data_path).unwrap().into_id_map(),
+            names_map: MoveNamesCSV::load(data_path).unwrap().into_localized_values_map(),
+            stat_changes_map: MoveMetaStatChangesCSV::load(data_path).unwrap().group_by_id_mapped(),
         }
     }
 }
