@@ -22,6 +22,7 @@ pub mod species;
 pub mod sprites;
 pub mod stat;
 pub mod stat_value;
+pub mod tcg_card;
 pub mod type_slots;
 pub mod version;
 pub mod version_group;

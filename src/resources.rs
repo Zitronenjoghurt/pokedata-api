@@ -26,6 +26,7 @@ pub mod region;
 pub mod shape;
 pub mod species;
 pub mod stat;
+pub mod tcg_card;
 pub mod version;
 pub mod version_group;
 

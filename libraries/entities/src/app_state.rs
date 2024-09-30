@@ -18,6 +18,7 @@ use crate::api::pokemon_type_efficacy::PokemonTypeEfficacies;
 use crate::api::region::Region;
 use crate::api::species::Species;
 use crate::api::stat::Stat;
+use crate::api::tcg_card::TcgCard;
 use crate::api::version::Version;
 use crate::api::version_group::VersionGroup;
 use serde::{Deserialize, Serialize};
@@ -43,6 +44,7 @@ pub struct AppState {
     pub shapes: HashMap<i32, PokemonShape>,
     pub species: HashMap<i32, Species>,
     pub stats: HashMap<i32, Stat>,
+    pub tcg_cards: HashMap<i32, TcgCard>,
     pub types: HashMap<i32, PokemonType>,
     pub type_efficacies: PokemonTypeEfficacies,
     pub versions: HashMap<i32, Version>,

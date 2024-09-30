@@ -11,12 +11,15 @@ use pokedata_api_parsing::csv::pokemon_shapes::PokemonShapesConversionData;
 use pokedata_api_parsing::csv::type_efficacy::build_efficacies_by_generation;
 use pokedata_api_parsing::csv::*;
 use pokedata_api_parsing::csv_entity::CSVEntity;
+use pokedata_api_parsing::pokemon_tcg::load_tcg_data;
 use pokedata_api_parsing::traits::api_csv_entity::ApiCSVEntity;
 use pokedata_api_parsing::traits::into_localized_values_map::IntoLocalizedValuesMap;
 use std::path::PathBuf;
 use std::sync::Arc;
 
 pub fn create_app_state(csv_path: &PathBuf) -> AppState {
+    let tcg_cards = load_tcg_data();
+
     let ailment_names = move_meta_ailment_names::MoveMetaAilmentNamesCSV::load(csv_path).unwrap().into_localized_values_map();
     let color_names = pokemon_color_names::PokemonColorNamesCSV::load(csv_path).unwrap().into_localized_values_map();
     let generation_names = generation_names::GenerationNamesCSV::load(csv_path).unwrap().into_localized_values_map();
@@ -87,6 +90,7 @@ pub fn create_app_state(csv_path: &PathBuf) -> AppState {
         shapes,
         species,
         stats,
+        tcg_cards,
         types,
         type_efficacies,
         versions,

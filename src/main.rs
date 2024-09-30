@@ -35,6 +35,8 @@ pub fn get_app_state() -> &'static AppState {
 }
 
 pub fn build_app() -> Router {
+    let app_state = get_app_state().clone();
+
     Router::new()
         .nest("/", resources::ping::router())
         .nest("/color", resources::color::router())
@@ -55,11 +57,12 @@ pub fn build_app() -> Router {
         .nest("/shape", resources::shape::router())
         .nest("/species", resources::species::router())
         .nest("/stat", resources::stat::router())
+        .nest("/tcg-card", resources::tcg_card::router())
         .nest("/type-efficacy", resources::pokemon_type_efficacy::router())
         .nest("/version", resources::version::router())
         .nest("/version-group", resources::version_group::router())
         .merge(SwaggerUi::new("/swagger").url("/api-docs/openapi.json", docs::ApiDoc::openapi()))
         .merge(Redoc::with_url("/redoc", docs::ApiDoc::openapi()))
         .merge(RapiDoc::new("/api-docs/openapi.json").path("/docs"))
-        .with_state(get_app_state().clone())
+        .with_state(app_state)
 }

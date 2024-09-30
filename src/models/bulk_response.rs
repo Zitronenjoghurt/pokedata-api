@@ -19,6 +19,7 @@ use region::*;
 use serde::{Deserialize, Serialize, Serializer};
 use species::*;
 use stat::*;
+use tcg_card::TcgCard;
 use utoipa::ToSchema;
 use version::*;
 use version_group::*;
@@ -43,6 +44,7 @@ use version_group::*;
     ShapeBulkResponse = BulkResponse<PokemonShape>,
     SpeciesBulkResponse = BulkResponse<Species>,
     StatBulkResponse = BulkResponse<Stat>,
+    TcgCardBulkResponse = BulkResponse<TcgCard>,
     VersionBulkResponse = BulkResponse<Version>,
     VersionGroupBulkResponse = BulkResponse<VersionGroup>
 )]

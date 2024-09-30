@@ -6,4 +6,6 @@ edition = "2021"
 [dependencies]
 csv = "1.3.0"
 pokedata_api_entities = { path = "../entities" }
+pokedata_api_utils = { path = "../utils" }
 serde = { version = "1.0.210", features = ["derive"] }
+serde_json = "1.0.128"

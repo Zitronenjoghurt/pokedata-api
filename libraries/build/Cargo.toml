@@ -4,6 +4,7 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+git2 = "0.19.0"
 pokedata_api_entities = { path = "../entities" }
 pokedata_api_parsing = { path = "../parsing" }
 pokedata_api_utils = { path = "../utils" }
