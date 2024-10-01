@@ -4,7 +4,6 @@ use axum::extract::{Query, State};
 use axum::response::Response;
 use axum::routing::get;
 use axum::Router;
-use pokedata_api_entities::api::pokemon_color::PokemonColor;
 use pokedata_api_entities::app_state::AppState;
 
 /// Fetch colors
@@ -25,7 +24,7 @@ async fn get_color(
     State(state): State<AppState>,
     Query(query): Query<IdsQuery>,
 ) -> Response {
-    get_entities::<PokemonColor>(query.ids, &state.colors).await
+    get_entities(query.ids, &state.colors).await
 }
 
 pub fn router() -> Router<AppState> {

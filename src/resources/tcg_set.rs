@@ -1,10 +1,10 @@
+use crate::queries::identifier::IdentifierQuery;
 use crate::queries::ids::IdsQuery;
-use crate::resources::get_entities;
+use crate::resources::{get_entities, get_using_search_index};
 use axum::extract::{Query, State};
 use axum::response::Response;
 use axum::routing::get;
 use axum::Router;
-use pokedata_api_entities::api::tcg_set::TcgSet;
 use pokedata_api_entities::app_state::AppState;
 
 /// Fetch tcg sets
@@ -13,7 +13,7 @@ use pokedata_api_entities::app_state::AppState;
 #[utoipa::path(
     get,
     path = "/tcg-set",
-    params(IdsQuery),
+    params(IdsQuery, IdentifierQuery),
     responses(
         (status = 200, description = "Tcg set data", body = TcgSetBulkResponse),
         (status = 400, description = "Invalid parameters"),
@@ -24,8 +24,13 @@ use pokedata_api_entities::app_state::AppState;
 async fn get_tcg_set(
     State(state): State<AppState>,
     Query(query): Query<IdsQuery>,
+    Query(identifier_query): Query<IdentifierQuery>,
 ) -> Response {
-    get_entities::<TcgSet>(query.ids, &state.tcg_sets).await
+    if let Some(identifier) = identifier_query.identifier {
+        get_using_search_index(identifier, &state.tcg_sets, &state.search_indices.set_identifier_to_set_id).await
+    } else {
+        get_entities(query.ids, &state.tcg_sets).await
+    }
 }
 
 pub fn router() -> Router<AppState> {

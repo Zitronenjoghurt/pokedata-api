@@ -4,7 +4,6 @@ use axum::extract::{Query, State};
 use axum::response::Response;
 use axum::routing::get;
 use axum::Router;
-use pokedata_api_entities::api::pokemon::Pokemon;
 use pokedata_api_entities::app_state::AppState;
 
 /// Fetch pokemon
@@ -25,7 +24,7 @@ async fn get_pokemon(
     State(state): State<AppState>,
     Query(query): Query<IdsQuery>,
 ) -> Response {
-    get_entities::<Pokemon>(query.ids, &state.pokemon).await
+    get_entities(query.ids, &state.pokemon).await
 }
 
 pub fn router() -> Router<AppState> {

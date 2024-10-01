@@ -1,9 +1,12 @@
 use crate::models::bulk_response::BulkResponse;
+use axum::http::StatusCode;
 use axum::response::{IntoResponse, Response};
 use axum::Json;
+use pokedata_api_entities::data_structures::search_index::SearchIndex;
 use pokedata_api_entities::traits::has_id::HasId;
 use serde::Serialize;
 use std::collections::HashMap;
+use std::hash::Hash;
 use utoipa::ToSchema;
 
 pub mod color;
@@ -52,4 +55,26 @@ pub async fn get_entities<T: Clone + HasId + Serialize + for<'s> ToSchema<'s>>(
     };
 
     Json(response).into_response()
+}
+
+pub async fn get_using_search_index<E, K, I>(
+    identifier: I,
+    entities: &HashMap<K, E>,
+    search_index: &SearchIndex<I, K>,
+) -> Response
+where
+    E: Clone + HasId + Serialize + for<'s> ToSchema<'s>,
+    I: Eq + Hash,
+    K: Eq + Hash,
+{
+    if let Some(id) = search_index.get(&identifier) {
+        if let Some(result) = entities.get(id) {
+            return Json(result).into_response();
+        }
+    }
+
+    (
+        StatusCode::NOT_FOUND,
+        "Requested entity not found.",
+    ).into_response()
 }

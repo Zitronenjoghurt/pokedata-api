@@ -4,7 +4,6 @@ use axum::extract::{Query, State};
 use axum::response::Response;
 use axum::routing::get;
 use axum::Router;
-use pokedata_api_entities::api::version_group::VersionGroup;
 use pokedata_api_entities::app_state::AppState;
 
 /// Fetch version groups
@@ -25,7 +24,7 @@ async fn get_version_group(
     State(state): State<AppState>,
     Query(query): Query<IdsQuery>,
 ) -> Response {
-    get_entities::<VersionGroup>(query.ids, &state.version_groups).await
+    get_entities(query.ids, &state.version_groups).await
 }
 
 pub fn router() -> Router<AppState> {

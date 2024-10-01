@@ -22,6 +22,7 @@ use crate::api::tcg_card::TcgCard;
 use crate::api::tcg_set::TcgSet;
 use crate::api::version::Version;
 use crate::api::version_group::VersionGroup;
+use crate::search_indices::SearchIndices;
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 
@@ -53,4 +54,5 @@ pub struct AppState {
     pub version_groups: HashMap<i32, VersionGroup>,
     pub latest_generation: i32,
     pub major_type_ids: Vec<i32>,
+    pub search_indices: SearchIndices,
 }

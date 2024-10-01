@@ -4,7 +4,6 @@ use axum::extract::{Query, State};
 use axum::response::Response;
 use axum::routing::get;
 use axum::Router;
-use pokedata_api_entities::api::region::Region;
 use pokedata_api_entities::app_state::AppState;
 
 /// Fetch regions
@@ -25,7 +24,7 @@ async fn get_region(
     State(state): State<AppState>,
     Query(query): Query<IdsQuery>,
 ) -> Response {
-    get_entities::<Region>(query.ids, &state.regions).await
+    get_entities(query.ids, &state.regions).await
 }
 
 pub fn router() -> Router<AppState> {

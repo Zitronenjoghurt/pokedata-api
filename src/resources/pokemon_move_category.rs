@@ -4,7 +4,6 @@ use axum::extract::{Query, State};
 use axum::response::Response;
 use axum::routing::get;
 use axum::Router;
-use pokedata_api_entities::api::pokemon_move_category::PokemonMoveCategory;
 use pokedata_api_entities::app_state::AppState;
 
 /// Fetch pokemon move categories
@@ -25,7 +24,7 @@ async fn get_move_category(
     State(state): State<AppState>,
     Query(query): Query<IdsQuery>,
 ) -> Response {
-    get_entities::<PokemonMoveCategory>(query.ids, &state.move_categories).await
+    get_entities(query.ids, &state.move_categories).await
 }
 
 pub fn router() -> Router<AppState> {

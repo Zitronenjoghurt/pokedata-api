@@ -4,7 +4,6 @@ use axum::extract::{Query, State};
 use axum::response::Response;
 use axum::routing::get;
 use axum::Router;
-use pokedata_api_entities::api::pokemon_move_flag::PokemonMoveFlag;
 use pokedata_api_entities::app_state::AppState;
 
 /// Fetch pokemon move flags
@@ -25,7 +24,7 @@ async fn get_move_flag(
     State(state): State<AppState>,
     Query(query): Query<IdsQuery>,
 ) -> Response {
-    get_entities::<PokemonMoveFlag>(query.ids, &state.move_flags).await
+    get_entities(query.ids, &state.move_flags).await
 }
 
 pub fn router() -> Router<AppState> {

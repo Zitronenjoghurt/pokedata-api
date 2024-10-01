@@ -4,7 +4,6 @@ use axum::extract::{Query, State};
 use axum::response::Response;
 use axum::routing::get;
 use axum::Router;
-use pokedata_api_entities::api::pokemon_shape::PokemonShape;
 use pokedata_api_entities::app_state::AppState;
 
 /// Fetch shapes
@@ -25,7 +24,7 @@ async fn get_shape(
     State(state): State<AppState>,
     Query(query): Query<IdsQuery>,
 ) -> Response {
-    get_entities::<PokemonShape>(query.ids, &state.shapes).await
+    get_entities(query.ids, &state.shapes).await
 }
 
 pub fn router() -> Router<AppState> {

@@ -4,7 +4,6 @@ use axum::extract::{Query, State};
 use axum::response::Response;
 use axum::routing::get;
 use axum::Router;
-use pokedata_api_entities::api::evolution_chain::EvolutionChain;
 use pokedata_api_entities::app_state::AppState;
 
 /// Fetch evolution chains
@@ -25,7 +24,7 @@ async fn get_evolution_chain(
     State(state): State<AppState>,
     Query(query): Query<IdsQuery>,
 ) -> Response {
-    get_entities::<EvolutionChain>(query.ids, &state.evolution_chains).await
+    get_entities(query.ids, &state.evolution_chains).await
 }
 
 pub fn router() -> Router<AppState> {
