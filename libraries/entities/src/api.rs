@@ -23,6 +23,8 @@ pub mod sprites;
 pub mod stat;
 pub mod stat_value;
 pub mod tcg_card;
+pub mod tcg_legalities;
+pub mod tcg_set;
 pub mod type_slots;
 pub mod version;
 pub mod version_group;

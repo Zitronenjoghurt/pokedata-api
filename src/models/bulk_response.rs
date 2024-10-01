@@ -20,6 +20,7 @@ use serde::{Deserialize, Serialize, Serializer};
 use species::*;
 use stat::*;
 use tcg_card::TcgCard;
+use tcg_set::TcgSet;
 use utoipa::ToSchema;
 use version::*;
 use version_group::*;
@@ -45,6 +46,7 @@ use version_group::*;
     SpeciesBulkResponse = BulkResponse<Species>,
     StatBulkResponse = BulkResponse<Stat>,
     TcgCardBulkResponse = BulkResponse<TcgCard>,
+    TcgSetBulkResponse = BulkResponse<TcgSet>,
     VersionBulkResponse = BulkResponse<Version>,
     VersionGroupBulkResponse = BulkResponse<VersionGroup>
 )]

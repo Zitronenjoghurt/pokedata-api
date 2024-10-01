@@ -2,8 +2,9 @@ use crate::json::tcg_card_ability::TcgCardAbilityJSON;
 use crate::json::tcg_card_ancient_trait::TcgCardAncientTraitJSON;
 use crate::json::tcg_card_attack::TcgCardAttackJSON;
 use crate::json::tcg_card_images::TcgCardImagesJSON;
-use crate::json::tcg_card_legalities::TcgCardLegalitiesJSON;
 use crate::json::tcg_card_type_value::TcgCardTypeValueJSON;
+use crate::json::tcg_legalities::TcgLegalitiesJSON;
+use crate::json::tcg_set::TcgSetJSON;
 use pokedata_api_entities::api::tcg_card::TcgCard;
 use serde::{Deserialize, Serialize};
 
@@ -39,10 +40,11 @@ pub struct TcgCardJSON {
     pub flavor_text: Option<String>,
     #[serde(rename = "nationalPokedexNumbers")]
     pub national_pokedex_numbers: Option<Vec<i32>>,
-    pub legalities: TcgCardLegalitiesJSON,
+    pub legalities: TcgLegalitiesJSON,
     #[serde(rename = "regulationMark")]
     pub regulation_mark: Option<String>,
     pub images: TcgCardImagesJSON,
+    pub set: Option<TcgSetJSON>,
 }
 
 impl TcgCardJSON {
@@ -74,6 +76,7 @@ impl TcgCardJSON {
             legalities: self.legalities.into(),
             regulation_mark: self.regulation_mark,
             images: self.images.into(),
+            set_identifier: self.set.map(|set| set.id),
         }
     }
 }

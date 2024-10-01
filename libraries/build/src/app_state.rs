@@ -18,7 +18,7 @@ use std::path::PathBuf;
 use std::sync::Arc;
 
 pub fn create_app_state(csv_path: &PathBuf) -> AppState {
-    let tcg_cards = load_tcg_data();
+    let (tcg_cards, tcg_sets) = load_tcg_data();
 
     let ailment_names = move_meta_ailment_names::MoveMetaAilmentNamesCSV::load(csv_path).unwrap().into_localized_values_map();
     let color_names = pokemon_color_names::PokemonColorNamesCSV::load(csv_path).unwrap().into_localized_values_map();
@@ -91,6 +91,7 @@ pub fn create_app_state(csv_path: &PathBuf) -> AppState {
         species,
         stats,
         tcg_cards,
+        tcg_sets,
         types,
         type_efficacies,
         versions,

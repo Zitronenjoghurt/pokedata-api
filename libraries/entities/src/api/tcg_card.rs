@@ -1,3 +1,4 @@
+use crate::api::tcg_legalities::TcgLegalities;
 use crate::traits::has_id::HasId;
 use serde::{Deserialize, Serialize};
 use utoipa::ToSchema;
@@ -27,9 +28,10 @@ pub struct TcgCard {
     pub rarity: Option<String>,
     pub flavor_text: Option<String>,
     pub species_ids: Vec<i32>,
-    pub legalities: TcgCardLegalities,
+    pub legalities: TcgLegalities,
     pub regulation_mark: Option<String>,
     pub images: TcgCardImages,
+    pub set_identifier: Option<String>,
 }
 
 impl HasId for TcgCard {
@@ -73,13 +75,6 @@ pub struct TcgCardResistance {
     #[serde(rename = "type")]
     pub resistance_type: String,
     pub value: String,
-}
-
-#[derive(Clone, Debug, Default, PartialOrd, PartialEq, Serialize, Deserialize, ToSchema)]
-pub struct TcgCardLegalities {
-    pub standard: Option<String>,
-    pub expanded: Option<String>,
-    pub unlimited: String,
 }
 
 #[derive(Clone, Debug, Default, PartialOrd, PartialEq, Serialize, Deserialize, ToSchema)]

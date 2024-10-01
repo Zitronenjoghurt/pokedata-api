@@ -1,16 +1,16 @@
-use pokedata_api_entities::api::tcg_card::TcgCardLegalities;
+use pokedata_api_entities::api::tcg_legalities::TcgLegalities;
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Default, Clone, Serialize, Deserialize)]
-pub struct TcgCardLegalitiesJSON {
+pub struct TcgLegalitiesJSON {
     pub standard: Option<String>,
     pub expanded: Option<String>,
     pub unlimited: String,
 }
 
-impl Into<TcgCardLegalities> for TcgCardLegalitiesJSON {
-    fn into(self) -> TcgCardLegalities {
-        TcgCardLegalities {
+impl Into<TcgLegalities> for TcgLegalitiesJSON {
+    fn into(self) -> TcgLegalities {
+        TcgLegalities {
             standard: self.standard,
             expanded: self.expanded,
             unlimited: self.unlimited,

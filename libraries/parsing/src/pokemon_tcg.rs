@@ -1,39 +1,47 @@
 use crate::json::tcg_card::TcgCardJSON;
+use crate::json::tcg_set::TcgSetJSON;
 use pokedata_api_entities::api::tcg_card::TcgCard;
+use pokedata_api_entities::api::tcg_set::TcgSet;
 use pokedata_api_entities::traits::into_id_map::IntoIdMap;
-use pokedata_api_utils::directories::tcg_repository_cards_path;
+use pokedata_api_utils::directories::{tcg_repository_cards_path, tcg_repository_sets_path};
+use serde::de::DeserializeOwned;
 use std::collections::HashMap;
+use std::error::Error;
 use std::fs;
 use std::io::Read;
+use std::path::PathBuf;
 
-pub fn load_tcg_data() -> HashMap<i32, TcgCard> {
-    let cards: Vec<TcgCard> = load_cards()
-        .unwrap()
-        .into_iter()
-        .enumerate()
-        .map(|(index, card_json)| card_json.convert_to_card(index as i32))
-        .collect();
-
-    cards.into_id_map()
-}
-
-pub fn load_cards() -> Result<Vec<TcgCardJSON>, Box<dyn std::error::Error>> {
-    let path = tcg_repository_cards_path();
-    let mut all_cards = Vec::new();
+fn load_json_from_directory<T: DeserializeOwned>(path: &PathBuf) -> Result<Vec<T>, Box<dyn Error>> {
+    let mut all_items = Vec::new();
 
     for entry in fs::read_dir(path)? {
-        let entry = entry?;
-        let file_path = entry.path();
-
+        let file_path = entry?.path();
         if file_path.is_file() && file_path.extension().and_then(|s| s.to_str()) == Some("json") {
-            let mut file = fs::File::open(file_path)?;
             let mut contents = String::new();
-            file.read_to_string(&mut contents)?;
-
-            let cards: Vec<TcgCardJSON> = serde_json::from_str(&contents)?;
-            all_cards.extend(cards);
+            fs::File::open(file_path)?.read_to_string(&mut contents)?;
+            all_items.extend(serde_json::from_str::<Vec<T>>(&contents)?);
         }
     }
 
-    Ok(all_cards)
+    Ok(all_items)
+}
+
+pub fn load_tcg_data() -> (HashMap<i32, TcgCard>, HashMap<i32, TcgSet>) {
+    let cards = load_cards().unwrap().into_iter().enumerate()
+        .map(|(index, card_json)| card_json.convert_to_card(index as i32))
+        .collect::<Vec<TcgCard>>();
+
+    let sets = load_sets().unwrap().into_iter().enumerate()
+        .map(|(index, set_json)| set_json.convert_to_set(index as i32))
+        .collect::<Vec<TcgSet>>();
+
+    (cards.into_id_map(), sets.into_id_map())
+}
+
+pub fn load_cards() -> Result<Vec<TcgCardJSON>, Box<dyn Error>> {
+    load_json_from_directory(&tcg_repository_cards_path())
+}
+
+pub fn load_sets() -> Result<Vec<TcgSetJSON>, Box<dyn Error>> {
+    load_json_from_directory(&tcg_repository_sets_path())
 }

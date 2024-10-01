@@ -58,6 +58,7 @@ pub fn build_app() -> Router {
         .nest("/species", resources::species::router())
         .nest("/stat", resources::stat::router())
         .nest("/tcg-card", resources::tcg_card::router())
+        .nest("/tcg-set", resources::tcg_set::router())
         .nest("/type-efficacy", resources::pokemon_type_efficacy::router())
         .nest("/version", resources::version::router())
         .nest("/version-group", resources::version_group::router())
