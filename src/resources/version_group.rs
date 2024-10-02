@@ -5,6 +5,7 @@ use axum::response::Response;
 use axum::routing::get;
 use axum::Router;
 use pokedata_api_entities::app_state::AppState;
+use std::sync::Arc;
 
 /// Fetch version groups
 ///
@@ -21,12 +22,12 @@ use pokedata_api_entities::app_state::AppState;
     tag = "Version Groups"
 )]
 async fn get_version_group(
-    State(state): State<AppState>,
+    State(state): State<Arc<AppState>>,
     Query(query): Query<IdsQuery>,
 ) -> Response {
     get_entities(query.ids, &state.version_groups).await
 }
 
-pub fn router() -> Router<AppState> {
-    Router::<AppState>::new().route("/", get(get_version_group))
+pub fn router() -> Router<Arc<AppState>> {
+    Router::new().route("/", get(get_version_group))
 }

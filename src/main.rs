@@ -1,6 +1,7 @@
 use axum::Router;
 use once_cell::sync::Lazy;
 use pokedata_api_entities::app_state::AppState;
+use std::sync::Arc;
 use tokio::io;
 use utoipa::OpenApi;
 use utoipa_rapidoc::RapiDoc;
@@ -20,7 +21,9 @@ pub mod serde {
 }
 
 const STATIC_DATA: &[u8] = include_bytes!(concat!(env!("OUT_DIR"), "/data.bin"));
-static APP_STATE: Lazy<AppState> = Lazy::new(|| bincode::deserialize(STATIC_DATA).unwrap());
+static APP_STATE: Lazy<Arc<AppState>> = Lazy::new(||
+    Arc::new(bincode::deserialize(STATIC_DATA).unwrap())
+);
 
 #[tokio::main]
 async fn main() -> io::Result<()> {
@@ -29,12 +32,12 @@ async fn main() -> io::Result<()> {
     axum::serve(listener, build_app()).await
 }
 
-pub fn get_app_state() -> &'static AppState {
-    &APP_STATE
+pub fn get_app_state() -> Arc<AppState> {
+    APP_STATE.clone()
 }
 
 pub fn build_app() -> Router {
-    let app_state = get_app_state().clone();
+    let app_state = get_app_state();
 
     Router::new()
         .nest("/", resources::ping::router())

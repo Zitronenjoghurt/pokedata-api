@@ -5,6 +5,7 @@ use axum::response::{IntoResponse, Response};
 use axum::routing::get;
 use axum::{Json, Router};
 use pokedata_api_entities::app_state::AppState;
+use std::sync::Arc;
 
 /// Get the damage factor of a type against a given type combination
 ///
@@ -21,7 +22,7 @@ use pokedata_api_entities::app_state::AppState;
     tag = "Types"
 )]
 async fn get_type_efficacy(
-    State(state): State<AppState>,
+    State(state): State<Arc<AppState>>,
     Query(query): Query<TypeEffectivenessQuery>,
 ) -> Response {
     let attacking_id = query.attacking_id;
@@ -49,10 +50,10 @@ async fn get_type_efficacy(
     tag = "Types"
 )]
 async fn get_type_efficacy_all(
-    State(state): State<AppState>,
+    State(state): State<Arc<AppState>>,
     Query(query): Query<AllTypeEffectivenessQuery>,
 ) -> Response {
-    let major_type_ids = state.major_type_ids;
+    let major_type_ids = state.major_type_ids.clone();
     let defending_ids = query.defending_ids;
     let generation_id = query.generation_id.unwrap_or(state.latest_generation);
 
@@ -62,8 +63,8 @@ async fn get_type_efficacy_all(
     Json(response).into_response()
 }
 
-pub fn router() -> Router<AppState> {
-    Router::<AppState>::new()
+pub fn router() -> Router<Arc<AppState>> {
+    Router::new()
         .route("/", get(get_type_efficacy))
         .route("/all", get(get_type_efficacy_all))
 }

@@ -5,6 +5,7 @@ use axum::response::Response;
 use axum::routing::get;
 use axum::Router;
 use pokedata_api_entities::app_state::AppState;
+use std::sync::Arc;
 
 /// Fetch evolutions
 ///
@@ -21,12 +22,12 @@ use pokedata_api_entities::app_state::AppState;
     tag = "Evolutions"
 )]
 async fn get_evolution(
-    State(state): State<AppState>,
+    State(state): State<Arc<AppState>>,
     Query(query): Query<IdsQuery>,
 ) -> Response {
     get_entities(query.ids, &state.evolutions).await
 }
 
-pub fn router() -> Router<AppState> {
-    Router::<AppState>::new().route("/", get(get_evolution))
+pub fn router() -> Router<Arc<AppState>> {
+    Router::new().route("/", get(get_evolution))
 }

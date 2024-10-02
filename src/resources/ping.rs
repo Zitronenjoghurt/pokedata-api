@@ -3,6 +3,7 @@ use axum::response::{IntoResponse, Response};
 use axum::routing::get;
 use axum::{Json, Router};
 use pokedata_api_entities::app_state::AppState;
+use std::sync::Arc;
 
 /// PING
 ///
@@ -23,6 +24,6 @@ async fn get_ping() -> Response {
     Json(response).into_response()
 }
 
-pub fn router() -> Router<AppState> {
-    Router::<AppState>::new().route("/", get(get_ping))
+pub fn router() -> Router<Arc<AppState>> {
+    Router::new().route("/", get(get_ping))
 }

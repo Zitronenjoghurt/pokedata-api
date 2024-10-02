@@ -5,6 +5,7 @@ use axum::response::Response;
 use axum::routing::get;
 use axum::Router;
 use pokedata_api_entities::app_state::AppState;
+use std::sync::Arc;
 
 /// Fetch pokemon
 ///
@@ -21,12 +22,12 @@ use pokedata_api_entities::app_state::AppState;
     tag = "Pokemon"
 )]
 async fn get_pokemon(
-    State(state): State<AppState>,
+    State(state): State<Arc<AppState>>,
     Query(query): Query<IdsQuery>,
 ) -> Response {
     get_entities(query.ids, &state.pokemon).await
 }
 
-pub fn router() -> Router<AppState> {
-    Router::<AppState>::new().route("/", get(get_pokemon))
+pub fn router() -> Router<Arc<AppState>> {
+    Router::new().route("/", get(get_pokemon))
 }
