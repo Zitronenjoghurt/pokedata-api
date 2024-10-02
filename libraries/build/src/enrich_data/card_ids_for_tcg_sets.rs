@@ -10,12 +10,9 @@ pub fn enrich_tcg_sets_with_card_ids(
 )
 {
     for card in cards.values() {
-        if let Some(set_identifier) = &card.set_identifier {
-            if let Some(set_id) = set_identifier_to_set_id.get(set_identifier) {
-                if let Some(set) = sets.get_mut(set_id) {
-                    set.card_ids.push(card.id);
-                }
-            }
-        }
+        let Some(set_identifier) = &card.set_identifier else { continue };
+        let Some(set_id) = set_identifier_to_set_id.get(set_identifier) else { continue };
+        let Some(set) = sets.get_mut(set_id) else { continue };
+        set.card_ids.push(card.id);
     }
 }

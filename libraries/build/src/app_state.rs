@@ -1,5 +1,6 @@
 use crate::enrich_data::card_ids_for_tcg_sets::enrich_tcg_sets_with_card_ids;
 use crate::enrich_data::set_id_for_tcg_cards::enrich_tcg_cards_with_set_id;
+use crate::enrich_data::tcg_ids_for_species::enrich_species_with_tcg_ids;
 use crate::search_index::build_search_indices;
 use crate::sprites::load_sprite_index;
 use pokedata_api_entities::api::pokemon_type::get_major_type_ids;
@@ -66,7 +67,7 @@ pub fn create_app_state(csv_path: &PathBuf) -> AppState {
     let version_group_data = version_groups::VersionGroupConversionData::load(csv_path, &versions);
     let species_data = pokemon_species::PokemonSpeciesConversionData::load(csv_path, &pokemon);
 
-    let species = pokemon_species::PokemonSpeciesCSV::load_and_convert(csv_path, &species_data).unwrap().into_id_map();
+    let mut species = pokemon_species::PokemonSpeciesCSV::load_and_convert(csv_path, &species_data).unwrap().into_id_map();
     let type_efficacies = build_efficacies_by_generation(csv_path, latest_generation).unwrap();
     let version_groups = version_groups::VersionGroupsCSV::load_and_convert(csv_path, &version_group_data).unwrap().into_id_map();
 
@@ -79,6 +80,8 @@ pub fn create_app_state(csv_path: &PathBuf) -> AppState {
 
     enrich_tcg_cards_with_set_id(&mut tcg_cards, &search_indices.set_identifier_to_set_id);
     enrich_tcg_sets_with_card_ids(&tcg_cards, &mut tcg_sets, &search_indices.set_identifier_to_set_id);
+
+    enrich_species_with_tcg_ids(&tcg_cards, &mut species);
 
     AppState {
         abilities,

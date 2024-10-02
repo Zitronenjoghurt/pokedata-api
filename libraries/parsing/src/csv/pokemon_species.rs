@@ -8,7 +8,7 @@ use pokedata_api_entities::api::localized_values::{LocalizedValuesMap, Versioned
 use pokedata_api_entities::api::pokemon::Pokemon;
 use pokedata_api_entities::api::species::Species;
 use serde::{Deserialize, Serialize};
-use std::collections::HashMap;
+use std::collections::{HashMap, HashSet};
 use std::error::Error;
 use std::path::PathBuf;
 
@@ -71,6 +71,8 @@ impl ApiCSVEntity for PokemonSpeciesCSV {
             pokemon_ids: get_pokemon_ids_by_species(&data.pokemon_map, entry.id),
             evolution_chain_id: entry.evolution_chain_id,
             evolves_from_species_id: entry.evolves_from_species_id,
+            tcg_card_ids: vec![],
+            tcg_set_ids: HashSet::new(),
         })
     }
 }

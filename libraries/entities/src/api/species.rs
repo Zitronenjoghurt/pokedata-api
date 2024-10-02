@@ -1,6 +1,7 @@
 use crate::api::localized_values::{LocalizedValues, VersionedLocalizedValues};
 use crate::traits::has_id::HasId;
 use serde::{Deserialize, Serialize};
+use std::collections::HashSet;
 use utoipa::ToSchema;
 
 #[derive(Clone, Debug, Default, Serialize, Deserialize, ToSchema)]
@@ -41,6 +42,8 @@ pub struct Species {
     pub pokemon_ids: Vec<i32>,
     pub evolution_chain_id: Option<i32>,
     pub evolves_from_species_id: Option<i32>,
+    pub tcg_card_ids: Vec<i32>,
+    pub tcg_set_ids: HashSet<i32>,
 }
 
 impl HasId for Species {

@@ -8,10 +8,8 @@ pub fn enrich_tcg_cards_with_set_id(
 )
 {
     for card in cards.values_mut() {
-        if let Some(set_identifier) = &card.set_identifier {
-            if let Some(set_identifier) = set_identifier_to_set_id.get(set_identifier) {
-                card.set_id = Some(*set_identifier);
-            }
-        }
+        let Some(set_identifier) = &card.set_identifier else { continue };
+        let Some(set_id) = set_identifier_to_set_id.get(set_identifier) else { continue };
+        card.set_id = Some(*set_id);
     }
 }

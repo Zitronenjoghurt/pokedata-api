@@ -8,9 +8,9 @@ use pokedata_api_utils::filesystem::create_directory;
 use reqwest::blocking::Client;
 use std::fs::File;
 use std::io::copy;
-use std::path::PathBuf;
+use std::path::{Path, PathBuf};
 
-pub fn build_app_state(data_path: &PathBuf) -> AppState {
+pub fn build_app_state(data_path: &Path) -> AppState {
     let csv_path = data_path.join("csv");
     create_directory(&csv_path);
     download_csv_files(&csv_path);
@@ -18,7 +18,7 @@ pub fn build_app_state(data_path: &PathBuf) -> AppState {
     create_app_state(&csv_path)
 }
 
-fn download_csv_files(base_path: &PathBuf) {
+fn download_csv_files(base_path: &Path) {
     let download_map = get_download_map();
 
     for (file_name, download_url) in download_map {
@@ -64,10 +64,10 @@ fn prepare_pokemon_tcg_repository() {
     }
 }
 
-fn clone_pokemon_tcg_repository(repo_path: &PathBuf) {
-    create_directory(&repo_path);
+fn clone_pokemon_tcg_repository(repo_path: &Path) {
+    create_directory(repo_path);
     println!("Cloning tcg repository... (this might take a bit)");
-    match Repository::clone(POKEMON_TCG_REPOSITORY_GIT_URL, &repo_path) {
+    match Repository::clone(POKEMON_TCG_REPOSITORY_GIT_URL, repo_path) {
         Ok(_) => println!("Successfully cloned tcg repository"),
         Err(e) => panic!("Failed to clone tcg repository: {}", e)
     }
