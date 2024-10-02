@@ -1,3 +1,4 @@
+use crate::csv::move_changelog::MoveChangelogCSV;
 use crate::csv::move_flag_map::MoveFlagMapCSV;
 use crate::csv::move_flavor_text::MoveFlavorTextCSV;
 use crate::csv::move_meta::MoveMetaCSV;
@@ -11,6 +12,7 @@ use crate::traits::into_localized_values_map::IntoLocalizedValuesMap;
 use crate::traits::into_version_grouped_localized_values_map::IntoVersionGroupedLocalizedValuesMap;
 use pokedata_api_entities::api::localized_values::{LocalizedValuesMap, VersionGroupedLocalizedValuesMap};
 use pokedata_api_entities::api::pokemon_move::PokemonMove;
+use pokedata_api_entities::api::pokemon_move_changelog_entry::PokemonMoveChangelogEntry;
 use pokedata_api_entities::traits::into_id_map::IntoIdMap;
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
@@ -81,6 +83,7 @@ impl ApiCSVEntity for MovesCSV {
             flinch_chance: meta.flinch_chance,
             stat_chance: meta.stat_chance,
             stat_changes: data.stat_changes_map.get(&entry.id).cloned(),
+            changelogs: data.move_changelog_map.get(&entry.id).cloned().unwrap_or_default(),
         })
     }
 }
@@ -89,6 +92,7 @@ impl ApiCSVEntity for MovesCSV {
 pub struct PokemonMoveConversionData {
     pub flag_id_map: HashMap<i32, Vec<i32>>,
     pub flavor_text_map: VersionGroupedLocalizedValuesMap,
+    pub move_changelog_map: HashMap<i32, HashMap<i32, PokemonMoveChangelogEntry>>,
     pub move_meta_map: HashMap<i32, MoveMetaCSV>,
     pub names_map: LocalizedValuesMap,
     pub stat_changes_map: HashMap<i32, HashMap<i32, i32>>,
@@ -99,6 +103,7 @@ impl PokemonMoveConversionData {
         Self {
             flag_id_map: MoveFlagMapCSV::load(data_path).unwrap().group_by_id(),
             flavor_text_map: MoveFlavorTextCSV::load(data_path).unwrap().into_version_grouped_localized_values_map(),
+            move_changelog_map: MoveChangelogCSV::load(data_path).unwrap().group_by_id_mapped(),
             move_meta_map: MoveMetaCSV::load(data_path).unwrap().into_id_map(),
             names_map: MoveNamesCSV::load(data_path).unwrap().into_localized_values_map(),
             stat_changes_map: MoveMetaStatChangesCSV::load(data_path).unwrap().group_by_id_mapped(),

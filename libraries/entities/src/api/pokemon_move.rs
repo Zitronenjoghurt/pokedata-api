@@ -1,4 +1,5 @@
 use crate::api::localized_values::{LocalizedValues, VersionGroupedLocalizedValues};
+use crate::api::pokemon_move_changelog_entry::PokemonMoveChangelogEntry;
 use crate::traits::has_id::HasId;
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
@@ -59,6 +60,8 @@ pub struct PokemonMove {
     pub stat_chance: Option<i32>,
     /// Amount of change mapped by the id of the affected stat.
     pub stat_changes: Option<HashMap<i32, i32>>,
+    /// Changelog entries mapped by the version group id they were introduced in
+    pub changelogs: HashMap<i32, PokemonMoveChangelogEntry>,
 }
 
 impl HasId for PokemonMove {

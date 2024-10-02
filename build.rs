@@ -43,7 +43,7 @@ fn build_cli() {
     let commands_dir = PathBuf::from(&manifest_dir).join("commands");
     let status = Command::new("cargo")
         .current_dir(&commands_dir)
-        .args(&["build", "--release"])
+        .args(["build", "--release"])
         .status()
         .expect("Failed to build CLI");
 

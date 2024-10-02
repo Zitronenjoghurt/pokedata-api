@@ -1,8 +1,7 @@
 use axum::Router;
-use bincode;
 use once_cell::sync::Lazy;
 use pokedata_api_entities::app_state::AppState;
-use std::io;
+use tokio::io;
 use utoipa::OpenApi;
 use utoipa_rapidoc::RapiDoc;
 use utoipa_redoc::{Redoc, Servable};
@@ -49,6 +48,7 @@ pub fn build_app() -> Router {
         .nest("/move", resources::pokemon_move::router())
         .nest("/move-ailment", resources::pokemon_move_ailment::router())
         .nest("/move-category", resources::pokemon_move_category::router())
+        .nest("/move-damage-class", resources::pokemon_move_damage_class::router())
         .nest("/move-flag", resources::pokemon_move_flag::router())
         .nest("/move-target", resources::pokemon_move_target::router())
         .nest("/pokemon", resources::pokemon::router())

@@ -7,6 +7,7 @@ use pokedata_api_entities::api::pokemon_type::get_major_type_ids;
 use pokedata_api_entities::app_state::AppState;
 use pokedata_api_entities::traits::into_id_map::IntoIdMap;
 use pokedata_api_parsing::csv::evolution_chains::EvolutionChainConversionData;
+use pokedata_api_parsing::csv::move_damage_classes::PokemonMoveDamageClassConversionData;
 use pokedata_api_parsing::csv::move_flags::PokemonMoveFlagConversionData;
 use pokedata_api_parsing::csv::move_targets::PokemonMoveTargetConversionData;
 use pokedata_api_parsing::csv::moves::PokemonMoveConversionData;
@@ -39,6 +40,7 @@ pub fn create_app_state(csv_path: &PathBuf) -> AppState {
 
     let sprite_index = Arc::new(load_sprite_index());
     let moves_data = PokemonMoveConversionData::load(csv_path);
+    let move_damage_classes_data = PokemonMoveDamageClassConversionData::load(csv_path);
     let move_flags_data = PokemonMoveFlagConversionData::load(csv_path);
     let move_targets_data = PokemonMoveTargetConversionData::load(csv_path);
     let pokemon_data = PokemonConversionData::load(csv_path, sprite_index);
@@ -54,6 +56,7 @@ pub fn create_app_state(csv_path: &PathBuf) -> AppState {
     let moves = moves::MovesCSV::load_and_convert(csv_path, &moves_data).unwrap().into_id_map();
     let move_ailments = move_meta_ailments::MoveMetaAilmentsCSV::load_and_convert(csv_path, &ailment_names).unwrap().into_id_map();
     let move_categories = move_meta_categories::MoveMetaCategoriesCSV::load_and_convert(csv_path, &move_category_descriptions).unwrap().into_id_map();
+    let move_damage_classes = move_damage_classes::MoveDamageClassesCSV::load_and_convert(csv_path, &move_damage_classes_data).unwrap().into_id_map();
     let move_flags = move_flags::MoveFlagsCSV::load_and_convert(csv_path, &move_flags_data).unwrap().into_id_map();
     let move_targets = move_targets::MoveTargetsCSV::load_and_convert(csv_path, &move_targets_data).unwrap().into_id_map();
     let pokemon = pokemon::PokemonCSV::load_and_convert(csv_path, &pokemon_data).unwrap().into_id_map();
@@ -95,6 +98,7 @@ pub fn create_app_state(csv_path: &PathBuf) -> AppState {
         moves,
         move_ailments,
         move_categories,
+        move_damage_classes,
         move_flags,
         move_targets,
         pokemon,
