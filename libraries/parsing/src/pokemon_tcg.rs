@@ -26,22 +26,22 @@ fn load_json_from_directory<T: DeserializeOwned>(path: &PathBuf) -> Result<Vec<T
     Ok(all_items)
 }
 
-pub fn load_tcg_data() -> (HashMap<i32, TcgCard>, HashMap<i32, TcgSet>) {
-    let cards = load_cards().unwrap().into_iter().enumerate()
+pub fn load_tcg_cards() -> HashMap<i32, TcgCard> {
+    load_cards_json().unwrap().into_iter().enumerate()
         .map(|(index, card_json)| card_json.convert_to_card(index as i32))
-        .collect::<Vec<TcgCard>>();
-
-    let sets = load_sets().unwrap().into_iter().enumerate()
-        .map(|(index, set_json)| set_json.convert_to_set(index as i32))
-        .collect::<Vec<TcgSet>>();
-
-    (cards.into_id_map(), sets.into_id_map())
+        .collect::<Vec<TcgCard>>().into_id_map()
 }
 
-pub fn load_cards() -> Result<Vec<TcgCardJSON>, Box<dyn Error>> {
+pub fn load_tcg_sets() -> HashMap<i32, TcgSet> {
+    load_sets_json().unwrap().into_iter().enumerate()
+        .map(|(index, set_json)| set_json.convert_to_set(index as i32))
+        .collect::<Vec<TcgSet>>().into_id_map()
+}
+
+fn load_cards_json() -> Result<Vec<TcgCardJSON>, Box<dyn Error>> {
     load_json_from_directory(&tcg_repository_cards_path())
 }
 
-pub fn load_sets() -> Result<Vec<TcgSetJSON>, Box<dyn Error>> {
+fn load_sets_json() -> Result<Vec<TcgSetJSON>, Box<dyn Error>> {
     load_json_from_directory(&tcg_repository_sets_path())
 }

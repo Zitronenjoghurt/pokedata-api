@@ -15,6 +15,7 @@ pub struct TcgSet {
     pub release_date: String,
     pub updated_at: String,
     pub images: TcgSetImages,
+    pub card_ids: Vec<i32>,
 }
 
 impl HasId for TcgSet {

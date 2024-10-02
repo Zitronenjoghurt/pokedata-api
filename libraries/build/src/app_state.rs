@@ -1,3 +1,5 @@
+use crate::enrich_data::card_ids_for_tcg_sets::enrich_tcg_sets_with_card_ids;
+use crate::enrich_data::set_id_for_tcg_cards::enrich_tcg_cards_with_set_id;
 use crate::search_index::build_search_indices;
 use crate::sprites::load_sprite_index;
 use pokedata_api_entities::api::pokemon_type::get_major_type_ids;
@@ -12,14 +14,15 @@ use pokedata_api_parsing::csv::pokemon_shapes::PokemonShapesConversionData;
 use pokedata_api_parsing::csv::type_efficacy::build_efficacies_by_generation;
 use pokedata_api_parsing::csv::*;
 use pokedata_api_parsing::csv_entity::CSVEntity;
-use pokedata_api_parsing::pokemon_tcg::load_tcg_data;
+use pokedata_api_parsing::pokemon_tcg::{load_tcg_cards, load_tcg_sets};
 use pokedata_api_parsing::traits::api_csv_entity::ApiCSVEntity;
 use pokedata_api_parsing::traits::into_localized_values_map::IntoLocalizedValuesMap;
 use std::path::PathBuf;
 use std::sync::Arc;
 
 pub fn create_app_state(csv_path: &PathBuf) -> AppState {
-    let (tcg_cards, tcg_sets) = load_tcg_data();
+    let mut tcg_cards = load_tcg_cards();
+    let mut tcg_sets = load_tcg_sets();
 
     let ailment_names = move_meta_ailment_names::MoveMetaAilmentNamesCSV::load(csv_path).unwrap().into_localized_values_map();
     let color_names = pokemon_color_names::PokemonColorNamesCSV::load(csv_path).unwrap().into_localized_values_map();
@@ -73,6 +76,9 @@ pub fn create_app_state(csv_path: &PathBuf) -> AppState {
     let major_type_ids = get_major_type_ids(types.values().cloned().collect());
 
     let search_indices = build_search_indices(&tcg_cards, &tcg_sets);
+
+    enrich_tcg_cards_with_set_id(&mut tcg_cards, &search_indices.set_identifier_to_set_id);
+    enrich_tcg_sets_with_card_ids(&tcg_cards, &mut tcg_sets, &search_indices.set_identifier_to_set_id);
 
     AppState {
         abilities,

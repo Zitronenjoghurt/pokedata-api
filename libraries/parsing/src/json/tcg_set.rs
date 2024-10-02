@@ -34,6 +34,7 @@ impl TcgSetJSON {
             release_date: self.release_date,
             updated_at: self.updated_at,
             images: self.images.into(),
+            card_ids: vec![],
         }
     }
 }
