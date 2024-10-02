@@ -4,7 +4,6 @@ use crate::json::tcg_card_attack::TcgCardAttackJSON;
 use crate::json::tcg_card_images::TcgCardImagesJSON;
 use crate::json::tcg_card_type_value::TcgCardTypeValueJSON;
 use crate::json::tcg_legalities::TcgLegalitiesJSON;
-use crate::json::tcg_set::TcgSetJSON;
 use pokedata_api_entities::api::tcg_card::TcgCard;
 use serde::{Deserialize, Serialize};
 
@@ -44,11 +43,12 @@ pub struct TcgCardJSON {
     #[serde(rename = "regulationMark")]
     pub regulation_mark: Option<String>,
     pub images: TcgCardImagesJSON,
-    pub set: Option<TcgSetJSON>,
 }
 
 impl TcgCardJSON {
     pub fn convert_to_card(self, index: i32) -> TcgCard {
+        let set_identifier = get_set_identifier(&self.id);
+
         TcgCard {
             id: index,
             identifier: self.id,
@@ -76,7 +76,15 @@ impl TcgCardJSON {
             legalities: self.legalities.into(),
             regulation_mark: self.regulation_mark,
             images: self.images.into(),
-            set_identifier: self.set.map(|set| set.id),
+            set_id: None,
+            set_identifier,
         }
+    }
+}
+
+fn get_set_identifier(card_identifier: &String) -> Option<String> {
+    match card_identifier.find('-') {
+        Some(index) => Some(card_identifier[..index].to_string()),
+        None => None,
     }
 }

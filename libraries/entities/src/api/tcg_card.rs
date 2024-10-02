@@ -31,6 +31,7 @@ pub struct TcgCard {
     pub legalities: TcgLegalities,
     pub regulation_mark: Option<String>,
     pub images: TcgCardImages,
+    pub set_id: Option<i32>,
     pub set_identifier: Option<String>,
 }
 

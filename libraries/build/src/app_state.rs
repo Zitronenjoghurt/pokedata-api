@@ -1,7 +1,7 @@
+use crate::search_index::build_search_indices;
 use crate::sprites::load_sprite_index;
 use pokedata_api_entities::api::pokemon_type::get_major_type_ids;
 use pokedata_api_entities::app_state::AppState;
-use pokedata_api_entities::search_indices::SearchIndices;
 use pokedata_api_entities::traits::into_id_map::IntoIdMap;
 use pokedata_api_parsing::csv::evolution_chains::EvolutionChainConversionData;
 use pokedata_api_parsing::csv::move_flags::PokemonMoveFlagConversionData;
@@ -72,7 +72,7 @@ pub fn create_app_state(csv_path: &PathBuf) -> AppState {
 
     let major_type_ids = get_major_type_ids(types.values().cloned().collect());
 
-    let search_indices = SearchIndices::build(&tcg_cards, &tcg_sets);
+    let search_indices = build_search_indices(&tcg_cards, &tcg_sets);
 
     AppState {
         abilities,

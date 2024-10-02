@@ -1,5 +1,5 @@
-use crate::api::tcg_card::TcgCard;
-use crate::data_structures::search_index::SearchIndex;
+use pokedata_api_entities::api::tcg_card::TcgCard;
+use pokedata_api_entities::data_structures::search_index::SearchIndex;
 use std::collections::HashMap;
 
 pub fn index_card_identifier_to_card_id(cards: &HashMap<i32, TcgCard>) -> SearchIndex<String, i32> {
