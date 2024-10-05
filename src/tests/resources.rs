@@ -24,6 +24,9 @@ mod pokemon_move_category;
 mod tcg_card;
 mod pokemon_move_effect;
 mod ability;
+mod berry;
+mod berry_firmness;
+mod berry_flavor;
 
 static TEST_SERVER: Lazy<TestServer> = Lazy::new(|| {
     let app = build_app();

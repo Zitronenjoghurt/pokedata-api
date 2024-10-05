@@ -8,7 +8,7 @@ An API which compiles pokemon data from different sources into a combined and ri
 
 # Setup
 
-When built, the API will automatically download and prepare data from different data sources during the build process.
+The API will automatically download and prepare data from different data sources during the build process.
 After being built, the pokemon data is bundled into the binary and is independent from all outside data sources.
 If there was an update to the remote data, just delete the data directory in the project root and rebuild the app.
 

@@ -8,6 +8,7 @@ use pokedata_api_entities::api::pokemon_type::get_major_type_ids;
 use pokedata_api_entities::app_state::AppState;
 use pokedata_api_entities::traits::into_id_map::IntoIdMap;
 use pokedata_api_parsing::csv::abilities::AbilityConversionData;
+use pokedata_api_parsing::csv::berries::BerryConversionData;
 use pokedata_api_parsing::csv::evolution_chains::EvolutionChainConversionData;
 use pokedata_api_parsing::csv::move_damage_classes::PokemonMoveDamageClassConversionData;
 use pokedata_api_parsing::csv::move_effects::PokemonMoveEffectConversionData;
@@ -29,7 +30,10 @@ pub fn create_app_state(csv_path: &PathBuf) -> AppState {
     let mut tcg_cards = load_tcg_cards();
     let mut tcg_sets = load_tcg_sets();
 
+    let berry_flavors_csv_entries = contest_type_names::BerryFlavorNamesCSV::load(csv_path).unwrap();
+
     let ailment_names = move_meta_ailment_names::MoveMetaAilmentNamesCSV::load(csv_path).unwrap().into_localized_values_map();
+    let berry_firmness_names = berry_firmness_names::BerryFirmnessNamesCSV::load(csv_path).unwrap().into_localized_values_map();
     let color_names = pokemon_color_names::PokemonColorNamesCSV::load(csv_path).unwrap().into_localized_values_map();
     let generation_names = generation_names::GenerationNamesCSV::load(csv_path).unwrap().into_localized_values_map();
     let growth_rate_names = growth_rate_prose::GrowthRateProseCSV::load(csv_path).unwrap().into_localized_values_map();
@@ -44,6 +48,7 @@ pub fn create_app_state(csv_path: &PathBuf) -> AppState {
     let sprite_index = Arc::new(load_sprite_index());
 
     let ability_data = AbilityConversionData::load(csv_path);
+    let berry_data = BerryConversionData::load(csv_path);
     let moves_data = PokemonMoveConversionData::load(csv_path);
     let move_damage_classes_data = PokemonMoveDamageClassConversionData::load(csv_path);
     let move_effects_data = PokemonMoveEffectConversionData::load(csv_path);
@@ -53,6 +58,9 @@ pub fn create_app_state(csv_path: &PathBuf) -> AppState {
     let pokemon_shapes_data = PokemonShapesConversionData::load(csv_path);
 
     let abilities = abilities::AbilitiesCSV::load_and_convert(csv_path, &ability_data).unwrap().into_id_map();
+    let berries = berries::BerriesCSV::load_and_convert(csv_path, &berry_data).unwrap().into_id_map();
+    let berry_firmness = berry_firmness::BerryFirmnessCSV::load_and_convert(csv_path, &berry_firmness_names).unwrap().into_id_map();
+    let berry_flavors = contest_type_names::convert_to_berry_flavors(berry_flavors_csv_entries).into_id_map();
     let colors = pokemon_colors::PokemonColorsCSV::load_and_convert(csv_path, &color_names).unwrap().into_id_map();
     let evolutions = pokemon_evolution::PokemonEvolutionCSV::load_and_convert(csv_path, &()).unwrap().into_id_map();
     let generations = generations::GenerationsCSV::load_and_convert(csv_path, &generation_names).unwrap().into_id_map();
@@ -96,6 +104,9 @@ pub fn create_app_state(csv_path: &PathBuf) -> AppState {
 
     AppState {
         abilities,
+        berries,
+        berry_firmness,
+        berry_flavors,
         colors,
         evolutions,
         evolution_chains,

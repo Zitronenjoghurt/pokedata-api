@@ -1,4 +1,7 @@
 use crate::api::ability::Ability;
+use crate::api::berry::Berry;
+use crate::api::berry_firmness::BerryFirmness;
+use crate::api::berry_flavor::BerryFlavor;
 use crate::api::evolution::Evolution;
 use crate::api::evolution_chain::EvolutionChain;
 use crate::api::generation::Generation;
@@ -31,6 +34,9 @@ use std::collections::HashMap;
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct AppState {
     pub abilities: HashMap<i32, Ability>,
+    pub berries: HashMap<i32, Berry>,
+    pub berry_firmness: HashMap<i32, BerryFirmness>,
+    pub berry_flavors: HashMap<i32, BerryFlavor>,
     pub colors: HashMap<i32, PokemonColor>,
     pub evolutions: HashMap<i32, Evolution>,
     pub evolution_chains: HashMap<i32, EvolutionChain>,

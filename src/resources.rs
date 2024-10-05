@@ -10,6 +10,9 @@ use std::hash::Hash;
 use utoipa::ToSchema;
 
 pub mod ability;
+pub mod berry;
+pub mod berry_firmness;
+pub mod berry_flavor;
 pub mod color;
 pub mod evolution;
 pub mod evolution_chain;

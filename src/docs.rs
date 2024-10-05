@@ -12,6 +12,9 @@ use utoipa::OpenApi;
     ),
     paths(
         resources::ability::get_ability,
+        resources::berry::get_berry,
+        resources::berry_firmness::get_berry_firmness,
+        resources::berry_flavor::get_berry_flavor,
         resources::color::get_color,
         resources::evolution::get_evolution,
         resources::evolution_chain::get_evolution_chain,
@@ -43,6 +46,7 @@ use utoipa::OpenApi;
     tags(
         (name = "Misc", description = "Miscellaneous endpoints"),
         (name = "Abilities"),
+        (name = "Berries"),
         (name = "Colors"),
         (name = "Evolutions"),
         (name = "Generations"),
@@ -64,6 +68,9 @@ use utoipa::OpenApi;
         schemas(
             ability::Ability,
             ability_changelog_entry::AbilityChangelogEntry,
+            berry::Berry,
+            berry_firmness::BerryFirmness,
+            berry_flavor::BerryFlavor,
             evolution::Evolution,
             evolution_chain::EvolutionChain,
             evolution_chain::EvolutionChainNode,

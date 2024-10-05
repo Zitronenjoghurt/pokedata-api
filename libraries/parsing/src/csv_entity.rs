@@ -4,6 +4,11 @@ use crate::csv::ability_changelog_prose::AbilityChangelogProseCSV;
 use crate::csv::ability_flavor_text::AbilityFlavorTextCSV;
 use crate::csv::ability_names::AbilityNamesCSV;
 use crate::csv::ability_prose::{AbilityEffectsCSV, AbilityShortEffectsCSV};
+use crate::csv::berries::BerriesCSV;
+use crate::csv::berry_firmness::BerryFirmnessCSV;
+use crate::csv::berry_firmness_names::BerryFirmnessNamesCSV;
+use crate::csv::berry_flavors::BerryFlavorPotenciesCSV;
+use crate::csv::contest_type_names::BerryFlavorNamesCSV;
 use crate::csv::evolution_chains::EvolutionChainsCSV;
 use crate::csv::generation_names::GenerationNamesCSV;
 use crate::csv::generations::GenerationsCSV;
@@ -114,6 +119,11 @@ pub fn get_all_metadata() -> Vec<CSVEntityMetaData> {
         AbilityNamesCSV::get_metadata(),
         AbilityEffectsCSV::get_metadata(),
         AbilityShortEffectsCSV::get_metadata(),
+        BerriesCSV::get_metadata(),
+        BerryFirmnessCSV::get_metadata(),
+        BerryFirmnessNamesCSV::get_metadata(),
+        BerryFlavorNamesCSV::get_metadata(),
+        BerryFlavorPotenciesCSV::get_metadata(),
         EvolutionChainsCSV::get_metadata(),
         GenerationNamesCSV::get_metadata(),
         GenerationsCSV::get_metadata(),

@@ -1,4 +1,7 @@
 use ability::*;
+use berry::*;
+use berry_firmness::*;
+use berry_flavor::*;
 use evolution::*;
 use evolution_chain::*;
 use generation::*;
@@ -31,6 +34,9 @@ use version_group::*;
 #[derive(Deserialize, ToSchema)]
 #[aliases(
     AbilityBulkResponse = BulkResponse<Ability>,
+    BerryBulkResponse = BulkResponse<Berry>,
+    BerryFirmnessBulkResponse = BulkResponse<BerryFirmness>,
+    BerryFlavorBulkResponse = BulkResponse<BerryFlavor>,
     ColorBulkResponse = BulkResponse<PokemonColor>,
     EvolutionBulkResponse = BulkResponse<Evolution>,
     EvolutionChainBulkResponse = BulkResponse<EvolutionChain>,
