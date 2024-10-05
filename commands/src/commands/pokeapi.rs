@@ -5,7 +5,7 @@ mod build_sprites;
 mod coverage;
 
 const CSV_DATA_PATH: &'static str = "data/v2/csv";
-const IGNORE_FILE_PREFIXES: &[&str] = &["conquest", "pokemon_species_flavor_summaries", "pokemon_species_prose", "super_contest", "type_game_indices"];
+const IGNORE_FILE_PREFIXES: &[&str] = &["conquest", "move_flavor_summaries", "pokemon_species_flavor_summaries", "pokemon_species_prose", "super_contest", "type_game_indices"];
 const POKEAPI_OWNER: &'static str = "PokeAPI";
 const POKEAPI_REPO: &'static str = "pokeapi";
 const POKEAPI_SPRITES_REPO_HTTPS: &'static str = "https://github.com/PokeAPI/sprites.git";

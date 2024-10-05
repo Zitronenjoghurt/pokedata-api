@@ -3,6 +3,7 @@ use pokedata_api_parsing::csv_entity::get_all_metadata;
 use reqwest::blocking::Client;
 use reqwest::header::{HeaderMap, HeaderValue, USER_AGENT};
 use serde::Deserialize;
+use std::collections::HashSet;
 
 #[derive(Deserialize, Debug)]
 struct GitHubFile {
@@ -30,25 +31,34 @@ pub fn coverage() -> Result<(), String> {
         return Err(format!("An error occurred while requesting the GitHub API: {}", response.status()));
     };
 
+    let mut skipped_files_count = 0;
     let csv_files: Vec<String> = all_files
         .into_iter()
         .map(|file| file.name)
         .filter(|name| {
-            name.ends_with(".csv") &&
-                !IGNORE_FILE_PREFIXES.iter().any(|&prefix| name.starts_with(prefix))
+            let is_csv = name.ends_with(".csv");
+            if is_csv && IGNORE_FILE_PREFIXES.iter().any(|&prefix| name.starts_with(prefix)) {
+                skipped_files_count += 1;
+                false
+            } else {
+                is_csv
+            }
         })
         .collect();
 
-    let covered_files: Vec<String> = get_all_metadata().iter().map(|data| format!("{}.csv", data.file_name)).collect();
+    let covered_files: HashSet<String> = get_all_metadata().iter().map(|data| format!("{}.csv", data.file_name)).collect();
 
-    let total_files = csv_files.len();
-    let covered_count = covered_files.len();
+    let csv_files_count = csv_files.len();
+    let covered_files_count = covered_files.len();
     let uncovered_files: Vec<String> = csv_files
         .into_iter()
         .filter(|name| !covered_files.contains(name))
         .collect();
 
-    println!("Coverage: {}/{} files", covered_count, total_files);
+    let percentage_covered = (covered_files_count as f32 / csv_files_count as f32) * 100.0;
+
+    println!("Coverage: {}/{} files ({:.2}%)", covered_files_count, csv_files_count, percentage_covered);
+    println!("Skipped files: {}", skipped_files_count);
     println!("Uncovered files:");
     for file in &uncovered_files {
         println!("{}", file);
