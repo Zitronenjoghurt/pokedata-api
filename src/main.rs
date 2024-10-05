@@ -52,6 +52,7 @@ pub fn build_app() -> Router {
         .nest("/move-ailment", resources::pokemon_move_ailment::router())
         .nest("/move-category", resources::pokemon_move_category::router())
         .nest("/move-damage-class", resources::pokemon_move_damage_class::router())
+        .nest("/move-effect", resources::pokemon_move_effect::router())
         .nest("/move-flag", resources::pokemon_move_flag::router())
         .nest("/move-target", resources::pokemon_move_target::router())
         .nest("/pokemon", resources::pokemon::router())

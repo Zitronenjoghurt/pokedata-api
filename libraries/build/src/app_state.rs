@@ -1,4 +1,5 @@
 use crate::enrich_data::card_ids_for_tcg_sets::enrich_tcg_sets_with_card_ids;
+use crate::enrich_data::move_ids_for_move_effects::enrich_move_effects_with_move_ids;
 use crate::enrich_data::set_id_for_tcg_cards::enrich_tcg_cards_with_set_id;
 use crate::enrich_data::tcg_ids_for_species::enrich_species_with_tcg_ids;
 use crate::search_index::build_search_indices;
@@ -8,6 +9,7 @@ use pokedata_api_entities::app_state::AppState;
 use pokedata_api_entities::traits::into_id_map::IntoIdMap;
 use pokedata_api_parsing::csv::evolution_chains::EvolutionChainConversionData;
 use pokedata_api_parsing::csv::move_damage_classes::PokemonMoveDamageClassConversionData;
+use pokedata_api_parsing::csv::move_effects::PokemonMoveEffectConversionData;
 use pokedata_api_parsing::csv::move_flags::PokemonMoveFlagConversionData;
 use pokedata_api_parsing::csv::move_targets::PokemonMoveTargetConversionData;
 use pokedata_api_parsing::csv::moves::PokemonMoveConversionData;
@@ -41,6 +43,7 @@ pub fn create_app_state(csv_path: &PathBuf) -> AppState {
     let sprite_index = Arc::new(load_sprite_index());
     let moves_data = PokemonMoveConversionData::load(csv_path);
     let move_damage_classes_data = PokemonMoveDamageClassConversionData::load(csv_path);
+    let move_effects_data = PokemonMoveEffectConversionData::load(csv_path);
     let move_flags_data = PokemonMoveFlagConversionData::load(csv_path);
     let move_targets_data = PokemonMoveTargetConversionData::load(csv_path);
     let pokemon_data = PokemonConversionData::load(csv_path, sprite_index);
@@ -57,6 +60,7 @@ pub fn create_app_state(csv_path: &PathBuf) -> AppState {
     let move_ailments = move_meta_ailments::MoveMetaAilmentsCSV::load_and_convert(csv_path, &ailment_names).unwrap().into_id_map();
     let move_categories = move_meta_categories::MoveMetaCategoriesCSV::load_and_convert(csv_path, &move_category_descriptions).unwrap().into_id_map();
     let move_damage_classes = move_damage_classes::MoveDamageClassesCSV::load_and_convert(csv_path, &move_damage_classes_data).unwrap().into_id_map();
+    let mut move_effects = move_effects::MoveEffectsCSV::load_and_convert(csv_path, &move_effects_data).unwrap().into_id_map();
     let move_flags = move_flags::MoveFlagsCSV::load_and_convert(csv_path, &move_flags_data).unwrap().into_id_map();
     let move_targets = move_targets::MoveTargetsCSV::load_and_convert(csv_path, &move_targets_data).unwrap().into_id_map();
     let pokemon = pokemon::PokemonCSV::load_and_convert(csv_path, &pokemon_data).unwrap().into_id_map();
@@ -81,6 +85,7 @@ pub fn create_app_state(csv_path: &PathBuf) -> AppState {
 
     let search_indices = build_search_indices(&tcg_cards, &tcg_sets);
 
+    enrich_move_effects_with_move_ids(&moves, &mut move_effects);
     enrich_tcg_cards_with_set_id(&mut tcg_cards, &search_indices.set_identifier_to_set_id);
     enrich_tcg_sets_with_card_ids(&tcg_cards, &mut tcg_sets, &search_indices.set_identifier_to_set_id);
 
@@ -99,6 +104,7 @@ pub fn create_app_state(csv_path: &PathBuf) -> AppState {
         move_ailments,
         move_categories,
         move_damage_classes,
+        move_effects,
         move_flags,
         move_targets,
         pokemon,

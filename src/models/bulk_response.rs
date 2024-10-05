@@ -12,6 +12,7 @@ use pokemon_move::*;
 use pokemon_move_ailment::*;
 use pokemon_move_category::*;
 use pokemon_move_damage_class::*;
+use pokemon_move_effect::*;
 use pokemon_move_flag::*;
 use pokemon_move_target::*;
 use pokemon_shape::*;
@@ -40,6 +41,7 @@ use version_group::*;
     PokemonMoveAilmentBulkResponse = BulkResponse<PokemonMoveAilment>,
     PokemonMoveCategoryBulkResponse = BulkResponse<PokemonMoveCategory>,
     PokemonMoveDamageClassBulkResponse = BulkResponse<PokemonMoveDamageClass>,
+    PokemonMoveEffectBulkResponse = BulkResponse<PokemonMoveEffect>,
     PokemonMoveFlagBulkResponse = BulkResponse<PokemonMoveFlag>,
     PokemonMoveTargetBulkResponse = BulkResponse<PokemonMoveTarget>,
     PokemonTypeBulkResponse = BulkResponse<PokemonType>,

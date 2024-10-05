@@ -5,7 +5,7 @@ use std::collections::HashMap;
 use utoipa::ToSchema;
 
 /// Strings mapped by language id
-#[derive(Clone, Debug, Default, Serialize, Deserialize, ToSchema)]
+#[derive(Clone, Debug, Default, Serialize, Deserialize, ToSchema, PartialEq, Eq)]
 #[schema(
     example = json!({"6": "german name", "9": "english name", "...": "..."}),
 )]

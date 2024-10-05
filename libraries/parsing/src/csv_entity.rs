@@ -9,6 +9,10 @@ use crate::csv::languages::LanguagesCSV;
 use crate::csv::move_changelog::MoveChangelogCSV;
 use crate::csv::move_damage_class_prose::{MoveDamageClassDescriptionsCSV, MoveDamageClassNamesCSV};
 use crate::csv::move_damage_classes::MoveDamageClassesCSV;
+use crate::csv::move_effect_changelog::MoveEffectChangelogCSV;
+use crate::csv::move_effect_changelog_prose::MoveEffectChangelogProseCSV;
+use crate::csv::move_effect_prose::{MoveEffectEffectsCSV, MoveEffectShortEffectsCSV};
+use crate::csv::move_effects::MoveEffectsCSV;
 use crate::csv::move_flag_map::MoveFlagMapCSV;
 use crate::csv::move_flag_prose::{MoveFlagDescriptionsCSV, MoveFlagNamesCSV};
 use crate::csv::move_flags::MoveFlagsCSV;
@@ -111,6 +115,11 @@ pub fn get_all_metadata() -> Vec<CSVEntityMetaData> {
         MoveDamageClassesCSV::get_metadata(),
         MoveDamageClassNamesCSV::get_metadata(),
         MoveDamageClassDescriptionsCSV::get_metadata(),
+        MoveEffectsCSV::get_metadata(),
+        MoveEffectChangelogCSV::get_metadata(),
+        MoveEffectChangelogProseCSV::get_metadata(),
+        MoveEffectEffectsCSV::get_metadata(),
+        MoveEffectShortEffectsCSV::get_metadata(),
         MoveFlagsCSV::get_metadata(),
         MoveFlagDescriptionsCSV::get_metadata(),
         MoveFlagMapCSV::get_metadata(),

@@ -11,6 +11,7 @@ use crate::api::pokemon_move::PokemonMove;
 use crate::api::pokemon_move_ailment::PokemonMoveAilment;
 use crate::api::pokemon_move_category::PokemonMoveCategory;
 use crate::api::pokemon_move_damage_class::PokemonMoveDamageClass;
+use crate::api::pokemon_move_effect::PokemonMoveEffect;
 use crate::api::pokemon_move_flag::PokemonMoveFlag;
 use crate::api::pokemon_move_target::PokemonMoveTarget;
 use crate::api::pokemon_shape::PokemonShape;
@@ -41,6 +42,7 @@ pub struct AppState {
     pub move_ailments: HashMap<i32, PokemonMoveAilment>,
     pub move_categories: HashMap<i32, PokemonMoveCategory>,
     pub move_damage_classes: HashMap<i32, PokemonMoveDamageClass>,
+    pub move_effects: HashMap<i32, PokemonMoveEffect>,
     pub move_flags: HashMap<i32, PokemonMoveFlag>,
     pub move_targets: HashMap<i32, PokemonMoveTarget>,
     pub pokemon: HashMap<i32, Pokemon>,

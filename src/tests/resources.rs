@@ -22,6 +22,7 @@ mod pokemon_move_flag;
 mod pokemon_move_ailment;
 mod pokemon_move_category;
 mod tcg_card;
+mod pokemon_move_effect;
 
 static TEST_SERVER: Lazy<TestServer> = Lazy::new(|| {
     let app = build_app();

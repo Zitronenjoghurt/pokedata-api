@@ -13,6 +13,8 @@ pub mod pokemon_move_ailment;
 pub mod pokemon_move_category;
 pub mod pokemon_move_changelog_entry;
 pub mod pokemon_move_damage_class;
+pub mod pokemon_move_effect;
+pub mod pokemon_move_effect_changelog_entry;
 pub mod pokemon_move_flag;
 pub mod pokemon_move_target;
 pub mod pokemon_shape;
