@@ -1,3 +1,4 @@
+use ability::*;
 use evolution::*;
 use evolution_chain::*;
 use generation::*;
@@ -29,6 +30,7 @@ use version_group::*;
 
 #[derive(Deserialize, ToSchema)]
 #[aliases(
+    AbilityBulkResponse = BulkResponse<Ability>,
     ColorBulkResponse = BulkResponse<PokemonColor>,
     EvolutionBulkResponse = BulkResponse<Evolution>,
     EvolutionChainBulkResponse = BulkResponse<EvolutionChain>,

@@ -1,4 +1,9 @@
 pub mod abilities;
+pub mod ability_changelog;
+pub mod ability_changelog_prose;
+pub mod ability_flavor_text;
+pub mod ability_names;
+pub mod ability_prose;
 pub mod evolution_chains;
 pub mod generation_names;
 pub mod generations;

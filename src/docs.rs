@@ -11,6 +11,7 @@ use utoipa::OpenApi;
         description = "An API handling all kinds of pokemon data. Accumulated directly from the data sources of PokeAPI and PokemonTCG.io"
     ),
     paths(
+        resources::ability::get_ability,
         resources::color::get_color,
         resources::evolution::get_evolution,
         resources::evolution_chain::get_evolution_chain,
@@ -41,6 +42,7 @@ use utoipa::OpenApi;
     ),
     tags(
         (name = "Misc", description = "Miscellaneous endpoints"),
+        (name = "Abilities"),
         (name = "Colors"),
         (name = "Evolutions"),
         (name = "Generations"),
@@ -60,6 +62,8 @@ use utoipa::OpenApi;
     ),
     components(
         schemas(
+            ability::Ability,
+            ability_changelog_entry::AbilityChangelogEntry,
             evolution::Evolution,
             evolution_chain::EvolutionChain,
             evolution_chain::EvolutionChainNode,
@@ -71,10 +75,13 @@ use utoipa::OpenApi;
             localized_values::VersionGroupedLocalizedValues,
             pokemon::Pokemon,
             pokemon_move::PokemonMove,
+            pokemon_move_ailment::PokemonMoveAilment,
+            pokemon_move_category::PokemonMoveCategory,
             pokemon_move_changelog_entry::PokemonMoveChangelogEntry,
             pokemon_move_damage_class::PokemonMoveDamageClass,
             pokemon_move_effect::PokemonMoveEffect,
             pokemon_move_effect_changelog_entry::PokemonMoveEffectChangelogEntry,
+            pokemon_move_flag::PokemonMoveFlag,
             pokemon_move_target::PokemonMoveTarget,
             PokemonColor,
             pokemon_habitat::PokemonHabitat,

@@ -8,8 +8,8 @@ use utoipa::ToSchema;
 #[derive(Clone, Debug, Default, Serialize, Deserialize, ToSchema)]
 pub struct PokemonMoveEffect {
     pub id: i32,
-    pub effect: Option<LocalizedValues>,
-    pub short_effect: Option<LocalizedValues>,
+    pub effects: Option<LocalizedValues>,
+    pub short_effects: Option<LocalizedValues>,
     /// Changelog entries mapped by the version group id they were introduced in
     pub changelogs: HashMap<i32, PokemonMoveEffectChangelogEntry>,
     /// IDs of the moves that have this effect

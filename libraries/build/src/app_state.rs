@@ -7,6 +7,7 @@ use crate::sprites::load_sprite_index;
 use pokedata_api_entities::api::pokemon_type::get_major_type_ids;
 use pokedata_api_entities::app_state::AppState;
 use pokedata_api_entities::traits::into_id_map::IntoIdMap;
+use pokedata_api_parsing::csv::abilities::AbilityConversionData;
 use pokedata_api_parsing::csv::evolution_chains::EvolutionChainConversionData;
 use pokedata_api_parsing::csv::move_damage_classes::PokemonMoveDamageClassConversionData;
 use pokedata_api_parsing::csv::move_effects::PokemonMoveEffectConversionData;
@@ -41,6 +42,8 @@ pub fn create_app_state(csv_path: &PathBuf) -> AppState {
     let version_names = version_names::VersionNamesCSV::load(csv_path).unwrap().into_localized_values_map();
 
     let sprite_index = Arc::new(load_sprite_index());
+
+    let ability_data = AbilityConversionData::load(csv_path);
     let moves_data = PokemonMoveConversionData::load(csv_path);
     let move_damage_classes_data = PokemonMoveDamageClassConversionData::load(csv_path);
     let move_effects_data = PokemonMoveEffectConversionData::load(csv_path);
@@ -49,7 +52,7 @@ pub fn create_app_state(csv_path: &PathBuf) -> AppState {
     let pokemon_data = PokemonConversionData::load(csv_path, sprite_index);
     let pokemon_shapes_data = PokemonShapesConversionData::load(csv_path);
 
-    let abilities = abilities::AbilitiesCSV::load_and_convert(csv_path, &()).unwrap().into_id_map();
+    let abilities = abilities::AbilitiesCSV::load_and_convert(csv_path, &ability_data).unwrap().into_id_map();
     let colors = pokemon_colors::PokemonColorsCSV::load_and_convert(csv_path, &color_names).unwrap().into_id_map();
     let evolutions = pokemon_evolution::PokemonEvolutionCSV::load_and_convert(csv_path, &()).unwrap().into_id_map();
     let generations = generations::GenerationsCSV::load_and_convert(csv_path, &generation_names).unwrap().into_id_map();

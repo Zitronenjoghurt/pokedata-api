@@ -41,6 +41,7 @@ pub fn build_app() -> Router {
 
     Router::new()
         .nest("/", resources::ping::router())
+        .nest("/ability", resources::ability::router())
         .nest("/color", resources::color::router())
         .nest("/evolution", resources::evolution::router())
         .nest("/evolution-chain", resources::evolution_chain::router())

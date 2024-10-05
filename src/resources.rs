@@ -9,6 +9,7 @@ use std::collections::HashMap;
 use std::hash::Hash;
 use utoipa::ToSchema;
 
+pub mod ability;
 pub mod color;
 pub mod evolution;
 pub mod evolution_chain;

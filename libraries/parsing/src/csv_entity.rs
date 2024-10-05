@@ -1,4 +1,9 @@
 use crate::csv::abilities::AbilitiesCSV;
+use crate::csv::ability_changelog::AbilityChangelogCSV;
+use crate::csv::ability_changelog_prose::AbilityChangelogProseCSV;
+use crate::csv::ability_flavor_text::AbilityFlavorTextCSV;
+use crate::csv::ability_names::AbilityNamesCSV;
+use crate::csv::ability_prose::{AbilityEffectsCSV, AbilityShortEffectsCSV};
 use crate::csv::evolution_chains::EvolutionChainsCSV;
 use crate::csv::generation_names::GenerationNamesCSV;
 use crate::csv::generations::GenerationsCSV;
@@ -103,6 +108,12 @@ pub trait CSVEntity: DeserializeOwned {
 pub fn get_all_metadata() -> Vec<CSVEntityMetaData> {
     vec![
         AbilitiesCSV::get_metadata(),
+        AbilityChangelogCSV::get_metadata(),
+        AbilityChangelogProseCSV::get_metadata(),
+        AbilityFlavorTextCSV::get_metadata(),
+        AbilityNamesCSV::get_metadata(),
+        AbilityEffectsCSV::get_metadata(),
+        AbilityShortEffectsCSV::get_metadata(),
         EvolutionChainsCSV::get_metadata(),
         GenerationNamesCSV::get_metadata(),
         GenerationsCSV::get_metadata(),

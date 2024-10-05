@@ -36,8 +36,8 @@ impl ApiCSVEntity for MoveEffectsCSV {
 
         Ok(PokemonMoveEffect {
             id: entry.id,
-            effect: data.effects_map.get(entry.id),
-            short_effect: data.short_effects_map.get(entry.id),
+            effects: data.effects_map.get(entry.id),
+            short_effects: data.short_effects_map.get(entry.id),
             changelogs,
             move_ids: vec![],
         })

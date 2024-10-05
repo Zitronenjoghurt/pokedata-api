@@ -1,4 +1,5 @@
 pub mod ability;
+pub mod ability_changelog_entry;
 pub mod evolution;
 pub mod evolution_chain;
 pub mod generation;
