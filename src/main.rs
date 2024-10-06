@@ -46,6 +46,7 @@ pub fn build_app() -> Router {
         .nest("/berry-firmness", resources::berry_firmness::router())
         .nest("/berry-flavor", resources::berry_flavor::router())
         .nest("/color", resources::color::router())
+        .nest("/egg-group", resources::egg_group::router())
         .nest("/evolution", resources::evolution::router())
         .nest("/evolution-chain", resources::evolution_chain::router())
         .nest("/generation", resources::generation::router())

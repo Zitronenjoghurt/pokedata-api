@@ -1,8 +1,9 @@
 pub mod ability;
+pub mod ability_changelog_entry;
 pub mod berry;
 pub mod berry_firmness;
 pub mod berry_flavor;
-pub mod ability_changelog_entry;
+pub mod egg_group;
 pub mod evolution;
 pub mod evolution_chain;
 pub mod generation;

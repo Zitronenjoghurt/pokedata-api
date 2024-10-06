@@ -2,6 +2,7 @@ use ability::*;
 use berry::*;
 use berry_firmness::*;
 use berry_flavor::*;
+use egg_group::*;
 use evolution::*;
 use evolution_chain::*;
 use generation::*;
@@ -38,6 +39,7 @@ use version_group::*;
     BerryFirmnessBulkResponse = BulkResponse<BerryFirmness>,
     BerryFlavorBulkResponse = BulkResponse<BerryFlavor>,
     ColorBulkResponse = BulkResponse<PokemonColor>,
+    EggGroupBulkResponse = BulkResponse<EggGroup>,
     EvolutionBulkResponse = BulkResponse<Evolution>,
     EvolutionChainBulkResponse = BulkResponse<EvolutionChain>,
     GenerationBulkResponse = BulkResponse<Generation>,

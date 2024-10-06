@@ -9,6 +9,8 @@ use crate::csv::berry_firmness::BerryFirmnessCSV;
 use crate::csv::berry_firmness_names::BerryFirmnessNamesCSV;
 use crate::csv::berry_flavors::BerryFlavorPotenciesCSV;
 use crate::csv::contest_type_names::BerryFlavorNamesCSV;
+use crate::csv::egg_group_prose::EggGroupProseCSV;
+use crate::csv::egg_groups::EggGroupsCSV;
 use crate::csv::evolution_chains::EvolutionChainsCSV;
 use crate::csv::generation_names::GenerationNamesCSV;
 use crate::csv::generations::GenerationsCSV;
@@ -124,6 +126,8 @@ pub fn get_all_metadata() -> Vec<CSVEntityMetaData> {
         BerryFirmnessNamesCSV::get_metadata(),
         BerryFlavorNamesCSV::get_metadata(),
         BerryFlavorPotenciesCSV::get_metadata(),
+        EggGroupsCSV::get_metadata(),
+        EggGroupProseCSV::get_metadata(),
         EvolutionChainsCSV::get_metadata(),
         GenerationNamesCSV::get_metadata(),
         GenerationsCSV::get_metadata(),

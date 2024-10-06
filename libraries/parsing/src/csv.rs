@@ -9,6 +9,8 @@ pub mod berry_firmness;
 pub mod berry_firmness_names;
 pub mod berry_flavors;
 pub mod contest_type_names;
+pub mod egg_groups;
+pub mod egg_group_prose;
 pub mod evolution_chains;
 pub mod generation_names;
 pub mod generations;

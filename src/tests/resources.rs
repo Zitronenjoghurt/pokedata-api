@@ -27,6 +27,7 @@ mod ability;
 mod berry;
 mod berry_firmness;
 mod berry_flavor;
+mod egg_group;
 
 static TEST_SERVER: Lazy<TestServer> = Lazy::new(|| {
     let app = build_app();
