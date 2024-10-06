@@ -5,6 +5,7 @@ use crate::api::berry_flavor::BerryFlavor;
 use crate::api::egg_group::EggGroup;
 use crate::api::evolution::Evolution;
 use crate::api::evolution_chain::EvolutionChain;
+use crate::api::evolution_trigger::EvolutionTrigger;
 use crate::api::generation::Generation;
 use crate::api::growth_rate::GrowthRate;
 use crate::api::language::Language;
@@ -42,6 +43,7 @@ pub struct AppState {
     pub egg_groups: HashMap<i32, EggGroup>,
     pub evolutions: HashMap<i32, Evolution>,
     pub evolution_chains: HashMap<i32, EvolutionChain>,
+    pub evolution_triggers: HashMap<i32, EvolutionTrigger>,
     pub generations: HashMap<i32, Generation>,
     pub growth_rates: HashMap<i32, GrowthRate>,
     pub habitats: HashMap<i32, PokemonHabitat>,

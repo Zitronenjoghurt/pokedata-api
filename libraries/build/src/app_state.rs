@@ -36,6 +36,7 @@ pub fn create_app_state(csv_path: &PathBuf) -> AppState {
     let berry_firmness_names = berry_firmness_names::BerryFirmnessNamesCSV::load(csv_path).unwrap().into_localized_values_map();
     let color_names = pokemon_color_names::PokemonColorNamesCSV::load(csv_path).unwrap().into_localized_values_map();
     let egg_group_names = egg_group_prose::EggGroupProseCSV::load(csv_path).unwrap().into_localized_values_map();
+    let evolution_trigger_names = evolution_trigger_prose::EvolutionTriggerProseCSV::load(csv_path).unwrap().into_localized_values_map();
     let generation_names = generation_names::GenerationNamesCSV::load(csv_path).unwrap().into_localized_values_map();
     let growth_rate_names = growth_rate_prose::GrowthRateProseCSV::load(csv_path).unwrap().into_localized_values_map();
     let habitat_names = pokemon_habitat_names::PokemonHabitatNamesCSV::load(csv_path).unwrap().into_localized_values_map();
@@ -65,6 +66,7 @@ pub fn create_app_state(csv_path: &PathBuf) -> AppState {
     let colors = pokemon_colors::PokemonColorsCSV::load_and_convert(csv_path, &color_names).unwrap().into_id_map();
     let egg_groups = egg_groups::EggGroupsCSV::load_and_convert(csv_path, &egg_group_names).unwrap().into_id_map();
     let evolutions = pokemon_evolution::PokemonEvolutionCSV::load_and_convert(csv_path, &()).unwrap().into_id_map();
+    let evolution_triggers = evolution_triggers::EvolutionTriggersCSV::load_and_convert(csv_path, &evolution_trigger_names).unwrap().into_id_map();
     let generations = generations::GenerationsCSV::load_and_convert(csv_path, &generation_names).unwrap().into_id_map();
     let growth_rates = growth_rates::GrowthRatesCSV::load_and_convert(csv_path, &growth_rate_names).unwrap().into_id_map();
     let habitats = pokemon_habitats::PokemonHabitatsCSV::load_and_convert(csv_path, &habitat_names).unwrap().into_id_map();
@@ -113,6 +115,7 @@ pub fn create_app_state(csv_path: &PathBuf) -> AppState {
         egg_groups,
         evolutions,
         evolution_chains,
+        evolution_triggers,
         generations,
         growth_rates,
         habitats,

@@ -12,6 +12,8 @@ pub mod contest_type_names;
 pub mod egg_groups;
 pub mod egg_group_prose;
 pub mod evolution_chains;
+pub mod evolution_triggers;
+pub mod evolution_trigger_prose;
 pub mod generation_names;
 pub mod generations;
 pub mod growth_rates;

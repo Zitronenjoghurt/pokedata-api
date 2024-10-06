@@ -49,6 +49,7 @@ pub fn build_app() -> Router {
         .nest("/egg-group", resources::egg_group::router())
         .nest("/evolution", resources::evolution::router())
         .nest("/evolution-chain", resources::evolution_chain::router())
+        .nest("/evolution-trigger", resources::evolution_trigger::router())
         .nest("/generation", resources::generation::router())
         .nest("/growth-rate", resources::growth_rate::router())
         .nest("/habitat", resources::habitat::router())

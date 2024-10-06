@@ -5,6 +5,7 @@ use berry_flavor::*;
 use egg_group::*;
 use evolution::*;
 use evolution_chain::*;
+use evolution_trigger::*;
 use generation::*;
 use growth_rate::*;
 use language::*;
@@ -42,6 +43,7 @@ use version_group::*;
     EggGroupBulkResponse = BulkResponse<EggGroup>,
     EvolutionBulkResponse = BulkResponse<Evolution>,
     EvolutionChainBulkResponse = BulkResponse<EvolutionChain>,
+    EvolutionTriggerBulkResponse = BulkResponse<EvolutionTrigger>,
     GenerationBulkResponse = BulkResponse<Generation>,
     GrowthRateBulkResponse = BulkResponse<GrowthRate>,
     HabitatBulkResponse = BulkResponse<PokemonHabitat>,

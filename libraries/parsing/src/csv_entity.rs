@@ -12,6 +12,8 @@ use crate::csv::contest_type_names::BerryFlavorNamesCSV;
 use crate::csv::egg_group_prose::EggGroupProseCSV;
 use crate::csv::egg_groups::EggGroupsCSV;
 use crate::csv::evolution_chains::EvolutionChainsCSV;
+use crate::csv::evolution_trigger_prose::EvolutionTriggerProseCSV;
+use crate::csv::evolution_triggers::EvolutionTriggersCSV;
 use crate::csv::generation_names::GenerationNamesCSV;
 use crate::csv::generations::GenerationsCSV;
 use crate::csv::growth_rate_prose::GrowthRateProseCSV;
@@ -129,6 +131,8 @@ pub fn get_all_metadata() -> Vec<CSVEntityMetaData> {
         EggGroupsCSV::get_metadata(),
         EggGroupProseCSV::get_metadata(),
         EvolutionChainsCSV::get_metadata(),
+        EvolutionTriggersCSV::get_metadata(),
+        EvolutionTriggerProseCSV::get_metadata(),
         GenerationNamesCSV::get_metadata(),
         GenerationsCSV::get_metadata(),
         GrowthRateProseCSV::get_metadata(),
