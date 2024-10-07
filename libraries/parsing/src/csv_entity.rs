@@ -18,6 +18,18 @@ use crate::csv::generation_names::GenerationNamesCSV;
 use crate::csv::generations::GenerationsCSV;
 use crate::csv::growth_rate_prose::GrowthRateProseCSV;
 use crate::csv::growth_rates::GrowthRatesCSV;
+use crate::csv::item_categories::ItemCategoriesCSV;
+use crate::csv::item_category_prose::ItemCategoryProseCSV;
+use crate::csv::item_flag_map::ItemFlagMapCSV;
+use crate::csv::item_flag_prose::{ItemFlagDescriptionsCSV, ItemFlagNamesCSV};
+use crate::csv::item_flags::ItemFlagsCSV;
+use crate::csv::item_flavor_text::ItemFlavorTextCSV;
+use crate::csv::item_game_indices::{ItemGameIndicesCSV, ItemGenerationIdsCSV};
+use crate::csv::item_names::ItemNamesCSV;
+use crate::csv::item_pocket_names::ItemPocketNamesCSV;
+use crate::csv::item_pockets::ItemPocketsCSV;
+use crate::csv::items::ItemsCSV;
+use crate::csv::items_prose::{ItemEffectsCSV, ItemShortEffectsCSV};
 use crate::csv::language_names::LanguageNamesCSV;
 use crate::csv::languages::LanguagesCSV;
 use crate::csv::machines::MachinesCSV;
@@ -138,6 +150,21 @@ pub fn get_all_metadata() -> Vec<CSVEntityMetaData> {
         GenerationsCSV::get_metadata(),
         GrowthRateProseCSV::get_metadata(),
         GrowthRatesCSV::get_metadata(),
+        ItemCategoriesCSV::get_metadata(),
+        ItemCategoryProseCSV::get_metadata(),
+        ItemFlagsCSV::get_metadata(),
+        ItemFlagDescriptionsCSV::get_metadata(),
+        ItemFlagMapCSV::get_metadata(),
+        ItemFlagNamesCSV::get_metadata(),
+        ItemFlavorTextCSV::get_metadata(),
+        ItemGameIndicesCSV::get_metadata(),
+        ItemGenerationIdsCSV::get_metadata(),
+        ItemNamesCSV::get_metadata(),
+        ItemsCSV::get_metadata(),
+        ItemEffectsCSV::get_metadata(),
+        ItemShortEffectsCSV::get_metadata(),
+        ItemPocketsCSV::get_metadata(),
+        ItemPocketNamesCSV::get_metadata(),
         LanguagesCSV::get_metadata(),
         LanguageNamesCSV::get_metadata(),
         MachinesCSV::get_metadata(),

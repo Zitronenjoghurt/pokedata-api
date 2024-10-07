@@ -10,6 +10,8 @@ use pokedata_api_entities::traits::into_id_map::IntoIdMap;
 use pokedata_api_parsing::csv::abilities::AbilityConversionData;
 use pokedata_api_parsing::csv::berries::BerryConversionData;
 use pokedata_api_parsing::csv::evolution_chains::EvolutionChainConversionData;
+use pokedata_api_parsing::csv::item_flags::ItemFlagConversionData;
+use pokedata_api_parsing::csv::items::ItemConversionData;
 use pokedata_api_parsing::csv::move_damage_classes::PokemonMoveDamageClassConversionData;
 use pokedata_api_parsing::csv::move_effects::PokemonMoveEffectConversionData;
 use pokedata_api_parsing::csv::move_flags::PokemonMoveFlagConversionData;
@@ -41,6 +43,8 @@ pub fn create_app_state(csv_path: &PathBuf) -> AppState {
     let generation_names = generation_names::GenerationNamesCSV::load(csv_path).unwrap().into_localized_values_map();
     let growth_rate_names = growth_rate_prose::GrowthRateProseCSV::load(csv_path).unwrap().into_localized_values_map();
     let habitat_names = pokemon_habitat_names::PokemonHabitatNamesCSV::load(csv_path).unwrap().into_localized_values_map();
+    let item_category_names = item_category_prose::ItemCategoryProseCSV::load(csv_path).unwrap().into_localized_values_map();
+    let item_pocket_names = item_pocket_names::ItemPocketNamesCSV::load(csv_path).unwrap().into_localized_values_map();
     let language_names = language_names::LanguageNamesCSV::load(csv_path).unwrap().into_localized_values_map();
     let move_category_descriptions = move_meta_category_prose::MoveMetaCategoryProseCSV::load(csv_path).unwrap().into_localized_values_map();
     let region_names = region_names::RegionNamesCSV::load(csv_path).unwrap().into_localized_values_map();
@@ -52,6 +56,8 @@ pub fn create_app_state(csv_path: &PathBuf) -> AppState {
 
     let ability_data = AbilityConversionData::load(csv_path);
     let berry_data = BerryConversionData::load(csv_path);
+    let item_flags_data = ItemFlagConversionData::load(csv_path);
+    let items_data = ItemConversionData::load(csv_path);
     let moves_data = PokemonMoveConversionData::load(csv_path);
     let move_damage_classes_data = PokemonMoveDamageClassConversionData::load(csv_path);
     let move_effects_data = PokemonMoveEffectConversionData::load(csv_path);
@@ -71,6 +77,10 @@ pub fn create_app_state(csv_path: &PathBuf) -> AppState {
     let generations = generations::GenerationsCSV::load_and_convert(csv_path, &generation_names).unwrap().into_id_map();
     let growth_rates = growth_rates::GrowthRatesCSV::load_and_convert(csv_path, &growth_rate_names).unwrap().into_id_map();
     let habitats = pokemon_habitats::PokemonHabitatsCSV::load_and_convert(csv_path, &habitat_names).unwrap().into_id_map();
+    let items = items::ItemsCSV::load_and_convert(csv_path, &items_data).unwrap().into_id_map();
+    let item_categories = item_categories::ItemCategoriesCSV::load_and_convert(csv_path, &item_category_names).unwrap().into_id_map();
+    let item_flags = item_flags::ItemFlagsCSV::load_and_convert(csv_path, &item_flags_data).unwrap().into_id_map();
+    let item_pockets = item_pockets::ItemPocketsCSV::load_and_convert(csv_path, &item_pocket_names).unwrap().into_id_map();
     let languages = languages::LanguagesCSV::load_and_convert(csv_path, &language_names).unwrap().into_id_map();
     let machines = machines::convert_to_machines(machines_csv_entries).into_id_map();
     let moves = moves::MovesCSV::load_and_convert(csv_path, &moves_data).unwrap().into_id_map();
@@ -121,6 +131,10 @@ pub fn create_app_state(csv_path: &PathBuf) -> AppState {
         generations,
         growth_rates,
         habitats,
+        items,
+        item_categories,
+        item_flags,
+        item_pockets,
         languages,
         machines,
         moves,

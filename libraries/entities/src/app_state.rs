@@ -8,6 +8,10 @@ use crate::api::evolution_chain::EvolutionChain;
 use crate::api::evolution_trigger::EvolutionTrigger;
 use crate::api::generation::Generation;
 use crate::api::growth_rate::GrowthRate;
+use crate::api::item::Item;
+use crate::api::item_category::ItemCategory;
+use crate::api::item_flag::ItemFlag;
+use crate::api::item_pocket::ItemPocket;
 use crate::api::language::Language;
 use crate::api::machine::Machine;
 use crate::api::pokemon::Pokemon;
@@ -48,6 +52,10 @@ pub struct AppState {
     pub generations: HashMap<i32, Generation>,
     pub growth_rates: HashMap<i32, GrowthRate>,
     pub habitats: HashMap<i32, PokemonHabitat>,
+    pub items: HashMap<i32, Item>,
+    pub item_categories: HashMap<i32, ItemCategory>,
+    pub item_flags: HashMap<i32, ItemFlag>,
+    pub item_pockets: HashMap<i32, ItemPocket>,
     pub languages: HashMap<i32, Language>,
     pub machines: HashMap<i32, Machine>,
     pub moves: HashMap<i32, PokemonMove>,

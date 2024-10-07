@@ -30,6 +30,10 @@ mod berry_flavor;
 mod egg_group;
 mod evolution_trigger;
 mod machine;
+mod item;
+mod item_category;
+mod item_flag;
+mod item_pocket;
 
 static TEST_SERVER: Lazy<TestServer> = Lazy::new(|| {
     let app = build_app();

@@ -8,6 +8,10 @@ use evolution_chain::*;
 use evolution_trigger::*;
 use generation::*;
 use growth_rate::*;
+use item::*;
+use item_category::*;
+use item_flag::*;
+use item_pocket::*;
 use language::*;
 use machine::*;
 use pokedata_api_entities::api::*;
@@ -48,6 +52,10 @@ use version_group::*;
     GenerationBulkResponse = BulkResponse<Generation>,
     GrowthRateBulkResponse = BulkResponse<GrowthRate>,
     HabitatBulkResponse = BulkResponse<PokemonHabitat>,
+    ItemBulkResponse = BulkResponse<Item>,
+    ItemCategoryBulkResponse = BulkResponse<ItemCategory>,
+    ItemFlagBulkResponse = BulkResponse<ItemFlag>,
+    ItemPocketBulkResponse = BulkResponse<ItemPocket>,
     LanguageBulkResponse = BulkResponse<Language>,
     MachineBulkResponse = BulkResponse<Machine>,
     PokemonBulkResponse = BulkResponse<Pokemon>,
