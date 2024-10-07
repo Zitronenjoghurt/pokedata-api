@@ -9,6 +9,7 @@ use crate::api::evolution_trigger::EvolutionTrigger;
 use crate::api::generation::Generation;
 use crate::api::growth_rate::GrowthRate;
 use crate::api::language::Language;
+use crate::api::machine::Machine;
 use crate::api::pokemon::Pokemon;
 use crate::api::pokemon_color::PokemonColor;
 use crate::api::pokemon_habitat::PokemonHabitat;
@@ -48,6 +49,7 @@ pub struct AppState {
     pub growth_rates: HashMap<i32, GrowthRate>,
     pub habitats: HashMap<i32, PokemonHabitat>,
     pub languages: HashMap<i32, Language>,
+    pub machines: HashMap<i32, Machine>,
     pub moves: HashMap<i32, PokemonMove>,
     pub move_ailments: HashMap<i32, PokemonMoveAilment>,
     pub move_categories: HashMap<i32, PokemonMoveCategory>,

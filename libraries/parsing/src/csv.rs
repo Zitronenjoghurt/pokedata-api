@@ -20,6 +20,7 @@ pub mod growth_rates;
 pub mod growth_rate_prose;
 pub mod languages;
 pub mod language_names;
+pub mod machines;
 pub mod moves;
 pub mod move_changelog;
 pub mod move_damage_classes;

@@ -54,6 +54,7 @@ pub fn build_app() -> Router {
         .nest("/growth-rate", resources::growth_rate::router())
         .nest("/habitat", resources::habitat::router())
         .nest("/language", resources::language::router())
+        .nest("/machine", resources::machine::router())
         .nest("/move", resources::pokemon_move::router())
         .nest("/move-ailment", resources::pokemon_move_ailment::router())
         .nest("/move-category", resources::pokemon_move_category::router())

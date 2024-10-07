@@ -9,6 +9,7 @@ use evolution_trigger::*;
 use generation::*;
 use growth_rate::*;
 use language::*;
+use machine::*;
 use pokedata_api_entities::api::*;
 use pokedata_api_entities::traits::has_id::HasId;
 use pokemon::*;
@@ -48,6 +49,7 @@ use version_group::*;
     GrowthRateBulkResponse = BulkResponse<GrowthRate>,
     HabitatBulkResponse = BulkResponse<PokemonHabitat>,
     LanguageBulkResponse = BulkResponse<Language>,
+    MachineBulkResponse = BulkResponse<Machine>,
     PokemonBulkResponse = BulkResponse<Pokemon>,
     PokemonMoveBulkResponse = BulkResponse<PokemonMove>,
     PokemonMoveAilmentBulkResponse = BulkResponse<PokemonMoveAilment>,

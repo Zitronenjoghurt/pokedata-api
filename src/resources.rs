@@ -22,6 +22,7 @@ pub mod generation;
 pub mod growth_rate;
 pub mod habitat;
 pub mod language;
+pub mod machine;
 pub mod ping;
 pub mod pokemon;
 pub mod pokemon_move;

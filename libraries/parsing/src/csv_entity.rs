@@ -20,6 +20,7 @@ use crate::csv::growth_rate_prose::GrowthRateProseCSV;
 use crate::csv::growth_rates::GrowthRatesCSV;
 use crate::csv::language_names::LanguageNamesCSV;
 use crate::csv::languages::LanguagesCSV;
+use crate::csv::machines::MachinesCSV;
 use crate::csv::move_changelog::MoveChangelogCSV;
 use crate::csv::move_damage_class_prose::{MoveDamageClassDescriptionsCSV, MoveDamageClassNamesCSV};
 use crate::csv::move_damage_classes::MoveDamageClassesCSV;
@@ -139,6 +140,7 @@ pub fn get_all_metadata() -> Vec<CSVEntityMetaData> {
         GrowthRatesCSV::get_metadata(),
         LanguagesCSV::get_metadata(),
         LanguageNamesCSV::get_metadata(),
+        MachinesCSV::get_metadata(),
         MovesCSV::get_metadata(),
         MoveChangelogCSV::get_metadata(),
         MoveDamageClassesCSV::get_metadata(),

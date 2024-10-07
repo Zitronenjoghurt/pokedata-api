@@ -11,6 +11,7 @@ pub mod generation;
 pub mod growth_rate;
 pub mod language;
 pub mod localized_values;
+pub mod machine;
 pub mod pokemon;
 pub mod pokemon_color;
 pub mod pokemon_habitat;

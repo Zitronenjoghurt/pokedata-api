@@ -31,6 +31,7 @@ pub fn create_app_state(csv_path: &PathBuf) -> AppState {
     let mut tcg_sets = load_tcg_sets();
 
     let berry_flavors_csv_entries = contest_type_names::BerryFlavorNamesCSV::load(csv_path).unwrap();
+    let machines_csv_entries = machines::MachinesCSV::load(csv_path).unwrap();
 
     let ailment_names = move_meta_ailment_names::MoveMetaAilmentNamesCSV::load(csv_path).unwrap().into_localized_values_map();
     let berry_firmness_names = berry_firmness_names::BerryFirmnessNamesCSV::load(csv_path).unwrap().into_localized_values_map();
@@ -71,6 +72,7 @@ pub fn create_app_state(csv_path: &PathBuf) -> AppState {
     let growth_rates = growth_rates::GrowthRatesCSV::load_and_convert(csv_path, &growth_rate_names).unwrap().into_id_map();
     let habitats = pokemon_habitats::PokemonHabitatsCSV::load_and_convert(csv_path, &habitat_names).unwrap().into_id_map();
     let languages = languages::LanguagesCSV::load_and_convert(csv_path, &language_names).unwrap().into_id_map();
+    let machines = machines::convert_to_machines(machines_csv_entries).into_id_map();
     let moves = moves::MovesCSV::load_and_convert(csv_path, &moves_data).unwrap().into_id_map();
     let move_ailments = move_meta_ailments::MoveMetaAilmentsCSV::load_and_convert(csv_path, &ailment_names).unwrap().into_id_map();
     let move_categories = move_meta_categories::MoveMetaCategoriesCSV::load_and_convert(csv_path, &move_category_descriptions).unwrap().into_id_map();
@@ -120,6 +122,7 @@ pub fn create_app_state(csv_path: &PathBuf) -> AppState {
         growth_rates,
         habitats,
         languages,
+        machines,
         moves,
         move_ailments,
         move_categories,
