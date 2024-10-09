@@ -26,6 +26,8 @@ pub mod item_category;
 pub mod item_flag;
 pub mod item_pocket;
 pub mod language;
+pub mod location;
+pub mod location_area;
 pub mod machine;
 pub mod ping;
 pub mod pokemon;

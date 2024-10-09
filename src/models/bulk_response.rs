@@ -13,6 +13,8 @@ use item_category::*;
 use item_flag::*;
 use item_pocket::*;
 use language::*;
+use location::*;
+use location_area::*;
 use machine::*;
 use pokedata_api_entities::api::*;
 use pokedata_api_entities::traits::has_id::HasId;
@@ -57,6 +59,8 @@ use version_group::*;
     ItemFlagBulkResponse = BulkResponse<ItemFlag>,
     ItemPocketBulkResponse = BulkResponse<ItemPocket>,
     LanguageBulkResponse = BulkResponse<Language>,
+    LocationBulkResponse = BulkResponse<Location>,
+    LocationAreaBulkResponse = BulkResponse<LocationArea>,
     MachineBulkResponse = BulkResponse<Machine>,
     PokemonBulkResponse = BulkResponse<Pokemon>,
     PokemonMoveBulkResponse = BulkResponse<PokemonMove>,

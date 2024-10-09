@@ -34,6 +34,8 @@ mod item;
 mod item_category;
 mod item_flag;
 mod item_pocket;
+mod location;
+mod location_area;
 
 static TEST_SERVER: Lazy<TestServer> = Lazy::new(|| {
     let app = build_app();

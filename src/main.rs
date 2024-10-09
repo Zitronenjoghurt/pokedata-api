@@ -58,6 +58,8 @@ pub fn build_app() -> Router {
         .nest("/item-flag", resources::item_flag::router())
         .nest("/item-pocket", resources::item_pocket::router())
         .nest("/language", resources::language::router())
+        .nest("/location", resources::location::router())
+        .nest("/location-area", resources::location_area::router())
         .nest("/machine", resources::machine::router())
         .nest("/move", resources::pokemon_move::router())
         .nest("/move-ailment", resources::pokemon_move_ailment::router())

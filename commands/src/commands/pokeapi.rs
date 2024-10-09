@@ -4,12 +4,12 @@ use clap::{Arg, ArgMatches, Command};
 mod build_sprites;
 mod coverage;
 
-const CSV_DATA_PATH: &'static str = "data/v2/csv";
-const IGNORE_FILE_PREFIXES: &[&str] = &["conquest", "move_flavor_summaries", "pokemon_species_flavor_summaries", "pokemon_species_prose", "super_contest", "type_game_indices"];
-const POKEAPI_OWNER: &'static str = "PokeAPI";
-const POKEAPI_REPO: &'static str = "pokeapi";
-const POKEAPI_SPRITES_REPO_HTTPS: &'static str = "https://github.com/PokeAPI/sprites.git";
-const POKEAPI_SPRITES_CONTENT_BASE_PATH: &'static str = "https://raw.githubusercontent.com/PokeAPI/sprites/refs/heads/master/sprites/";
+const CSV_DATA_PATH: &str = "data/v2/csv";
+const IGNORE_FILE_PREFIXES: &[&str] = &["conquest", "item_flavor_summaries", "move_flavor_summaries", "pokemon_species_flavor_summaries", "pokemon_species_prose", "super_contest", "type_game_indices"];
+const POKEAPI_OWNER: &str = "PokeAPI";
+const POKEAPI_REPO: &str = "pokeapi";
+const POKEAPI_SPRITES_REPO_HTTPS: &str = "https://github.com/PokeAPI/sprites.git";
+const POKEAPI_SPRITES_CONTENT_BASE_PATH: &str = "https://raw.githubusercontent.com/PokeAPI/sprites/refs/heads/master/sprites/";
 
 pub struct PokeApiCommand;
 

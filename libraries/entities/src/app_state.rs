@@ -13,6 +13,8 @@ use crate::api::item_category::ItemCategory;
 use crate::api::item_flag::ItemFlag;
 use crate::api::item_pocket::ItemPocket;
 use crate::api::language::Language;
+use crate::api::location::Location;
+use crate::api::location_area::LocationArea;
 use crate::api::machine::Machine;
 use crate::api::pokemon::Pokemon;
 use crate::api::pokemon_color::PokemonColor;
@@ -57,6 +59,8 @@ pub struct AppState {
     pub item_flags: HashMap<i32, ItemFlag>,
     pub item_pockets: HashMap<i32, ItemPocket>,
     pub languages: HashMap<i32, Language>,
+    pub locations: HashMap<i32, Location>,
+    pub location_areas: HashMap<i32, LocationArea>,
     pub machines: HashMap<i32, Machine>,
     pub moves: HashMap<i32, PokemonMove>,
     pub move_ailments: HashMap<i32, PokemonMoveAilment>,

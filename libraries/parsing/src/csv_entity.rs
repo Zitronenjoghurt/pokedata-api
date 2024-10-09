@@ -32,6 +32,12 @@ use crate::csv::items::ItemsCSV;
 use crate::csv::items_prose::{ItemEffectsCSV, ItemShortEffectsCSV};
 use crate::csv::language_names::LanguageNamesCSV;
 use crate::csv::languages::LanguagesCSV;
+use crate::csv::location_area_encounter_rates::LocationAreaEncounterRatesCSV;
+use crate::csv::location_area_prose::LocationAreaProseCSV;
+use crate::csv::location_areas::LocationAreasCSV;
+use crate::csv::location_game_indices::{LocationGameIndicesCSV, LocationGenerationIdsCSV};
+use crate::csv::location_names::{LocationNamesCSV, LocationSubtitlesCSV};
+use crate::csv::locations::LocationsCSV;
 use crate::csv::machines::MachinesCSV;
 use crate::csv::move_changelog::MoveChangelogCSV;
 use crate::csv::move_damage_class_prose::{MoveDamageClassDescriptionsCSV, MoveDamageClassNamesCSV};
@@ -167,6 +173,14 @@ pub fn get_all_metadata() -> Vec<CSVEntityMetaData> {
         ItemPocketNamesCSV::get_metadata(),
         LanguagesCSV::get_metadata(),
         LanguageNamesCSV::get_metadata(),
+        LocationAreasCSV::get_metadata(),
+        LocationAreaEncounterRatesCSV::get_metadata(),
+        LocationAreaProseCSV::get_metadata(),
+        LocationsCSV::get_metadata(),
+        LocationGameIndicesCSV::get_metadata(),
+        LocationGenerationIdsCSV::get_metadata(),
+        LocationNamesCSV::get_metadata(),
+        LocationSubtitlesCSV::get_metadata(),
         MachinesCSV::get_metadata(),
         MovesCSV::get_metadata(),
         MoveChangelogCSV::get_metadata(),

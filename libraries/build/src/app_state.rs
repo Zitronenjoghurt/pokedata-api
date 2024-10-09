@@ -12,6 +12,8 @@ use pokedata_api_parsing::csv::berries::BerryConversionData;
 use pokedata_api_parsing::csv::evolution_chains::EvolutionChainConversionData;
 use pokedata_api_parsing::csv::item_flags::ItemFlagConversionData;
 use pokedata_api_parsing::csv::items::ItemConversionData;
+use pokedata_api_parsing::csv::location_areas::LocationAreaConversionData;
+use pokedata_api_parsing::csv::locations::LocationConversionData;
 use pokedata_api_parsing::csv::move_damage_classes::PokemonMoveDamageClassConversionData;
 use pokedata_api_parsing::csv::move_effects::PokemonMoveEffectConversionData;
 use pokedata_api_parsing::csv::move_flags::PokemonMoveFlagConversionData;
@@ -58,6 +60,8 @@ pub fn create_app_state(csv_path: &PathBuf) -> AppState {
     let berry_data = BerryConversionData::load(csv_path);
     let item_flags_data = ItemFlagConversionData::load(csv_path);
     let items_data = ItemConversionData::load(csv_path);
+    let location_areas_data = LocationAreaConversionData::load(csv_path);
+    let locations_data = LocationConversionData::load(csv_path);
     let moves_data = PokemonMoveConversionData::load(csv_path);
     let move_damage_classes_data = PokemonMoveDamageClassConversionData::load(csv_path);
     let move_effects_data = PokemonMoveEffectConversionData::load(csv_path);
@@ -82,6 +86,8 @@ pub fn create_app_state(csv_path: &PathBuf) -> AppState {
     let item_flags = item_flags::ItemFlagsCSV::load_and_convert(csv_path, &item_flags_data).unwrap().into_id_map();
     let item_pockets = item_pockets::ItemPocketsCSV::load_and_convert(csv_path, &item_pocket_names).unwrap().into_id_map();
     let languages = languages::LanguagesCSV::load_and_convert(csv_path, &language_names).unwrap().into_id_map();
+    let location_areas = location_areas::LocationAreasCSV::load_and_convert(csv_path, &location_areas_data).unwrap().into_id_map();
+    let locations = locations::LocationsCSV::load_and_convert(csv_path, &locations_data).unwrap().into_id_map();
     let machines = machines::convert_to_machines(machines_csv_entries).into_id_map();
     let moves = moves::MovesCSV::load_and_convert(csv_path, &moves_data).unwrap().into_id_map();
     let move_ailments = move_meta_ailments::MoveMetaAilmentsCSV::load_and_convert(csv_path, &ailment_names).unwrap().into_id_map();
@@ -136,6 +142,8 @@ pub fn create_app_state(csv_path: &PathBuf) -> AppState {
         item_flags,
         item_pockets,
         languages,
+        locations,
+        location_areas,
         machines,
         moves,
         move_ailments,

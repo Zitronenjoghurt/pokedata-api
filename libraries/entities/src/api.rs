@@ -15,6 +15,8 @@ pub mod item_flag;
 pub mod item_pocket;
 pub mod language;
 pub mod localized_values;
+pub mod location;
+pub mod location_area;
 pub mod machine;
 pub mod pokemon;
 pub mod pokemon_color;
