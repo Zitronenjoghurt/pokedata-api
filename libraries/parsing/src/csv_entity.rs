@@ -73,8 +73,11 @@ use crate::csv::pokedex_prose::{PokedexDescriptionsCSV, PokedexNamesCSV};
 use crate::csv::pokedex_version_group::PokedexVersionGroupsCSV;
 use crate::csv::pokedexes::PokedexesCSV;
 use crate::csv::pokemon::PokemonCSV;
+use crate::csv::pokemon_abilities::PokemonAbilitiesCSV;
+use crate::csv::pokemon_abilities_past::PokemonAbilitiesPastCSV;
 use crate::csv::pokemon_color_names::PokemonColorNamesCSV;
 use crate::csv::pokemon_colors::PokemonColorsCSV;
+use crate::csv::pokemon_dex_numbers::PokemonDexNumbersCSV;
 use crate::csv::pokemon_evolution::PokemonEvolutionCSV;
 use crate::csv::pokemon_game_indices::PokemonVersionIdsCSV;
 use crate::csv::pokemon_habitat_names::PokemonHabitatNamesCSV;
@@ -233,8 +236,11 @@ pub fn get_all_metadata() -> Vec<CSVEntityMetaData> {
         PokedexVersionGroupsCSV::get_metadata(),
         PokedexesCSV::get_metadata(),
         PokemonCSV::get_metadata(),
+        PokemonAbilitiesCSV::get_metadata(),
+        PokemonAbilitiesPastCSV::get_metadata(),
         PokemonColorNamesCSV::get_metadata(),
         PokemonColorsCSV::get_metadata(),
+        PokemonDexNumbersCSV::get_metadata(),
         PokemonEvolutionCSV::get_metadata(),
         PokemonHabitatNamesCSV::get_metadata(),
         PokemonHabitatsCSV::get_metadata(),

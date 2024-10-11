@@ -1,7 +1,9 @@
+use crate::csv::pokemon_dex_numbers::PokemonDexNumbersCSV;
 use crate::csv::pokemon_species_flavor_text::PokemonSpeciesFlavorTextCSV;
 use crate::csv::pokemon_species_names::{PokemonSpeciesGeneraCSV, PokemonSpeciesNamesCSV};
 use crate::csv_entity::CSVEntity;
 use crate::traits::api_csv_entity::ApiCSVEntity;
+use crate::traits::id_value_pairing_mapped::HashMapGroupById;
 use crate::traits::into_localized_values_map::IntoLocalizedValuesMap;
 use crate::traits::into_versioned_localized_values_map::IntoVersionedLocalizedValuesMap;
 use pokedata_api_entities::api::localized_values::{LocalizedValuesMap, VersionedLocalizedValuesMap};
@@ -73,6 +75,7 @@ impl ApiCSVEntity for PokemonSpeciesCSV {
             evolves_from_species_id: entry.evolves_from_species_id,
             tcg_card_ids: vec![],
             tcg_set_ids: HashSet::new(),
+            dex_numbers: data.dex_number_map.get(&entry.id).cloned().unwrap_or_default(),
         })
     }
 }
@@ -91,6 +94,7 @@ pub struct PokemonSpeciesConversionData {
     pub names_map: LocalizedValuesMap,
     pub genera_map: LocalizedValuesMap,
     pub flavor_text_map: VersionedLocalizedValuesMap,
+    pub dex_number_map: HashMap<i32, HashMap<i32, i32>>,
 }
 
 impl PokemonSpeciesConversionData {
@@ -100,6 +104,7 @@ impl PokemonSpeciesConversionData {
             names_map: PokemonSpeciesNamesCSV::load(data_path).unwrap().into_localized_values_map(),
             genera_map: PokemonSpeciesGeneraCSV::load(data_path).unwrap().into_localized_values_map(),
             flavor_text_map: PokemonSpeciesFlavorTextCSV::load(data_path).unwrap().into_versioned_localized_values_map(),
+            dex_number_map: PokemonDexNumbersCSV::load(data_path).unwrap().group_by_id_mapped(),
         }
     }
 }

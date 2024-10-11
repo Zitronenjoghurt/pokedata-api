@@ -1,3 +1,4 @@
+use crate::api::pokemon_ability::PokemonAbility;
 use crate::api::pokemon_stats::PokemonStats;
 use crate::api::sprites::SpritePaths;
 use crate::api::type_slots::{TypeSlots, TypeSlotsPast};
@@ -30,6 +31,9 @@ pub struct Pokemon {
     /// Pokemon SpritePaths mapped by their form identifier
     pub form_sprites: HashMap<String, SpritePaths>,
     pub encounter_ids: Vec<i32>,
+    pub abilities: Vec<PokemonAbility>,
+    /// Pokemon ability information mapped by the last generation they applied to
+    pub abilities_past: HashMap<i32, Vec<PokemonAbility>>,
 }
 
 impl HasId for Pokemon {

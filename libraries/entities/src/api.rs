@@ -25,6 +25,7 @@ pub mod location_area;
 pub mod machine;
 pub mod pokedex;
 pub mod pokemon;
+pub mod pokemon_ability;
 pub mod pokemon_color;
 pub mod pokemon_habitat;
 pub mod pokemon_move;

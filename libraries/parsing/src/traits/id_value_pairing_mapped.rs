@@ -14,6 +14,7 @@ where
     T: IdValuePairingMapped,
 {
     fn group_by_id_mapped(self) -> HashMap<T::Id, HashMap<T::Key, T::Value>>;
+    fn group_by_id_mapped_accumulated(self) -> HashMap<T::Id, HashMap<T::Key, Vec<T::Value>>>;
 }
 
 impl<T, I> HashMapGroupById<T> for I
@@ -27,6 +28,18 @@ where
             acc.entry(id)
                 .or_insert_with(HashMap::new)
                 .insert(key, value);
+            acc
+        })
+    }
+
+    fn group_by_id_mapped_accumulated(self) -> HashMap<T::Id, HashMap<T::Key, Vec<T::Value>>> {
+        self.into_iter().fold(HashMap::new(), |mut acc, item| {
+            let (id, key, value) = item.into_triple();
+            acc.entry(id)
+                .or_insert_with(HashMap::new)
+                .entry(key)
+                .or_insert_with(Vec::new)
+                .push(value);
             acc
         })
     }

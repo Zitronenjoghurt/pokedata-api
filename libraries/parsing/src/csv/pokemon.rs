@@ -1,3 +1,5 @@
+use crate::csv::pokemon_abilities::PokemonAbilitiesCSV;
+use crate::csv::pokemon_abilities_past::PokemonAbilitiesPastCSV;
 use crate::csv::pokemon_game_indices::PokemonVersionIdsCSV;
 use crate::csv::pokemon_stats::PokemonStatsCSV;
 use crate::csv::pokemon_types::PokemonTypesCSV;
@@ -5,7 +7,9 @@ use crate::csv::pokemon_types_past::PokemonTypesPastCSV;
 use crate::csv_entity::CSVEntity;
 use crate::traits::api_csv_entity::ApiCSVEntity;
 use crate::traits::id_value_pairing::GroupById;
+use crate::traits::id_value_pairing_mapped::HashMapGroupById;
 use pokedata_api_entities::api::pokemon::Pokemon;
+use pokedata_api_entities::api::pokemon_ability::PokemonAbility;
 use pokedata_api_entities::api::pokemon_stats::PokemonStats;
 use pokedata_api_entities::api::sprites::SpriteIndex;
 use pokedata_api_entities::api::type_slots::{TypeSlots, TypeSlotsPast};
@@ -57,6 +61,8 @@ impl ApiCSVEntity for PokemonCSV {
                 sprites,
                 form_sprites,
                 encounter_ids: vec![],
+                abilities: data.abilities_data_map.get(&entry.id).cloned().unwrap_or_default(),
+                abilities_past: data.abilities_past_data_map.get(&entry.id).cloned().unwrap_or_default(),
             }
         )
     }
@@ -64,6 +70,8 @@ impl ApiCSVEntity for PokemonCSV {
 
 #[derive(Debug)]
 pub struct PokemonConversionData {
+    pub abilities_data_map: HashMap<i32, Vec<PokemonAbility>>,
+    pub abilities_past_data_map: HashMap<i32, HashMap<i32, Vec<PokemonAbility>>>,
     pub version_id_map: HashMap<i32, Vec<i32>>,
     pub stats_map: HashMap<i32, PokemonStats>,
     pub type_slots_map: HashMap<i32, TypeSlots>,
@@ -77,6 +85,8 @@ impl PokemonConversionData {
         let types = PokemonTypesCSV::load(data_path).unwrap();
         let types_past = PokemonTypesPastCSV::load(data_path).unwrap();
         Self {
+            abilities_data_map: PokemonAbilitiesCSV::load(data_path).unwrap().group_by_id(),
+            abilities_past_data_map: PokemonAbilitiesPastCSV::load(data_path).unwrap().group_by_id_mapped_accumulated(),
             version_id_map: PokemonVersionIdsCSV::load(data_path).unwrap().group_by_id(),
             stats_map: PokemonStatsCSV::map(stats),
             type_slots_map: PokemonTypesCSV::map(types),
