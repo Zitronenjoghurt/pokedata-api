@@ -19,7 +19,7 @@ use std::sync::Arc;
         (status = 400, description = "Invalid parameters"),
         (status = 500, description = "Server error"),
     ),
-    tag = "Species"
+    tag = "Pokemon"
 )]
 async fn get_species(
     State(state): State<Arc<AppState>>,

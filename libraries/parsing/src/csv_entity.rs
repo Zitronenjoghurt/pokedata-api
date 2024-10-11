@@ -69,6 +69,9 @@ use crate::csv::move_names::MoveNamesCSV;
 use crate::csv::move_target_prose::{MoveTargetDescriptionsCSV, MoveTargetNamesCSV};
 use crate::csv::move_targets::MoveTargetsCSV;
 use crate::csv::moves::MovesCSV;
+use crate::csv::pokedex_prose::{PokedexDescriptionsCSV, PokedexNamesCSV};
+use crate::csv::pokedex_version_group::PokedexVersionGroupsCSV;
+use crate::csv::pokedexes::PokedexesCSV;
 use crate::csv::pokemon::PokemonCSV;
 use crate::csv::pokemon_color_names::PokemonColorNamesCSV;
 use crate::csv::pokemon_colors::PokemonColorsCSV;
@@ -225,6 +228,10 @@ pub fn get_all_metadata() -> Vec<CSVEntityMetaData> {
         MoveTargetsCSV::get_metadata(),
         MoveTargetDescriptionsCSV::get_metadata(),
         MoveTargetNamesCSV::get_metadata(),
+        PokedexDescriptionsCSV::get_metadata(),
+        PokedexNamesCSV::get_metadata(),
+        PokedexVersionGroupsCSV::get_metadata(),
+        PokedexesCSV::get_metadata(),
         PokemonCSV::get_metadata(),
         PokemonColorNamesCSV::get_metadata(),
         PokemonColorsCSV::get_metadata(),

@@ -24,6 +24,7 @@ use pokedata_api_parsing::csv::move_effects::PokemonMoveEffectConversionData;
 use pokedata_api_parsing::csv::move_flags::PokemonMoveFlagConversionData;
 use pokedata_api_parsing::csv::move_targets::PokemonMoveTargetConversionData;
 use pokedata_api_parsing::csv::moves::PokemonMoveConversionData;
+use pokedata_api_parsing::csv::pokedexes::PokedexConversionData;
 use pokedata_api_parsing::csv::pokemon::PokemonConversionData;
 use pokedata_api_parsing::csv::pokemon_shapes::PokemonShapesConversionData;
 use pokedata_api_parsing::csv::type_efficacy::build_efficacies_by_generation;
@@ -76,6 +77,7 @@ pub fn create_app_state(csv_path: &PathBuf) -> AppState {
     let move_effects_data = PokemonMoveEffectConversionData::load(csv_path);
     let move_flags_data = PokemonMoveFlagConversionData::load(csv_path);
     let move_targets_data = PokemonMoveTargetConversionData::load(csv_path);
+    let pokedexes_data = PokedexConversionData::load(csv_path);
     let pokemon_data = PokemonConversionData::load(csv_path, sprite_index);
     let pokemon_shapes_data = PokemonShapesConversionData::load(csv_path);
 
@@ -110,6 +112,7 @@ pub fn create_app_state(csv_path: &PathBuf) -> AppState {
     let mut move_effects = move_effects::MoveEffectsCSV::load_and_convert(csv_path, &move_effects_data).unwrap().into_id_map();
     let move_flags = move_flags::MoveFlagsCSV::load_and_convert(csv_path, &move_flags_data).unwrap().into_id_map();
     let move_targets = move_targets::MoveTargetsCSV::load_and_convert(csv_path, &move_targets_data).unwrap().into_id_map();
+    let pokedexes = pokedexes::PokedexesCSV::load_and_convert(csv_path, &pokedexes_data).unwrap().into_id_map();
     let mut pokemon = pokemon::PokemonCSV::load_and_convert(csv_path, &pokemon_data).unwrap().into_id_map();
     let regions = regions::RegionsCSV::load_and_convert(csv_path, &region_names).unwrap().into_id_map();
     let shapes = pokemon_shapes::PokemonShapesCSV::load_and_convert(csv_path, &pokemon_shapes_data).unwrap().into_id_map();
@@ -175,6 +178,7 @@ pub fn create_app_state(csv_path: &PathBuf) -> AppState {
         move_effects,
         move_flags,
         move_targets,
+        pokedexes,
         pokemon,
         regions,
         shapes,

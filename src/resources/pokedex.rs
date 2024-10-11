@@ -7,27 +7,27 @@ use axum::Router;
 use pokedata_api_entities::app_state::AppState;
 use std::sync::Arc;
 
-/// Fetch pokemon shapes
+/// Fetch pokedexes
 ///
-/// If no ID is provided, all pokemon shapes will be returned.
+/// If no ID is provided, all pokedexes will be returned.
 #[utoipa::path(
     get,
-    path = "/shape",
+    path = "/pokedex",
     params(IdsQuery),
     responses(
-        (status = 200, description = "Shape data", body = ShapeBulkResponse),
+        (status = 200, description = "Pokedex data", body = PokedexBulkResponse),
         (status = 400, description = "Invalid parameters"),
         (status = 500, description = "Server error"),
     ),
     tag = "Pokemon"
 )]
-async fn get_shape(
+async fn get_pokedex(
     State(state): State<Arc<AppState>>,
     Query(query): Query<IdsQuery>,
 ) -> Response {
-    get_entities(query.ids, &state.shapes).await
+    get_entities(query.ids, &state.pokedexes).await
 }
 
 pub fn router() -> Router<Arc<AppState>> {
-    Router::new().route("/", get(get_shape))
+    Router::new().route("/", get(get_pokedex))
 }

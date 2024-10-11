@@ -23,6 +23,7 @@ use location_area::*;
 use machine::*;
 use pokedata_api_entities::api::*;
 use pokedata_api_entities::traits::has_id::HasId;
+use pokedex::*;
 use pokemon::*;
 use pokemon_color::*;
 use pokemon_habitat::*;
@@ -72,6 +73,7 @@ use version_group::*;
     LocationBulkResponse = BulkResponse<Location>,
     LocationAreaBulkResponse = BulkResponse<LocationArea>,
     MachineBulkResponse = BulkResponse<Machine>,
+    PokedexBulkResponse = BulkResponse<Pokedex>,
     PokemonBulkResponse = BulkResponse<Pokemon>,
     PokemonMoveBulkResponse = BulkResponse<PokemonMove>,
     PokemonMoveAilmentBulkResponse = BulkResponse<PokemonMoveAilment>,

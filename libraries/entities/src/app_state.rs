@@ -21,6 +21,7 @@ use crate::api::language::Language;
 use crate::api::location::Location;
 use crate::api::location_area::LocationArea;
 use crate::api::machine::Machine;
+use crate::api::pokedex::Pokedex;
 use crate::api::pokemon::Pokemon;
 use crate::api::pokemon_color::PokemonColor;
 use crate::api::pokemon_habitat::PokemonHabitat;
@@ -79,6 +80,7 @@ pub struct AppState {
     pub move_effects: HashMap<i32, PokemonMoveEffect>,
     pub move_flags: HashMap<i32, PokemonMoveFlag>,
     pub move_targets: HashMap<i32, PokemonMoveTarget>,
+    pub pokedexes: HashMap<i32, Pokedex>,
     pub pokemon: HashMap<i32, Pokemon>,
     pub regions: HashMap<i32, Region>,
     pub shapes: HashMap<i32, PokemonShape>,

@@ -23,6 +23,7 @@ pub mod localized_values;
 pub mod location;
 pub mod location_area;
 pub mod machine;
+pub mod pokedex;
 pub mod pokemon;
 pub mod pokemon_color;
 pub mod pokemon_habitat;

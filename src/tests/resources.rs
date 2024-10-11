@@ -41,6 +41,7 @@ mod encounter_condition;
 mod encounter_condition_value;
 mod encounter_method;
 mod encounter_slot;
+mod pokedex;
 
 static TEST_SERVER: Lazy<TestServer> = Lazy::new(|| {
     let app = build_app();

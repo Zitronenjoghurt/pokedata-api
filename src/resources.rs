@@ -35,6 +35,7 @@ pub mod location;
 pub mod location_area;
 pub mod machine;
 pub mod ping;
+pub mod pokedex;
 pub mod pokemon;
 pub mod pokemon_move;
 pub mod pokemon_move_ailment;
