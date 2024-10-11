@@ -4,18 +4,15 @@ use serde::{Deserialize, Serialize};
 use utoipa::ToSchema;
 
 #[derive(Clone, Debug, Default, Serialize, Deserialize, ToSchema)]
-pub struct Location {
+pub struct EncounterConditionValue {
     pub id: i32,
-    pub region_id: Option<i32>,
+    pub encounter_condition_id: i32,
     pub identifier: String,
+    pub is_default: bool,
     pub names: Option<LocalizedValues>,
-    pub subtitles: Option<LocalizedValues>,
-    pub game_indices: Vec<i32>,
-    pub generation_ids: Vec<i32>,
-    pub location_area_ids: Vec<i32>,
 }
 
-impl HasId for Location {
+impl HasId for EncounterConditionValue {
     fn id(&self) -> i32 {
         self.id
     }

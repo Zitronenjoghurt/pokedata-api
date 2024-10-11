@@ -37,6 +37,7 @@ impl ApiCSVEntity for LocationsCSV {
             subtitles: data.subtitles_map.get(entry.id),
             game_indices: data.game_indices_map.get(&entry.id).cloned().unwrap_or_default(),
             generation_ids: data.generation_ids_map.get(&entry.id).cloned().unwrap_or_default(),
+            location_area_ids: vec![],
         })
     }
 }

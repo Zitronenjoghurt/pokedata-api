@@ -13,6 +13,7 @@ pub struct LocationArea {
     pub names: Option<LocalizedValues>,
     /// (encounter_method_id, rate) mapped by version_id. The rate is provided in percent.
     pub encounter_rates: HashMap<i32, (i32, i32)>,
+    pub encounter_ids: Vec<i32>,
 }
 
 impl HasId for LocationArea {

@@ -29,4 +29,6 @@ async fn test_get_specific_location_area() {
     assert_eq!(test_entity.encounter_rates.get(&12), Some(&(1, 10)));
     assert_eq!(test_entity.encounter_rates.get(&13), Some(&(1, 10)));
     assert_eq!(test_entity.encounter_rates.get(&14), Some(&(1, 10)));
+
+    assert_eq!(test_entity.encounter_ids.len(), 42);
 }

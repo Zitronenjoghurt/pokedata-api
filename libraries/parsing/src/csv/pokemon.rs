@@ -56,6 +56,7 @@ impl ApiCSVEntity for PokemonCSV {
                 version_ids: data.version_id_map.get(&entry.id).cloned().unwrap_or_default(),
                 sprites,
                 form_sprites,
+                encounter_ids: vec![],
             }
         )
     }

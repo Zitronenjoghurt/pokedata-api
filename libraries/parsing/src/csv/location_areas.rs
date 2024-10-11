@@ -37,6 +37,7 @@ impl ApiCSVEntity for LocationAreasCSV {
             identifier: entry.identifier,
             names: data.names_map.get(entry.id),
             encounter_rates: data.encounter_rates_map.get(&entry.id).cloned().unwrap_or_default(),
+            encounter_ids: vec![],
         })
     }
 }

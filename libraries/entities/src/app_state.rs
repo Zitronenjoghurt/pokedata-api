@@ -3,6 +3,11 @@ use crate::api::berry::Berry;
 use crate::api::berry_firmness::BerryFirmness;
 use crate::api::berry_flavor::BerryFlavor;
 use crate::api::egg_group::EggGroup;
+use crate::api::encounter::Encounter;
+use crate::api::encounter_condition::EncounterCondition;
+use crate::api::encounter_condition_value::EncounterConditionValue;
+use crate::api::encounter_method::EncounterMethod;
+use crate::api::encounter_slot::EncounterSlot;
 use crate::api::evolution::Evolution;
 use crate::api::evolution_chain::EvolutionChain;
 use crate::api::evolution_trigger::EvolutionTrigger;
@@ -48,6 +53,11 @@ pub struct AppState {
     pub berry_flavors: HashMap<i32, BerryFlavor>,
     pub colors: HashMap<i32, PokemonColor>,
     pub egg_groups: HashMap<i32, EggGroup>,
+    pub encounters: HashMap<i32, Encounter>,
+    pub encounter_conditions: HashMap<i32, EncounterCondition>,
+    pub encounter_condition_values: HashMap<i32, EncounterConditionValue>,
+    pub encounter_methods: HashMap<i32, EncounterMethod>,
+    pub encounter_slots: HashMap<i32, EncounterSlot>,
     pub evolutions: HashMap<i32, Evolution>,
     pub evolution_chains: HashMap<i32, EvolutionChain>,
     pub evolution_triggers: HashMap<i32, EvolutionTrigger>,

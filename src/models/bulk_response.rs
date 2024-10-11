@@ -3,6 +3,11 @@ use berry::*;
 use berry_firmness::*;
 use berry_flavor::*;
 use egg_group::*;
+use encounter::*;
+use encounter_condition::*;
+use encounter_condition_value::*;
+use encounter_method::*;
+use encounter_slot::*;
 use evolution::*;
 use evolution_chain::*;
 use evolution_trigger::*;
@@ -48,6 +53,11 @@ use version_group::*;
     BerryFlavorBulkResponse = BulkResponse<BerryFlavor>,
     ColorBulkResponse = BulkResponse<PokemonColor>,
     EggGroupBulkResponse = BulkResponse<EggGroup>,
+    EncounterBulkResponse = BulkResponse<Encounter>,
+    EncounterConditionBulkResponse = BulkResponse<EncounterCondition>,
+    EncounterConditionValueBulkResponse = BulkResponse<EncounterConditionValue>,
+    EncounterMethodBulkResponse = BulkResponse<EncounterMethod>,
+    EncounterSlotBulkResponse = BulkResponse<EncounterSlot>,
     EvolutionBulkResponse = BulkResponse<Evolution>,
     EvolutionChainBulkResponse = BulkResponse<EvolutionChain>,
     EvolutionTriggerBulkResponse = BulkResponse<EvolutionTrigger>,

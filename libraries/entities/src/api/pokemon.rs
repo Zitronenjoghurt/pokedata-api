@@ -29,6 +29,7 @@ pub struct Pokemon {
     pub sprites: SpritePaths,
     /// Pokemon SpritePaths mapped by their form identifier
     pub form_sprites: HashMap<String, SpritePaths>,
+    pub encounter_ids: Vec<i32>,
 }
 
 impl HasId for Pokemon {

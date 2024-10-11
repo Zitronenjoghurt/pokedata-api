@@ -11,6 +11,15 @@ use crate::csv::berry_flavors::BerryFlavorPotenciesCSV;
 use crate::csv::contest_type_names::BerryFlavorNamesCSV;
 use crate::csv::egg_group_prose::EggGroupProseCSV;
 use crate::csv::egg_groups::EggGroupsCSV;
+use crate::csv::encounter_condition_prose::EncounterConditionProseCSV;
+use crate::csv::encounter_condition_value_map::EncounterConditionValueMapCSV;
+use crate::csv::encounter_condition_value_prose::EncounterConditionValueProseCSV;
+use crate::csv::encounter_condition_values::EncounterConditionValuesCSV;
+use crate::csv::encounter_conditions::EncounterConditionsCSV;
+use crate::csv::encounter_method_prose::EncounterMethodProseCSV;
+use crate::csv::encounter_methods::EncounterMethodsCSV;
+use crate::csv::encounter_slots::EncounterSlotsCSV;
+use crate::csv::encounters::EncountersCSV;
 use crate::csv::evolution_chains::EvolutionChainsCSV;
 use crate::csv::evolution_trigger_prose::EvolutionTriggerProseCSV;
 use crate::csv::evolution_triggers::EvolutionTriggersCSV;
@@ -149,6 +158,15 @@ pub fn get_all_metadata() -> Vec<CSVEntityMetaData> {
         BerryFlavorPotenciesCSV::get_metadata(),
         EggGroupsCSV::get_metadata(),
         EggGroupProseCSV::get_metadata(),
+        EncounterConditionProseCSV::get_metadata(),
+        EncounterConditionValueMapCSV::get_metadata(),
+        EncounterConditionValueProseCSV::get_metadata(),
+        EncounterConditionValuesCSV::get_metadata(),
+        EncounterConditionsCSV::get_metadata(),
+        EncounterMethodProseCSV::get_metadata(),
+        EncounterMethodsCSV::get_metadata(),
+        EncounterSlotsCSV::get_metadata(),
+        EncountersCSV::get_metadata(),
         EvolutionChainsCSV::get_metadata(),
         EvolutionTriggersCSV::get_metadata(),
         EvolutionTriggerProseCSV::get_metadata(),

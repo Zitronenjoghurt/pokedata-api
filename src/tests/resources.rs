@@ -36,6 +36,11 @@ mod item_flag;
 mod item_pocket;
 mod location;
 mod location_area;
+mod encounter;
+mod encounter_condition;
+mod encounter_condition_value;
+mod encounter_method;
+mod encounter_slot;
 
 static TEST_SERVER: Lazy<TestServer> = Lazy::new(|| {
     let app = build_app();
