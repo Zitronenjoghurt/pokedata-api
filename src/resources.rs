@@ -14,6 +14,7 @@ pub mod berry;
 pub mod berry_firmness;
 pub mod berry_flavor;
 pub mod color;
+pub mod debug_stats;
 pub mod egg_group;
 pub mod encounter;
 pub mod encounter_condition;
@@ -52,6 +53,7 @@ pub mod species;
 pub mod stat;
 pub mod tcg_card;
 pub mod tcg_set;
+pub mod total_stats;
 pub mod version;
 pub mod version_group;
 
@@ -72,6 +74,7 @@ pub async fn get_entities<T: Clone + HasId + Serialize + for<'s> ToSchema<'s>>(
 
     let response = BulkResponse {
         count: results.len(),
+        total: entities.len(),
         results,
     };
 

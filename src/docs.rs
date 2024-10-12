@@ -1,6 +1,8 @@
 use crate::models::{bulk_response::*, message_response::MessageResponse, type_effectiveness::*};
 use crate::resources;
 use pokedata_api_entities::api::*;
+use pokedata_api_entities::debug_stats::DebugStats;
+use pokedata_api_entities::total_stats::TotalStats;
 use pokemon_color::*;
 use utoipa::OpenApi;
 
@@ -16,6 +18,7 @@ use utoipa::OpenApi;
         resources::berry_firmness::get_berry_firmness,
         resources::berry_flavor::get_berry_flavor,
         resources::color::get_color,
+        resources::debug_stats::get_debug_stats,
         resources::egg_group::get_egg_group,
         resources::encounter::get_encounter,
         resources::encounter_condition::get_encounter_condition,
@@ -52,6 +55,7 @@ use utoipa::OpenApi;
         resources::stat::get_stat,
         resources::tcg_card::get_tcg_card,
         resources::tcg_set::get_tcg_set,
+        resources::total_stats::get_total_stats,
         resources::pokemon_type_efficacy::get_type_efficacy,
         resources::pokemon_type_efficacy::get_type_efficacy_all,
         resources::species::get_species,
@@ -149,6 +153,8 @@ use utoipa::OpenApi;
             version_group::VersionGroup,
             AllTypeEffectivenessResponse,
             AbilityBulkResponse,
+            DebugStats,
+            TotalStats,
             ColorBulkResponse,
             EggGroupBulkResponse,
             EncounterBulkResponse,

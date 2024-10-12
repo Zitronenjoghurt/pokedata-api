@@ -1,3 +1,4 @@
+use crate::debug_stats::build_debug_stats;
 use crate::enrich_data::area_ids_for_locations::enrich_locations_with_area_ids;
 use crate::enrich_data::card_ids_for_tcg_sets::enrich_tcg_sets_with_card_ids;
 use crate::enrich_data::encounter_ids_for_location_areas::enrich_locations_areas_with_encounter_ids;
@@ -149,7 +150,8 @@ pub fn create_app_state(csv_path: &PathBuf) -> AppState {
     enrich_species_with_tcg_ids(&tcg_cards, &mut species);
 
     let rankings = build_rankings(&species);
-    let total_stats = build_total_stats(&tcg_cards, &tcg_sets);
+    let total_stats = build_total_stats(&tcg_cards);
+    let debug_stats = build_debug_stats(&tcg_cards);
 
     AppState {
         abilities,
@@ -201,5 +203,6 @@ pub fn create_app_state(csv_path: &PathBuf) -> AppState {
         search_indices,
         rankings,
         total_stats,
+        debug_stats,
     }
 }

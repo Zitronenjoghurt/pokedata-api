@@ -95,6 +95,7 @@ use version_group::*;
 pub struct BulkResponse<T: Clone + HasId + Serialize + for<'s> ToSchema<'s>>
 {
     pub count: usize,
+    pub total: usize,
     pub results: Vec<T>,
 }
 
@@ -111,6 +112,7 @@ impl<T: Clone + HasId + Serialize + for<'s> ToSchema<'s>> Serialize for BulkResp
 
         let mut state = serializer.serialize_struct("BulkResponse", 2)?;
         state.serialize_field("count", &self.count)?;
+        state.serialize_field("total", &self.total)?;
         state.serialize_field("results", &sorted_results)?;
         state.end()
     }

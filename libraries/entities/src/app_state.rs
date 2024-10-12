@@ -42,6 +42,7 @@ use crate::api::tcg_card::TcgCard;
 use crate::api::tcg_set::TcgSet;
 use crate::api::version::Version;
 use crate::api::version_group::VersionGroup;
+use crate::debug_stats::DebugStats;
 use crate::rankings::Rankings;
 use crate::search_indices::SearchIndices;
 use crate::total_stats::TotalStats;
@@ -99,4 +100,5 @@ pub struct AppState {
     pub search_indices: SearchIndices,
     pub rankings: Rankings,
     pub total_stats: TotalStats,
+    pub debug_stats: DebugStats,
 }

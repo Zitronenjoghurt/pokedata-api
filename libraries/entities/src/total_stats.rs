@@ -1,7 +1,9 @@
 use serde::{Deserialize, Serialize};
+use utoipa::ToSchema;
 
-#[derive(Clone, Debug, Serialize, Deserialize)]
+#[derive(Clone, Debug, Serialize, Deserialize, ToSchema)]
 pub struct TotalStats {
-    pub tcg_cards_count: usize,
-    pub tcg_sets_count: usize,
+    pub pokemon_tcg_card_count: usize,
+    pub trainer_tcg_card_count: usize,
+    pub energy_tcg_card_count: usize,
 }
