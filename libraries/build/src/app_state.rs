@@ -9,6 +9,7 @@ use crate::enrich_data::value_ids_for_encounter_conditions::enrich_encounter_con
 use crate::ranking::build_rankings;
 use crate::search_index::build_search_indices;
 use crate::sprites::load_sprite_index;
+use crate::total_stats::build_total_stats;
 use pokedata_api_entities::api::pokemon_type::get_major_type_ids;
 use pokedata_api_entities::app_state::AppState;
 use pokedata_api_entities::traits::into_id_map::IntoIdMap;
@@ -134,19 +135,21 @@ pub fn create_app_state(csv_path: &PathBuf) -> AppState {
 
     let major_type_ids = get_major_type_ids(types.values().cloned().collect());
 
-    let search_indices = build_search_indices(&tcg_cards, &tcg_sets);
-
     enrich_encounter_conditions_with_value_ids(&mut encounter_conditions, &encounter_condition_values);
     enrich_locations_with_area_ids(&mut locations, &location_areas);
     enrich_locations_areas_with_encounter_ids(&encounters, &mut location_areas);
     enrich_move_effects_with_move_ids(&moves, &mut move_effects);
     enrich_pokemon_with_encounter_ids(&mut pokemon, &encounters);
+
+    let search_indices = build_search_indices(&tcg_cards, &tcg_sets);
+
     enrich_tcg_cards_with_set_id(&mut tcg_cards, &search_indices.set_identifier_to_set_id);
     enrich_tcg_sets_with_card_ids(&tcg_cards, &mut tcg_sets, &search_indices.set_identifier_to_set_id);
 
     enrich_species_with_tcg_ids(&tcg_cards, &mut species);
 
     let rankings = build_rankings(&species);
+    let total_stats = build_total_stats(&tcg_cards, &tcg_sets);
 
     AppState {
         abilities,
@@ -197,5 +200,6 @@ pub fn create_app_state(csv_path: &PathBuf) -> AppState {
         major_type_ids,
         search_indices,
         rankings,
+        total_stats,
     }
 }

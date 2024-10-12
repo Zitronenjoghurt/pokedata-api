@@ -44,6 +44,7 @@ use crate::api::version::Version;
 use crate::api::version_group::VersionGroup;
 use crate::rankings::Rankings;
 use crate::search_indices::SearchIndices;
+use crate::total_stats::TotalStats;
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 
@@ -97,4 +98,5 @@ pub struct AppState {
     pub major_type_ids: Vec<i32>,
     pub search_indices: SearchIndices,
     pub rankings: Rankings,
+    pub total_stats: TotalStats,
 }
