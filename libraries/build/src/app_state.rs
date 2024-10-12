@@ -6,6 +6,7 @@ use crate::enrich_data::move_ids_for_move_effects::enrich_move_effects_with_move
 use crate::enrich_data::set_id_for_tcg_cards::enrich_tcg_cards_with_set_id;
 use crate::enrich_data::tcg_ids_for_species::enrich_species_with_tcg_ids;
 use crate::enrich_data::value_ids_for_encounter_conditions::enrich_encounter_conditions_with_value_ids;
+use crate::ranking::build_rankings;
 use crate::search_index::build_search_indices;
 use crate::sprites::load_sprite_index;
 use pokedata_api_entities::api::pokemon_type::get_major_type_ids;
@@ -145,6 +146,8 @@ pub fn create_app_state(csv_path: &PathBuf) -> AppState {
 
     enrich_species_with_tcg_ids(&tcg_cards, &mut species);
 
+    let rankings = build_rankings(&species);
+
     AppState {
         abilities,
         berries,
@@ -193,5 +196,6 @@ pub fn create_app_state(csv_path: &PathBuf) -> AppState {
         latest_generation,
         major_type_ids,
         search_indices,
+        rankings,
     }
 }
